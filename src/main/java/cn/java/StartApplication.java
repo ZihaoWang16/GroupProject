@@ -26,6 +26,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @MapperScan(basePackages = { "cn.java.mapper" })
 public class StartApplication {
     // ZhengWu
+    // wqriugasdjiasf
     public static void main(String[] args) {
         SpringApplication.run(StartApplication.class, args);
     }
