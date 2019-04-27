@@ -1,0 +1,8 @@
+1553674651033|95|statement|connection 0|select *  	from user  	where id = ?;|select *  	from user  	where id = 1;
+1553918261266|78|statement|connection 0|select *  	from user  	where id = ?|select *  	from user  	where id = 1
+1553919316546|60|statement|connection 0|select *  	from user  	where id = ?|select *  	from user  	where id = 1
+1553920033883|59|statement|connection 1|select *  	from user  	where id = ?|select *  	from user  	where id = 1
+1554002310282|56|statement|connection 0|select *  	from user  	where id = ?|select *  	from user  	where id = 1
+1554002388499|44|statement|connection 1|select *  	from user  	where id = ?|select *  	from user  	where id = 1
+1554004369474|42|statement|connection 2|select *  	from user  	where id = ?|select *  	from user  	where id = 1
+1554004481646|44|statement|connection 2|select *  	from user  	where id = ?|select *  	from user  	where id = 1
