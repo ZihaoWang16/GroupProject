@@ -9,7 +9,7 @@ public class Room {
 
     private Integer buildingId;
 
-    private String floor;
+    private Integer floorId;
 
     private String description;
 
@@ -47,12 +47,12 @@ public class Room {
         this.buildingId = buildingId;
     }
 
-    public String getFloor() {
-        return floor;
+    public Integer getFloorId() {
+        return floorId;
     }
 
-    public void setFloor(String floor) {
-        this.floor = floor;
+    public void setFloorId(Integer floorId) {
+        this.floorId = floorId;
     }
 
     public String getDescription() {
