@@ -28,6 +28,8 @@ public interface FloorService {
 
     Floor selectByPrimaryKey(Integer id);
 
+    Floor selectSelective(Floor floor);
+
     int updateByPrimaryKeySelective(Floor record);
 
     int updateByPrimaryKey(Floor record);
