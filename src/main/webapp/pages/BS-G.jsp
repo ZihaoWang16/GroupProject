@@ -307,7 +307,7 @@
 	  </div>
 	</div>
 	
-	<img src="<%=basePath %>/static/images/floor/BSGF.png" alt="" border="0" usemap="#BS-G"></img>
+	<img src="<%=basePath %>/static/images/floor/BSGF.png" alt="" height="500px" border="0" usemap="#BS-G"></img>
 	<map name="BS-G" id="BS-G">
 		<area id="ihaveid" shape="poly" coords="207,725,106,899,277,1040,407,871" alt="" name="BSG56" href="javascript:void(0);"/>
 		<area shape="poly" coords="416,878,282,1048,403,1148,507,1023,508,952" alt="" name="BSG54" href="javascript:void(0);"/>
