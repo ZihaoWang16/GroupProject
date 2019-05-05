@@ -9,13 +9,16 @@
 
 package cn.java.service;
 
+import java.util.Map;
+
 import cn.java.dto.Building;
+import cn.java.dto.Room;
 
 /**
  * Description: <br/>
- * Date: 2019年4月16日 上午2:35:21 <br/>
+ * Date: 2019年5月4日 <br/>
  * 
- * @author asus
+ * @author SidaHuang
  * @version
  * @see
  */
@@ -31,4 +34,7 @@ public interface BuildingService {
     int updateByPrimaryKeySelective(Building record);
 
     int updateByPrimaryKey(Building record);
+    
+    Map<String, Object> selectBuilding(Building record);
+//    Map<String, Object> selectSelectiveWithTimetable(Room record);
 }

@@ -32,7 +32,7 @@ public class StartApplication {
     // zihao
     // Lsg
     // hwq
-    // hhhhhhhhhh
+    // we have done the building method selectBuilding, please check it
     public static void main(String[] args) {
         SpringApplication.run(StartApplication.class, args);
     }
