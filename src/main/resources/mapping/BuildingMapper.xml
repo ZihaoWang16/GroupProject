@@ -18,6 +18,31 @@
     from building
     where id = #{id,jdbcType=INTEGER}
   </select>
+<select id="selectSelective" resultMap="BaseResultMap" parameterType="cn.java.dto.Building" >
+  	select
+  	<include refid="Base_Column_List" /><where>
+  		<if test="id!=null">
+  			id = #{id}
+  		</if>
+  		<if test="name!=null">
+  			and name = #{name}
+  		</if>
+  		<if test="type!=null">
+  			and type = #{type}
+  		</if>
+  		<if test="buildingId!=null">
+  			and building_id = #{buildingId}
+  		</if>
+  		<if test="description!=null">
+  			and description = #{description}
+  		</if>
+  		<if test="imgUrl!=null">
+  			and img_url = #{imgUrl}
+  		</if>
+  	from building
+  	</where>
+  </select>
+  <select id="selectBuilding"></select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from building
     where id = #{id,jdbcType=INTEGER}

@@ -10,7 +10,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>BS Ground Floor</title>
+    <title>CampusMap</title>
     <script type="text/javascript" src="<%=basePath %>/static/js/jquery-1.4.2.js"></script>
     <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
 	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -24,7 +24,7 @@
 </head>
 <body>
 <center>
-	<!-- Modal -->
+	<!-- the place to put on the specific data -->
 	<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">
@@ -57,7 +57,7 @@
 					<tbody id="tableBody">
 						<tr>
 							<td rowspan="2">9AM</td>
-							<td></td>
+							<td>ahhhhh</td>
 							<td></td>
 							<td></td>
 							<td></td>
@@ -67,9 +67,9 @@
 						</tr>
 						<tr>
 							<td style="display:none"></td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td>sadasd</td>
+							<td>asdas</td>
+							<td>asdas</td>
 							<td></td>
 							<td></td>
 							<td></td>
@@ -306,11 +306,10 @@
 	    </div>
 	  </div>
 	</div>
-	
-	<img src="<%=basePath %>/static/images/BS-G.png" alt="" border="0" usemap="#BS-G"></img>
-	<map name="BS-G" id="BS-G">
-		<area id="ihaveid" shape="poly" coords="207,725,106,899,277,1040,407,871" alt="" name="BSG56" href="javascript:void(0);"/>
-		<area shape="poly" coords="416,878,282,1048,403,1148,507,1023,508,952" alt="" name="BSG54" href="javascript:void(0);"/>
+	<img src="<%=basePath %>/static/images/CampusMap.png" alt="" border="0" usemap="#CampusMap"></img>
+	<map name="CampusMap" id="CampusMap">
+		<area id="CampusMap1" shape="poly" coords="207,725,106,899,277,1040,407,871" alt="" name="BSG56" href="javascript:void(0);"/>
+		<area shape="poly" coords="803,1404,803,1294,920,1294,920,1404" alt="" name="CB" href="javascript:void(0);"/>
 		<area shape="poly" coords="610,948,610,985,742,987,742,948" alt="" name="BSG41" href="javascript:void(0);"/>
 		<area shape="poly" coords="548,947,548,1000,600,1000,600,947" alt="" name="BSG43" href="javascript:void(0);"/>
 		<area shape="poly" coords="548,1067,548,1120,600,1120,600,1054" alt="" name="BSG48" href="javascript:void(0);"/>
@@ -323,22 +322,22 @@
 		<area shape="poly" coords="1664,446,1664,464,1692,472,1692,496,1743,505,1743,470" alt="" name="BSG07" href="javascript:void(0);"/>
 		<area shape="poly" coords="1639,483,1634,518,1737,538,1743,514" alt="" name="BSG11" href="javascript:void(0);"/>
 	</map>
-</center>
+</center>>
 	<script type="text/javascript"> 
 		var lessonList = null;
 		
 		$("area").on('click', function () {
 		    /* alert($(this).attr('name')); */ 
 		    $.ajax({
-	            url:"<%=basePath %>/room/selectSelective.do",
+	            url:"<%=basePath %>/building/selectSelective.do",
 	            type:"post",
 	            data:JSON.stringify({'name':$(this).attr('name')}),
 	            contentType: "application/json",
 	            dataType:"json",
 	            success:function(data){
-	            	$('#modalTitle').html(data.room.name);
-	                $('#description').html('<p>'+data.room.description+'</p>');
-	                $('#image').attr('src','<%=basePath %>'+data.room.imgUrl);
+	            	$('#modalTitle').html(data.building.name);
+	                $('#description').html('<p>'+data.building.description+'</p>');
+	                $('#image').attr('src','<%=basePath %>'+data.building.imgUrl);
 	                lessonList = data.timetable;
 	                buildTimetable(lessonList);
 	            }
@@ -346,48 +345,26 @@
 		    $('#modal').modal('show');
 		});
 		
-		function buildTimetable(data){
-			var tb = document.getElementById('tableBody');    // table 的 id
-			var rows = tb.rows;                           // 获取表格所有行
-			
-			data.forEach(function(e){  
-				var day = e.day;
-				var startTime = e.startTime;
-				var endTime = e.endTime;
-				var duration = (endTime-startTime)*2;
-				var startRow = (startTime-9)*2;
-				console.log(startRow);
+		function getMousePos(event) {
+		    var e = event || window.event;
+		    var scrollX = document.documentElement.scrollLeft || document.body.scrollLeft;
+		    var scrollY = document.documentElement.scrollTop || document.body.scrollTop;
+		    var x = e.pageX || e.clientX + scrollX;
+		    var y = e.pageY || e.clientY + scrollY;
+		    //alert('x: ' + x + '\ny: ' + y);
+	        return { 'x': x, 'y': y };
+	    }
 
-				rows[startRow].cells[day].setAttribute("class", "lesson");
-				rows[startRow].cells[day].setAttribute("rowspan", duration+"");
-				rows[startRow].cells[day].innerHTML=e.moduleCode+"<br/>"+e.name;
-				for (var i = 1; i<duration; i++){
-					rows[startRow+i].cells[day].setAttribute("style", "display:none");
-				}
-			});
+        document.onmousedown = mouseMove;
+		function mouseMove(ev){
+			ev = ev || window.event;
+			var mousePos = getMousePos(ev);
+			console.log('x: ' + mousePos.x + '\ny: ' + mousePos.y);
+
+		    // document.getElementByIdx('mouseXPosition').value = mousePos.x;
+		    // document.getElementByIdx('mouseYPosition').value = mousePos.y;
 		}
-		
-		$("#modal").on("hidden.bs.modal", function() {
-			var tb = document.getElementById('tableBody');    // table 的 id
-			var rows = tb.rows;                           // 获取表格所有行
-			
-			lessonList.forEach(function(e){  
-				var day = e.day;
-				var startTime = e.startTime;
-				var endTime = e.endTime;
-				var duration = (endTime-startTime)*2;
-				var startRow = (startTime-9)*2;
-				console.log(startRow);
 
-				rows[startRow].cells[day].removeAttribute("class");
-				rows[startRow].cells[day].removeAttribute("rowspan");
-				rows[startRow].cells[day].innerHTML="";
-				for (var i = 1; i<duration; i++){
-					rows[startRow+i].cells[day].removeAttribute("style");
-				}
-			});
-		});
-	
-	</script>      
+	</script>
 </body>
 </html>
