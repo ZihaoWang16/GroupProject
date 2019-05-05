@@ -309,7 +309,9 @@
 	
 	<img src="<%=basePath %>${floor.imgUrl }" alt="" border="0" usemap="#BS-G"></img>
 	<map name="BS-G" id="BS-G">
-		<area id="ihaveid" shape="poly" coords="207,725,106,899,277,1040,407,871" alt="" name="BSG56" href="javascript:void(0);"/>
+		<c:forEach var="room" items="${roomList }">
+			<area id="ihaveid" shape="poly" coords="${room.areaCoords }" alt="" name="${room.name }" href="javascript:void(0);"/>
+		</c:forEach>
 	</map>
 </center>
 	<script type="text/javascript"> 

@@ -61,10 +61,17 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
+    public List<Room> selectSelective(Room room) {
+
+        // Auto-generated method stub
+        return roomMapper.selectSelective(room);
+    }
+
+    @Override
     public Room selectByPrimaryKey(Integer id) {
 
         // Auto-generated method stub
-        return null;
+        return roomMapper.selectByPrimaryKey(id);
     }
 
     @Override

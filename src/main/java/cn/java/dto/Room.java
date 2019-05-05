@@ -11,6 +11,8 @@ public class Room {
 
     private Integer floorId;
 
+    private String areaCoords;
+
     private String description;
 
     private String imgUrl;
@@ -55,6 +57,14 @@ public class Room {
         this.floorId = floorId;
     }
 
+    public String getAreaCoords() {
+        return areaCoords;
+    }
+
+    public void setAreaCoords(String areaCoords) {
+        this.areaCoords = areaCoords;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -70,4 +80,5 @@ public class Room {
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
     }
+
 }
