@@ -9,6 +9,7 @@
 
 package cn.java.service;
 
+import java.util.List;
 import java.util.Map;
 
 import cn.java.dto.Room;
@@ -29,6 +30,8 @@ public interface RoomService {
     int insertSelective(Room record);
 
     Room selectByPrimaryKey(Integer id);
+
+    List<Room> selectSelective(Room room);
 
     Map<String, Object> selectSelectiveWithTimetable(Room record);
 
