@@ -9,6 +9,8 @@
 
 package cn.java.service;
 
+import java.util.List;
+
 import cn.java.dto.User;
 
 /**
@@ -28,7 +30,11 @@ public interface UserService {
 
     User selectByPrimaryKey(Integer id);
 
+    List<User> selectSelective(User record);
+
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
+    boolean isUsernameRegistered(User record);
 }

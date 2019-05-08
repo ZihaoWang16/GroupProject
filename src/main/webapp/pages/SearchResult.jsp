@@ -19,34 +19,54 @@
 	
 </head>
 <body>
-        <input type="text" id="searchInput" onkeyup="searchFunction()" placeholder="Water Dispenser">
+	
+		<div class="wrap" id="wrap">
+		  <header class="top-header">
+		   <span class="search">
+		    <input type="search" placeholder="water dispenser" /></span>
+		    <span class="submit"></span>
+		  </header>
+		  
+		  <!-- <div class="top">
+		    <div class="hero"></div>
+		  </div> -->
+		  <div id="container">
+		    <div id="searchLI"><li><a href="#">BSG02
+        		<h6>ibss ground floor</h6></a></li></div>
+	        <div id="searchLI"><li><a href="#">BSG04
+	        	<h6>ibss ground floor</h6></a></li></div>
+	        <div id="searchLI"><li><a href="#">BS3F Water Dispenser
+	        	<h6>ibss 3rd floor</h6></a></li></div>	 <!-- Water Dispenser -->
+			<div id="searchLI"><li><a href="#">BS2F Printer
+				<h6>ibss 2nd floor</h6></a></li></div>	<!-- Printer -->
+		  
+		 </div> 
+		
+		 <!-- <div id="searchFrame" ><input type="text" id="searchInput" onkeyup="searchFunction()" placeholder="Water Dispenser"></div>
         
         <div id="searchLI"><li><a href="#">BSG02
         	<h6>ibss ground floor</h6></a></li></div>
         <div id="searchLI"><li><a href="#">BSG04
         	<h6>ibss ground floor</h6></a></li></div>
         <div id="searchLI"><li><a href="#">BS3F Water Dispenser
-        	<h6>ibss 3rd floor</h6></a></li></div>	 <!-- Water Dispenser -->
+        	<h6>ibss 3rd floor</h6></a></li></div>	 Water Dispenser
 		<div id="searchLI"><li><a href="#">BS2F Printer
-			<h6>ibss 2nd floor</h6></a></li></div>	<!-- Printer -->
-        
+			<h6>ibss 2nd floor</h6></a></li></div>	Printer -->
+			
         <!-- <script type="text/javascript">
-	        function searchFunction() {
-	            var input, filter, ul, li, a, i;
-	            input = document.getElementById('searchInput');
-	            filter = input.value.toUpperCase();
-	            ul = document.getElementById("searchLI");
-	            li = ul.getElementsByTagName('li');
+	        var wrap = $("#wrap");
 	
-	            for (i = 0; i < li.length; i++) {
-	                a = li[i].getElementsByTagName("a")[0];
-	                if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
-	                    li[i].style.display = "";
-	                } else {
-	                    li[i].style.display = "none";
-	                }
-	            }
-	        }
+	        wrap.on("scroll", function(e) {
+	            
+	          if (this.scrollTop > 147) {
+	            wrap.addClass("fix-search");
+	          } else {
+	            wrap.removeClass("fix-search");
+	          }
+	          
+	        });
+	        
         </script> -->
+      
 </body>
 </html>

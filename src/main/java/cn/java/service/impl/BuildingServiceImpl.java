@@ -9,14 +9,17 @@
 
 package cn.java.service.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import cn.java.dto.Building;
+import cn.java.dto.Floor;
 import cn.java.dto.Lesson;
 import cn.java.dto.Room;
 import cn.java.mapper.BuildingMapper;
@@ -92,17 +95,26 @@ public class BuildingServiceImpl implements BuildingService {
 //
 //        return returnMap;
 //    }
+//    @Override
+//    public Map<String, Object> selectBuilding(Building id) {
+//        List<Building> buildingList = buildingMapper.selectSelective(id);
+//        Map<String, Object> returnMap = new HashMap<>();
+//        if (buildingList.size() != 0) {
+//            Building building = buildingList.get(0);
+//            returnMap.put("building", building);
+//        }
+//        return returnMap;
+//    }
     @Override
-    public Map<String, Object> selectBuilding(Building id) {
-        List<Building> buildingList = buildingMapper.selectSelective(id);
-        Map<String, Object> returnMap = new HashMap<>();
-        if (buildingList.size() != 0) {
-            Building building = buildingList.get(0);
-            returnMap.put("building", building);
-        }
-        return returnMap;
+    public List<Building> selectSelective(Building building) {
+    	List<Building> buildingList = buildingMapper.selectSelective(building);
+    	for(Building b : buildingList) {
+    		System.out.println(b);
+    	}
+    	
+        // Auto-generated method stub
+        return buildingList;
     }
-
     @Override
     public int updateByPrimaryKey(Building record) {
 

@@ -10,7 +10,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>BS Ground Floor</title>
+    <title>Floor Map</title>
     <script type="text/javascript" src="<%=basePath %>/static/js/jquery-1.4.2.js"></script>
     <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
 	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -19,6 +19,11 @@
 	<style type="text/css">
 		.modal-dialog{
 			width: 1100px;
+		}
+		#map {
+			max-width: 100%;
+		    max-height: 100vh;
+		    height: auto;
 		}
 	</style>
 </head>
@@ -41,262 +46,7 @@
 	      		<img id="image" src="" alt="" style="width:600px"/>
 	      	</div>
 	      	<div id="timetableDiv">
-	      		<table id="timetable" width="300px" border="1" cellpadding="0" cellspacing="0">
-					<thead>
-						<tr>
-							<th></th>
-							<th>Monday</th>
-							<th>Tuesday</th>
-							<th>Wednesday</th>
-							<th>Thursday</th>
-							<th>Friday</th>
-							<th>Saturday</th>
-							<th>Sunday</th>
-						</tr>
-					</thead>
-					<tbody id="tableBody">
-						<tr>
-							<td rowspan="2">9AM</td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td style="display:none"></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td rowspan="2">10AM</td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td style="display:none"></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td rowspan="2">11AM</td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td style="display:none"></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td rowspan="2">12PM</td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td style="display:none"></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td rowspan="2">1PM</td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td style="display:none"></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td rowspan="2">2PM</td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td style="display:none"></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td rowspan="2">3PM</td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td style="display:none"></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td rowspan="2">4PM</td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td style="display:none"></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td rowspan="2">5PM</td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td style="display:none"></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td rowspan="2">6PM</td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td style="display:none"></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td rowspan="2">7PM</td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td style="display:none"></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td rowspan="2">8PM</td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td style="display:none"></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-					</tbody>
-				</table>
+	      		<%@include file="../pages/timeTable.html" %>
 	      	</div>
 	      </div>
 	      <!-- <div class="modal-footer">
@@ -307,12 +57,61 @@
 	  </div>
 	</div>
 	
-	<img src="<%=basePath %>${floor.imgUrl }" alt="" border="0" usemap="#BS-G"></img>
+	<img id="map" src="<%=basePath %>${floor.imgUrl }" alt="" border="0" usemap="#BS-G"></img>
 	<map name="BS-G" id="BS-G">
-		<area id="ihaveid" shape="poly" coords="207,725,106,899,277,1040,407,871" alt="" name="BSG56" href="javascript:void(0);"/>
+		<c:forEach var="room" items="${roomList }">
+			<area id="ihaveid" shape="poly" coords="${room.areaCoords }" alt="" name="${room.name }" href="javascript:void(0);"/>
+		</c:forEach>
 	</map>
 </center>
 	<script type="text/javascript"> 
+		var originWeight;
+		var originHeight;
+		var currentWeight;
+		var currentHeight;
+		var originCoordsList = [];
+		
+		var img = new Image();
+		img.src = "<%=basePath %>${floor.imgUrl }";
+		
+		if(img.complete){
+		    alert('from:complete : width:'+img.width+',height:'+img.height);
+		}else{
+		    img.onload = function(){
+		        originWeight = img.width;
+		        originHeight = img.height;
+		        
+				$("area").each(function(i, e){
+		        	originCoordsList.push($(e).attr("coords"));
+		        });
+				
+		        changeAreaCoords();
+		    }
+		}
+		
+		window.onresize = changeAreaCoords;
+		
+		function changeAreaCoords(){ 
+			currentWeight = $('#map').width();
+	        currentHeight = $('#map').height();
+	        $("area").each(function(i, e){
+	        	var coordsArray = originCoordsList[i].split(",");
+	        	var currentCoords = "";
+	        	for(j = 0, len = coordsArray.length; j < len; j++) {
+	        		if(coordsArray[j]!=null && coordsArray[j]!=""){
+	        			if(j%2==0){
+	        				// x
+	        				currentCoords += parseInt(coordsArray[j]*currentWeight/originWeight) + ",";
+	        			}else{
+	        				// y
+	        				currentCoords += parseInt(coordsArray[j]*currentHeight/originHeight) + ",";
+	        			}
+	        		}
+	        	}
+	        	$(e).attr("coords",currentCoords);
+	        });
+		}
+		
 		var lessonList = null;
 		
 		$("area").on('click', function () {
@@ -344,7 +143,7 @@
 				var endTime = e.endTime;
 				var duration = (endTime-startTime)*2;
 				var startRow = (startTime-9)*2;
-				console.log(startRow);
+				// console.log(startRow);
 
 				rows[startRow].cells[day].setAttribute("class", "lesson");
 				rows[startRow].cells[day].setAttribute("rowspan", duration+"");
@@ -365,7 +164,7 @@
 				var endTime = e.endTime;
 				var duration = (endTime-startTime)*2;
 				var startRow = (startTime-9)*2;
-				console.log(startRow);
+				// console.log(startRow);
 
 				rows[startRow].cells[day].removeAttribute("class");
 				rows[startRow].cells[day].removeAttribute("rowspan");
@@ -375,7 +174,7 @@
 				}
 			});
 		});
-
+		
 	</script>      
 </body>
 </html>

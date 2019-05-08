@@ -21,15 +21,55 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from userr
+    from user
     where id = #{id,jdbcType=INTEGER}
   </select>
+	<select id="selectSelective" parameterType="cn.java.dto.User" resultType="cn.java.dto.User">
+		select 
+		<include refid="Base_Column_List" />
+		from user
+		<where>
+			<if test="id!=null">
+  				id = #{id}
+  			</if>
+			<if test="username!=null">
+  				and username = #{username}
+  			</if>
+			<if test="password!=null">
+  				and password = #{password}
+  			</if>
+			<if test="authority!=null">
+  				and authority = #{authority}
+  			</if>
+			<if test="firstName!=null">
+  				and first_name = #{firstName}
+  			</if>
+			<if test="lastName!=null">
+  				and last_name = #{lastName}
+  			</if>
+			<if test="city!=null">
+  				and city = #{city}
+  			</if>
+			<if test="country!=null">
+  				and country = #{country}
+  			</if>
+			<if test="address!=null">
+  				and address = #{address}
+  			</if>
+			<if test="phoneNum!=null">
+  				and phone_num = #{phoneNum}
+  			</if>
+			<if test="photoSrc!=null">
+  				and photo_src = #{photoSrc}
+  			</if>
+		</where>
+	</select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from userr
+    delete from user
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="cn.java.dto.User" >
-    insert into userr (id, username, password, 
+    insert into user (id, username, password, 
       authority, first_name, last_name, 
       city, country, address, 
       phone_num, photo_src)
@@ -39,7 +79,7 @@
       #{phoneNum,jdbcType=VARCHAR}, #{photoSrc,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="cn.java.dto.User" >
-    insert into userr
+    insert into user
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -72,7 +112,7 @@
         phone_num,
       </if>
       <if test="photoSrc != null" >
-        photo_src,
+        photo_src
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -107,12 +147,12 @@
         #{phoneNum,jdbcType=VARCHAR},
       </if>
       <if test="photoSrc != null" >
-        #{photoSrc,jdbcType=VARCHAR},
+        #{photoSrc,jdbcType=VARCHAR}
       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="cn.java.dto.User" >
-    update userr
+    update user
     <set >
       <if test="username != null" >
         username = #{username,jdbcType=VARCHAR},
@@ -148,7 +188,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="cn.java.dto.User" >
-    update userr
+    update user
     set username = #{username,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
       authority = #{authority,jdbcType=INTEGER},
