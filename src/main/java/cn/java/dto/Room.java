@@ -9,7 +9,9 @@ public class Room {
 
     private Integer buildingId;
 
-    private String floor;
+    private Integer floorId;
+
+    private String areaCoords;
 
     private String description;
 
@@ -47,12 +49,20 @@ public class Room {
         this.buildingId = buildingId;
     }
 
-    public String getFloor() {
-        return floor;
+    public Integer getFloorId() {
+        return floorId;
     }
 
-    public void setFloor(String floor) {
-        this.floor = floor;
+    public void setFloorId(Integer floorId) {
+        this.floorId = floorId;
+    }
+
+    public String getAreaCoords() {
+        return areaCoords;
+    }
+
+    public void setAreaCoords(String areaCoords) {
+        this.areaCoords = areaCoords;
     }
 
     public String getDescription() {
@@ -70,4 +80,5 @@ public class Room {
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
     }
+
 }

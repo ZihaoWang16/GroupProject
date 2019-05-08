@@ -17,28 +17,27 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import cn.java.dto.Room;
-import cn.java.service.RoomService;
+import cn.java.dto.Building;
+import cn.java.service.BuildingService;
 
 /**
  * Description: <br/>
  * Date: 2019年4月16日 上午2:41:39 <br/>
  * 
- * @author asus
+ * @author SidaHuang
  * @version
  * @see
  */
 @Controller
-@RequestMapping("/room")
-public class RoomController {
-    @Autowired
-    RoomService roomService;
+@RequestMapping("/building")
+public class BuildingController {
+	@Autowired
+    BuildingService buildingService;
 
     @RequestMapping("/selectSelective.do")
     @ResponseBody
-    public Map<String, Object> selectSelective(@RequestBody Room record) {
+    public Map<String, Object> selectSelective(@RequestBody Building record) {
 
-        return roomService.selectSelectiveWithTimetable(record);
+        return buildingService.selectBuilding(record);
     }
-
 }
