@@ -20,6 +20,13 @@
 		.modal-dialog{
 			width: 1100px;
 		}
+		#printer1{
+            position: absolute;
+            left: 688px;
+            top: 916px;
+            height:50px;
+            width:50px;
+        }
 	</style>
 </head>
 <body>
@@ -308,6 +315,7 @@
 	  </div>
 	</div>
 	
+<div>
 	<img src="<%=basePath %>/static/images/floor/BSGF.png" alt="" border="0" usemap="#BS-G"></img>
 	<map name="BS-G" id="BS-G">
 		<area class="room" id="ihaveid" shape="poly" coords="207,725,106,899,277,1040,407,871" alt="" name="BSG56" href="javascript:void(0);"/>
@@ -323,8 +331,25 @@
 		<area class="room" shape="poly" coords="1682,220,1655,362,1852,397,1875,253,1825,217,1743,200" alt="" name="BSG02" href="javascript:void(0);"/>
 		<area class="room" shape="poly" coords="1664,446,1664,464,1692,472,1692,496,1743,505,1743,470" alt="" name="BSG07" href="javascript:void(0);"/>
 		<area class="room" shape="poly" coords="1639,483,1634,518,1737,538,1743,514" alt="" name="BSG11" href="javascript:void(0);"/>
-		<area class="facility" shape="circle" coords="552,936,10" alt="" name="coffee_machine" href="javascript:void(0);"/>
 	</map>
+	<div>
+	    <img id="printer1" src="<%=basePath %>/static/images/icon/printer.png" alt=""></img>
+	    <!-- Modify the URL to make them visible -->
+	    <img id="printer2" src="" alt=""></img>
+	    <img id="printer3" src="" alt=""></img>
+	    <img id="waterDispenser1" src="" alt=""></img>
+	    <img id="waterDispenser2" src="" alt=""></img>
+	    <img id="waterDispenser3" src="" alt=""></img>
+	    <img id="locker1" src="" alt=""></img>
+	    <img id="locker2" src="" alt=""></img>
+	    <img id="locker3" src="" alt=""></img>
+	    <img id="coffeeMachine1" src="" alt=""></img>
+	    <img id="coffeeMachine2" src="" alt=""></img>
+	    <img id="drinkMachine1" src="" alt=""></img>
+	    <img id="drinkMachine2" src="" alt=""></img>
+	</div>
+</div>
+	
 </center>
 	<script type="text/javascript"> 
 		var lessonList = null;
@@ -390,25 +415,7 @@
 				}
 			});
 		});
-		
-		$("area.facility").on('click', function () {
-		    alert($(this).attr('name'));
-		    $.ajax({
-	            url:"<%=basePath %>/facility/selectSelective.do",
-	            type:"post",
-	            data:JSON.stringify({'name':$(this).attr('name')}),
-	            contentType: "application/json",
-	            dataType:"json",
-	            success:function(data){
-	            	$('#modalTitle').html(data.facility.name);
-	                $('#description').html('<p>'+data.facility.description+'</p>');
-	                $('#image').attr('src','<%=basePath %>'+data.facility.imgUrl);
-	            }
-	        });
-		    $("table#timetable").hide();
-		    $('#modal').modal('show');
-		});
-	
+
 	</script>      
 </body>
 </html>
