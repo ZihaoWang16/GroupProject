@@ -28,7 +28,13 @@ public interface UserService {
 
     User selectByPrimaryKey(Integer id);
 
+    User selectByUsername(String username);
+
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
+    boolean isAccountRegistered(String username, String password);
+
+    boolean isUsernameRegistered(String username);
 }
