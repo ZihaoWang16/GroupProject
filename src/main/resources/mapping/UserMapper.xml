@@ -21,15 +21,15 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from userr
+    from user
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from userr
+    delete from user
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="cn.java.dto.User" >
-    insert into userr (id, username, password, 
+    insert into user (id, username, password, 
       authority, first_name, last_name, 
       city, country, address, 
       phone_num, photo_src)
@@ -39,7 +39,7 @@
       #{phoneNum,jdbcType=VARCHAR}, #{photoSrc,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="cn.java.dto.User" >
-    insert into userr
+    insert into user
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -72,7 +72,7 @@
         phone_num,
       </if>
       <if test="photoSrc != null" >
-        photo_src,
+        photo_src
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -107,12 +107,17 @@
         #{phoneNum,jdbcType=VARCHAR},
       </if>
       <if test="photoSrc != null" >
-        #{photoSrc,jdbcType=VARCHAR},
+        #{photoSrc,jdbcType=VARCHAR}
       </if>
     </trim>
   </insert>
+ <select id="selectByUsername" parameterType="java.lang.String" resultType="cn.java.dto.User">
+  select *
+  from user
+  where username = #{username}
+  </select>
   <update id="updateByPrimaryKeySelective" parameterType="cn.java.dto.User" >
-    update userr
+    update user
     <set >
       <if test="username != null" >
         username = #{username,jdbcType=VARCHAR},
@@ -148,7 +153,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="cn.java.dto.User" >
-    update userr
+    update user
     set username = #{username,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
       authority = #{authority,jdbcType=INTEGER},

@@ -21,6 +21,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * Description: <br/>
+ * date: May 5, 2019 5:19:23 PM <br/>
+ *
+ * @author WH
+ * @version
+ */
 @SpringBootApplication(scanBasePackages = { "cn.java.controller", "cn.java.service.impl" })
 @EnableAutoConfiguration
 @MapperScan(basePackages = { "cn.java.mapper" })
@@ -33,6 +40,12 @@ public class StartApplication {
     // Lsg
     // hwq
     // we have done the building method selectBuilding, please check it
+    /**
+     * Description: <br/>
+     *
+     * @author WH
+     * @param args
+     */
     public static void main(String[] args) {
         SpringApplication.run(StartApplication.class, args);
     }
