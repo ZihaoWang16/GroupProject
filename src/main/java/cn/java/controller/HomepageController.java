@@ -25,7 +25,7 @@ public class HomepageController {
 
     @RequestMapping("/")
     public String Homepage() {
-        return "/index";
+        return "redirect:/index.jsp";
     }
 
 }

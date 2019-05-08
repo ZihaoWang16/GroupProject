@@ -32,20 +32,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @EnableAutoConfiguration
 @MapperScan(basePackages = { "cn.java.mapper" })
 public class StartApplication {
-    // Sidahuang
-    // ZhengWu
-    // zjw
-    // dai
-    // zihao
-    // Lsg
-    // hwq
-    // we have done the building method selectBuilding, please check it
-    /**
-     * Description: <br/>
-     *
-     * @author WH
-     * @param args
-     */
     public static void main(String[] args) {
         SpringApplication.run(StartApplication.class, args);
     }
