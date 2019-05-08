@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.java.dto.Description;
 import cn.java.service.DescriptionService;
+import cn.java.service.UserService;
 
 /**
  * Description: <br/>
@@ -26,10 +27,14 @@ public class DescriptionController {
     @Autowired
     DescriptionService descriptionService;
 
+    @Autowired
+    private UserService us;
+
     @RequestMapping("/selectSelective.do")
     @ResponseBody
     public Map<String, Object> selectSelective(@RequestBody Description record) {
 
         return descriptionService.selectDescription(record);
     }
+
 }
