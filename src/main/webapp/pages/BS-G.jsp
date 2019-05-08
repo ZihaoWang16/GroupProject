@@ -36,6 +36,7 @@
 	      </div>
 	      <div class="modal-body">
 	      	<div id="description">
+	      	
 	      	</div>
 	      	<div>
 	      		<img id="image" src="" alt="" style="width:600px"/>
@@ -307,27 +308,28 @@
 	  </div>
 	</div>
 	
-	<img src="<%=basePath %>/static/images/floor/BSGF.png" alt="" height="500px" border="0" usemap="#BS-G"></img>
+	<img src="<%=basePath %>/static/images/floor/BSGF.png" alt="" border="0" usemap="#BS-G"></img>
 	<map name="BS-G" id="BS-G">
-		<area id="ihaveid" shape="poly" coords="207,725,106,899,277,1040,407,871" alt="" name="BSG56" href="javascript:void(0);"/>
-		<area shape="poly" coords="416,878,282,1048,403,1148,507,1023,508,952" alt="" name="BSG54" href="javascript:void(0);"/>
-		<area shape="poly" coords="610,948,610,985,742,987,742,948" alt="" name="BSG41" href="javascript:void(0);"/>
-		<area shape="poly" coords="548,947,548,1000,600,1000,600,947" alt="" name="BSG43" href="javascript:void(0);"/>
-		<area shape="poly" coords="548,1067,548,1120,600,1120,600,1054" alt="" name="BSG48" href="javascript:void(0);"/>
-		<area shape="poly" coords="750,946,750,993,612,999,612,1169,772,1169,772,946" alt="" name="BSG40" href="javascript:void(0);"/>
-		<area shape="poly" coords="780,946,780,1168,942,1168,951,1001,807,997,807,950" alt="" name="BSG38" href="javascript:void(0);"/>
-		<area shape="poly" coords="1045,988,1045,1168,1209,1168,1208,1048,1160,988" alt="" name="BSG33" href="javascript:void(0);"/>
-		<area shape="poly" coords="1440,688,1525,788,1611,715,1528,616" alt="" name="BSG21" href="javascript:void(0);"/>
-		<area shape="poly" coords="1568,653,1620,708,1724,623,1731,585,1633,571" alt="" name="BSG19" href="javascript:void(0);"/>
-		<area shape="poly" coords="1682,220,1655,362,1852,397,1875,253,1825,217,1743,200" alt="" name="BSG02" href="javascript:void(0);"/>
-		<area shape="poly" coords="1664,446,1664,464,1692,472,1692,496,1743,505,1743,470" alt="" name="BSG07" href="javascript:void(0);"/>
-		<area shape="poly" coords="1639,483,1634,518,1737,538,1743,514" alt="" name="BSG11" href="javascript:void(0);"/>
+		<area class="room" id="ihaveid" shape="poly" coords="207,725,106,899,277,1040,407,871" alt="" name="BSG56" href="javascript:void(0);"/>
+		<area class="room" shape="poly" coords="416,878,282,1048,403,1148,507,1023,508,952" alt="" name="BSG54" href="javascript:void(0);"/>
+		<area class="room" shape="poly" coords="610,948,610,985,742,987,742,948" alt="" name="BSG41" href="javascript:void(0);"/>
+		<area class="room" shape="poly" coords="548,947,548,1000,600,1000,600,947" alt="" name="BSG43" href="javascript:void(0);"/>
+		<area class="room" shape="poly" coords="548,1067,548,1120,600,1120,600,1054" alt="" name="BSG48" href="javascript:void(0);"/>
+		<area class="room" shape="poly" coords="750,946,750,993,612,999,612,1169,772,1169,772,946" alt="" name="BSG40" href="javascript:void(0);"/>
+		<area class="room" shape="poly" coords="780,946,780,1168,942,1168,951,1001,807,997,807,950" alt="" name="BSG38" href="javascript:void(0);"/>
+		<area class="room" shape="poly" coords="1045,988,1045,1168,1209,1168,1208,1048,1160,988" alt="" name="BSG33" href="javascript:void(0);"/>
+		<area class="room" shape="poly" coords="1440,688,1525,788,1611,715,1528,616" alt="" name="BSG21" href="javascript:void(0);"/>
+		<area class="room" shape="poly" coords="1568,653,1620,708,1724,623,1731,585,1633,571" alt="" name="BSG19" href="javascript:void(0);"/>
+		<area class="room" shape="poly" coords="1682,220,1655,362,1852,397,1875,253,1825,217,1743,200" alt="" name="BSG02" href="javascript:void(0);"/>
+		<area class="room" shape="poly" coords="1664,446,1664,464,1692,472,1692,496,1743,505,1743,470" alt="" name="BSG07" href="javascript:void(0);"/>
+		<area class="room" shape="poly" coords="1639,483,1634,518,1737,538,1743,514" alt="" name="BSG11" href="javascript:void(0);"/>
+		<area class="facility" shape="circle" coords="552,936,10" alt="" name="coffee_machine" href="javascript:void(0);"/>
 	</map>
 </center>
 	<script type="text/javascript"> 
 		var lessonList = null;
 		
-		$("area").on('click', function () {
+		$("area.room").on('click', function () {
 		    /* alert($(this).attr('name')); */ 
 		    $.ajax({
 	            url:"<%=basePath %>/room/selectSelective.do",
@@ -365,6 +367,7 @@
 					rows[startRow+i].cells[day].setAttribute("style", "display:none");
 				}
 			});
+			$("table#timetable").show();
 		}
 		
 		$("#modal").on("hidden.bs.modal", function() {
@@ -386,6 +389,24 @@
 					rows[startRow+i].cells[day].removeAttribute("style");
 				}
 			});
+		});
+		
+		$("area.facility").on('click', function () {
+		    alert($(this).attr('name'));
+		    $.ajax({
+	            url:"<%=basePath %>/facility/selectSelective.do",
+	            type:"post",
+	            data:JSON.stringify({'name':$(this).attr('name')}),
+	            contentType: "application/json",
+	            dataType:"json",
+	            success:function(data){
+	            	$('#modalTitle').html(data.facility.name);
+	                $('#description').html('<p>'+data.facility.description+'</p>');
+	                $('#image').attr('src','<%=basePath %>'+data.facility.imgUrl);
+	            }
+	        });
+		    $("table#timetable").hide();
+		    $('#modal').modal('show');
 		});
 	
 	</script>      

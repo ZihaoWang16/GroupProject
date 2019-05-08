@@ -1,5 +1,7 @@
 package cn.java.mapper;
 
+import java.util.List;
+
 import cn.java.dto.Facility;
 
 public interface FacilityMapper {
@@ -10,6 +12,8 @@ public interface FacilityMapper {
     int insertSelective(Facility record);
 
     Facility selectByPrimaryKey(Integer id);
+
+    List<Facility> selectSelective(Facility record);
 
     int updateByPrimaryKeySelective(Facility record);
 
