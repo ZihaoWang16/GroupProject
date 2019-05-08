@@ -13,6 +13,8 @@ public class Building {
 
     private String imgUrl;
 
+    private String areaCoords;
+    
     public Integer getId() {
         return id;
     }
@@ -60,4 +62,19 @@ public class Building {
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
     }
+
+	public String getAreaCoords() {
+		return areaCoords;
+	}
+
+	public void setAreaCoords(String areaCoords) {
+		this.areaCoords = areaCoords;
+	}
+
+	@Override
+	public String toString() {
+		return "Building [id=" + id + ", name=" + name + ", code=" + code + ", type=" + type + ", description="
+				+ description + ", imgUrl=" + imgUrl + ", areaCoords=" + areaCoords + "]";
+	}
+	
 }

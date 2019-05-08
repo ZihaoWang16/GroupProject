@@ -9,6 +9,9 @@
 
 package cn.java.service.impl;
 
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +30,7 @@ import cn.java.service.UserService;
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
-    private UserMapper um;
+    private UserMapper userMapper;
 
     @Override
     public int deleteByPrimaryKey(Integer id) {
@@ -45,7 +48,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int insertSelective(User record) {
-        um.insertSelective(record);
+        userMapper.insertSelective(record);
         return record.getId();
     }
 
@@ -71,29 +74,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean isAccountRegistered(String username, String password) {
-        User user = um.selectByUsername(username);
-        if (user == null) {
-            return false;
-        }
-        if (username.equals(user.getUsername()) && password.equals(user.getPassword())) {
-            return true;
-        }
-        return false;
+    public List<User> selectSelective(User record) {
+        
+        return userMapper.selectSelective(record);
     }
 
     @Override
-    public boolean isUsernameRegistered(String username) {
-        if (um.selectByUsername(username) != null) {
+    public boolean isUsernameRegistered(User record) {
+        if (userMapper.selectSelective(record).size() > 0) {
             return true;
         }
         return false;
-    }
-
-    @Override
-    public User selectByUsername(String username) {
-
-        return um.selectByUsername(username);
     }
 
 }

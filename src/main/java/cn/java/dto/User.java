@@ -110,4 +110,13 @@ public class User {
     public void setPhotoSrc(String photoSrc) {
         this.photoSrc = photoSrc;
     }
+
+    @Override
+    public String toString() {
+        return "User [id=" + id + ", username=" + username + ", password=" + password + ", authority=" + authority
+                + ", firstName=" + firstName + ", lastName=" + lastName + ", city=" + city + ", country=" + country
+                + ", address=" + address + ", phoneNum=" + phoneNum + ", photoSrc=" + photoSrc + "]";
+    }
+    
+    
 }

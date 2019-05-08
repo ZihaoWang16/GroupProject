@@ -10,6 +10,7 @@
 package cn.java.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -36,21 +37,20 @@ import cn.java.service.UserService;
 @RequestMapping("/user")
 public class UserController {
     @Autowired
-    private UserService us;
+    private UserService userService;
 
-    @RequestMapping("/selectByUsername.do")
-    @ResponseBody
-    public User selectByUsername(String username) {
-        return us.selectByUsername(username);
-    }
+//    @RequestMapping("/selectByUsername.do")
+//    @ResponseBody
+//    public User selectByUsername(@RequestBody User user) {
+//        return userService.selectSelective(user);
+//    }
 
     @RequestMapping("/login.do")
-    public String login(String username, String password, HttpSession session, Model model) {
-        if (us.isAccountRegistered(username, password)) {
-            Map<String, Object> userMap = new HashMap<String, Object>();
-            userMap.put("username", username);
-            userMap.put("userId", us.selectByUsername(username).getId());
-            session.setAttribute("userMap", userMap);
+    public String login(User user, HttpSession session, Model model) {
+        System.out.println(user);
+        List<User> userList = userService.selectSelective(user);
+        if (userList.size()==1) {
+            session.setAttribute("user", user);
             model.addAttribute("isRegistered", true);
             System.out.println("login successful");
         } else {
@@ -63,7 +63,7 @@ public class UserController {
 
     @RequestMapping("/register.do")
     public String register(User user, HttpSession session, Model model) {
-        if (us.isUsernameRegistered(user.getUsername())) {
+        if (userService.selectSelective(user).size()>0) {
             model.addAttribute("error", "Username Already existed");
             return "/register";
         } else {
@@ -71,20 +71,17 @@ public class UserController {
             // System.out.println(user.getFirstName());
             // System.out.println(user.getLastName());
             // System.out.println(user.getCity());
-            int userId = us.insertSelective(user);
-            Map<String, Object> userMap = new HashMap<String, Object>();
-            userMap.put("username", user.getUsername());
-            userMap.put("userId", userId);
-            session.setAttribute("userMap", userMap);
+            userService.insertSelective(user);
+            session.setAttribute("user", user);
             return "/registerSuccessful";
         }
     }
 
     @RequestMapping("/isUsernameRegistered.do")
-    public @ResponseBody boolean isUsernameRegistered(@RequestBody Map<String, Object> map) {
-        if (us.isUsernameRegistered((String) map.get("username"))) {
+    public @ResponseBody boolean isUsernameRegistered(@RequestBody User user) {
+        if (userService.isUsernameRegistered(user))
             return true;
-        }
+        
         return false;
     }
 

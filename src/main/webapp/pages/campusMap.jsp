@@ -29,16 +29,8 @@
 	
 	
 	<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-	 <h1 id="c2"> 我是图书馆哦</h1>
-	  <div class="modal-dialog" role="document">
-	  
-	    <div class="modal-content">
-	    
-	    <button id="c2">ahhahahah</button> 
-	   
-	    <h1 id="c1"> 我是基础楼哦</h1>
-	    
-	    
+	  <div class="modal-dialog" role="document">	  
+	    <div class="modal-content">	    
 	      <div class="modal-header">
 	      
 	      <!-- modalTitle -->
@@ -70,9 +62,9 @@
 	  </div>
 	</div>
 
-	<img src="<%=basePath %>/static/images/CampusMap.png" alt="" border="0" usemap="#CampusMap"></img>
-	<map name="CampusMap" id="CampusMap">
-		<area id="library" shape="poly" coords="803,1404,803,1294,920,1294,920,1404" alt="" name="CB" href="javascript:void(0);"/>
+	<img src="<%=basePath %>/static/images/CampusMap.png" alt="" border="0" usemap="#campusMap"></img>
+	<map name="campusMap" id="campusMap">
+		<!-- <area id="library" shape="poly" coords="803,1404,803,1294,920,1294,920,1404" alt="" name="CB" href="javascript:void(0);"/>
 		<area shape="poly" coords="320,614,320,792,82,786,76,628" alt="" name="renmin_university_suzhou_campus" href="javascript:void(0);"/>
 		<area shape="poly" coords="996,451,998,776,666,773,658,450" alt="" name="nanjing_university_syzhou_graduate_school" href="javascript:void(0);"/>
 		<area shape="poly" coords="1132,133,1184,162,1175,370,1126,401,1075,361,1069,167" alt="" name="playground" href="javascript:void(0);"/>
@@ -106,14 +98,18 @@
 		<area shape="poly" coords="1284,1325,1415,1320,1423,1456,1278,1453" alt="" name="xia_chen_ground" href="javascript:void(0);"/>
 		<area shape="poly" coords="" alt="" name="" href="javascript:void(0);"/>
 		<area shape="poly" coords="" alt="" name="" href="javascript:void(0);"/>
-		<area shape="poly" coords="" alt="" name="" href="javascript:void(0);"/>
+		<area shape="poly" coords="" alt="" name="" href="javascript:void(0);"/> -->
+		
+		<c:forEach var="building" items="${buildingList }">
+			<area id="ihaveid" shape="poly" coords="${building.areaCoords }" alt="" name="${building.name }" href="javascript:void(0);"/>
+		</c:forEach>
 	</map>
 </center>>
 	<script type="text/javascript"> 
 		
 		$("area").on('click', function () {
 		    /* alert($(this).attr('name')); */ 
-		    $.ajax({
+		    <%-- $.ajax({
 	            url:"<%=basePath %>/building/selectSelective.do",
 	            type:"post",
 	            data:JSON.stringify({'name':$(this).attr('name')}),
@@ -124,26 +120,18 @@
 	                $('#description').html('<p>'+data.building.description+'</p>');
 	                $('#image').attr('src','<%=basePath %>'+data.building.imgUrl);
 	            }
-	        });
+	        }); --%>
+	        <c:forEach var="building" items="${buildingList }">
+	        	var buildingName = '${building.name}';
+	        	var buildingUrl = '${building.imgUrl}';
+	        	if(buildingName == $(this).attr('name')){
+			        $('#image').attr('src','<%=basePath %>'+buildingUrl);
+	        	}
+			</c:forEach>
 		    $('#modal').modal('show');
+		    
 		});
 		
-		$("c2").on('click', function () {
-		    /* alert($(this).attr('name')); */ 
-		    $.ajax({
-	            url:"<%=basePath %>/building/selectSelective.do",
-	            type:"post",
-	            data:JSON.stringify({'name':$(this).attr('name')}),
-	            contentType: "application/json",
-	            dataType:"json",
-	            success:function(data){
-	            	$('#c1name').html(data.building.name);
-	                $('#description').html('<p>'+data.building.description+'</p>');
-	                $('#image').attr('src','<%=basePath %>'+data.building.imgUrl);
-	            }
-	        });
-		    $('#modal').modal('show');
-		});
 		
 		function getMousePos(event) {
 		    var e = event || window.event;
