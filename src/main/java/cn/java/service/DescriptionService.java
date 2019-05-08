@@ -9,6 +9,9 @@
 
 package cn.java.service;
 
+import java.util.List;
+import java.util.Map;
+
 import cn.java.dto.Description;
 
 /**
@@ -27,6 +30,10 @@ public interface DescriptionService {
     int insertSelective(Description record);
 
     Description selectByPrimaryKey(Integer id);
+
+    List<Description> selectSelective(Description description);
+
+    Map<String, Object> selectDescription(Description record);
 
     int updateByPrimaryKeySelective(Description record);
 
