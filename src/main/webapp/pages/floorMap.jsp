@@ -63,6 +63,10 @@
 			<area id="ihaveid" shape="poly" coords="${room.areaCoords }" alt="" name="${room.name }" href="javascript:void(0);"/>
 		</c:forEach>
 	</map>
+	<div id="ts" align = "center" style="position: relarive; top:10px">
+	   <button>RoomState</button>
+	</div>
+	
 </center>
 	<script type="text/javascript"> 
 		var originWeight;
@@ -175,6 +179,35 @@
 			});
 		});
 		
+		$("button").on('click', function () {
+			var buildingId = $(this).val();
+			var roomId = $(this).val();
+			var floorId = $(this).val();
+			$.ajax({
+				url:"<%=basePath %>/room/getOccupiedRoom.do",
+	            type:"post",
+	            data:JSON.stringify({'buildingId':1,'floorId':2}),
+	            contentType: "application/json",
+	            dataType:"json",
+	            success:function(data){
+	            	alert(data)	            	
+	            	if(data!=null)
+	            		{
+	            		data.forEach(function(val, index) {
+	            			console.log(val, index);
+	            		})
+	            		$("#ts").html("Occupied！");
+	            		$("#ts").css("color","Red");
+	            		}
+	            	else
+	            		{
+	            		$("#ts").html("Free!");
+	            		$("#ts").css("color","green");
+	            		}
+	            }
+				
+			});
+		})
 	</script>      
 </body>
 </html>
