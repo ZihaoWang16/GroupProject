@@ -14,6 +14,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
+
 import cn.java.dto.Room;
 import cn.java.service.FloorService;
 import cn.java.service.RoomService;
