@@ -12,6 +12,8 @@ package cn.java.service.impl;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Service;
+
 import cn.java.dto.Description;
 import cn.java.service.DescriptionService;
 
@@ -23,6 +25,7 @@ import cn.java.service.DescriptionService;
  * @version
  * @see
  */
+@Service
 public class DescriptionServiceImpl implements DescriptionService {
 
     @Override
