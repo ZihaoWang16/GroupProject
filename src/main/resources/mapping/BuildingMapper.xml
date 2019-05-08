@@ -8,9 +8,10 @@
     <result column="type" property="type" jdbcType="VARCHAR" />
     <result column="description" property="description" jdbcType="VARCHAR" />
     <result column="img_url" property="imgUrl" jdbcType="VARCHAR" />
+    <result column="area_coords" property="areaCoords" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, name, code, type, description, img_url
+    id, name, code, type, description, img_url, area_coords
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -20,7 +21,9 @@
   </select>
 <select id="selectSelective" resultMap="BaseResultMap" parameterType="cn.java.dto.Building" >
   	select
-  	<include refid="Base_Column_List" /><where>
+  	<include refid="Base_Column_List" />
+  	from building
+  	<where>
   		<if test="id!=null">
   			id = #{id}
   		</if>
@@ -30,16 +33,15 @@
   		<if test="type!=null">
   			and type = #{type}
   		</if>
-  		<if test="buildingId!=null">
-  			and building_id = #{buildingId}
-  		</if>
   		<if test="description!=null">
   			and description = #{description}
   		</if>
   		<if test="imgUrl!=null">
   			and img_url = #{imgUrl}
   		</if>
-  	from building
+  		<if test="areaCoords!=null">
+  			and area_coords = #{areaCoords}
+  		</if>
   	</where>
   </select>
   <select id="selectBuilding"></select>
@@ -49,10 +51,10 @@
   </delete>
   <insert id="insert" parameterType="cn.java.dto.Building" >
     insert into building (id, name, code, 
-      type, description, img_url
+      type, description, img_url,area_coords
       )
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
-      #{type,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{imgUrl,jdbcType=VARCHAR}
+      #{type,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{imgUrl,jdbcType=VARCHAR},#{areaCoords,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="cn.java.dto.Building" >
@@ -76,6 +78,9 @@
       <if test="imgUrl != null" >
         img_url,
       </if>
+      <if test="areaCoords != null" >
+        area_coords,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -96,6 +101,10 @@
       <if test="imgUrl != null" >
         #{imgUrl,jdbcType=VARCHAR},
       </if>
+      <if test="areaCoords != null" >
+        #{areaCoords,jdbcType=VARCHAR},
+      </if>
+      
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="cn.java.dto.Building" >
@@ -116,6 +125,9 @@
       <if test="imgUrl != null" >
         img_url = #{imgUrl,jdbcType=VARCHAR},
       </if>
+      <if test="areaCoords != null" >
+        area_coords = #{areaCoords,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -126,6 +138,7 @@
       type = #{type,jdbcType=VARCHAR},
       description = #{description,jdbcType=VARCHAR},
       img_url = #{imgUrl,jdbcType=VARCHAR}
+      area_coords = #{areaCoords,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
