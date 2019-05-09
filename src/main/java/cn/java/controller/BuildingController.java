@@ -31,12 +31,12 @@ import cn.java.service.FloorService;
  * @see
  */
 @Controller
-@RequestMapping("/building")
+@RequestMapping("/pages")
 public class BuildingController {
 	@Autowired
     BuildingService buildingService;
 	
-	@RequestMapping("/")
+	@RequestMapping("/campusMap")
 	public String showMap(Building building, Model model) {
 		model.addAttribute("buildingList", buildingService.selectSelective(building));
 //        model.addAttribute("buildingImgUrl", buildingService.selectSelective(building));
