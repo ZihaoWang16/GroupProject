@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import cn.java.dto.Floor;
 import cn.java.dto.Room;
 import cn.java.service.FloorService;
 import cn.java.service.RoomService;
@@ -36,9 +37,10 @@ public class FloorController {
     RoomService roomService;
 
     @RequestMapping("/selectSelective.do")
-    public String getFloorInfo(Room room, Model model) {
-        model.addAttribute("floor", floorService.selectByPrimaryKey(room.getFloorId()));
+    public String getFloorInfo(Room room, Floor floor, Model model) {
+        model.addAttribute("selectedFloor", floorService.selectByPrimaryKey(room.getFloorId()));
         model.addAttribute("roomList", roomService.selectSelective(room));
+        model.addAttribute("floorList", floorService.selectSelective(floor));
         return "/floorMap";
     }
 }

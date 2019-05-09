@@ -1,5 +1,7 @@
 package cn.java.mapper;
 
+import java.util.List;
+
 import cn.java.dto.Floor;
 
 public interface FloorMapper {
@@ -11,7 +13,7 @@ public interface FloorMapper {
 
     Floor selectByPrimaryKey(Integer id);
 
-    Floor selectSelective(Floor floor);
+    List<Floor> selectSelective(Floor floor);
 
     int updateByPrimaryKeySelective(Floor record);
 
