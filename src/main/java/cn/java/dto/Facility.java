@@ -13,7 +13,7 @@ public class Facility {
 
     private String imgUrl;
 
-    private String decsription;
+    private String description;
 
     public Integer getId() {
         return id;
@@ -63,11 +63,18 @@ public class Facility {
         this.imgUrl = imgUrl;
     }
 
-    public String getDecsription() {
-        return decsription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDecsription(String decsription) {
-        this.decsription = decsription;
+    public void setDescription(String description) {
+        this.description = description;
     }
+
+    @Override
+    public String toString() {
+        return "Facility [id=" + id + ", name=" + name + ", buildingId=" + buildingId + ", floor=" + floor
+                + ", position=" + position + ", imgUrl=" + imgUrl + ", description=" + description + "]";
+    }
+
 }
