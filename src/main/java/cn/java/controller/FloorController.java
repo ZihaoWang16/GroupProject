@@ -45,8 +45,6 @@ public class FloorController {
         model.addAttribute("floor", floorService.selectByPrimaryKey(room.getFloorId()));
         model.addAttribute("roomList", roomService.selectSelective(room));
         model.addAttribute("facilityList", facilityService.selectSelective(facility));
-        // System.out.println(room.getFloorId());
-        // System.out.println(facility.getFloorId());
         return "/floorMap";
     }
 

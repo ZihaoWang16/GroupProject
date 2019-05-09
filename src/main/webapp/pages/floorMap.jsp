@@ -77,7 +77,8 @@
 		</c:forEach>
 	</map>
 		<c:forEach var="facility" items="${facilityList }">
-		    <img class="icon" id="${facility.id }" src="" alt="" >
+		<img class="icon" id="${facility.id }" src="" alt="" >
+		<script>
 		    var floorId = '${room.floorId }';
 		    var floorIdFac = '${facility.floorId }';
 		    if(floorId == floorIdFac){
@@ -91,7 +92,7 @@
 			$("#${facility.id}").css("left",numLeft);
 			$("#${facility.id}").css("top",numTop);
 		    }
-		    </script>
+		</script>
 		</c:forEach>
 </div>
 </center>
@@ -102,6 +103,5 @@
 <%-- <script type="text/javascript" src="<%=basePath %>/static/js/imageResize.js"></script> --%>
 <%-- <script type="text/javascript" src="<%=basePath %>/static/js/timetable.js"></script> --%>
 <script type="text/javascript" src="<%=basePath %>/static/js/getPosition.js"></script>
-<script type="text/javascript" src="<%=basePath %>/static/js/mapFacility.js"></script>
 </body>
 </html>
