@@ -3,6 +3,8 @@ package cn.java.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,5 +33,14 @@ public class DescriptionController {
     public Map<String, Object> selectSelective(@RequestBody Description record) {
 
         return descriptionService.selectDescription(record);
+    }
+
+    @RequestMapping("/subbmit.do")
+    @ResponseBody
+    public String subbmitSelective(Description description, HttpSession session) {
+
+        descriptionService.insertSelective(description);
+
+        return "/subbmitSuccessful";
     }
 }
