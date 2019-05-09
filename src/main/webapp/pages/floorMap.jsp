@@ -31,11 +31,13 @@
 		    max-height: 100vh;
 		    height: auto;
 		} */
-		/* img {
-			display: block;
-		  margin-left: auto;
-		  margin-right: auto;
-		} */
+		.icon {
+		  position: absolute;
+		  left:0px;
+		  top:0px;
+          height:32px;
+          width:32px;
+		}
 	</style>
 </head>
 <body>
@@ -68,21 +70,38 @@
 	    </div>
 	  </div>
 	</div>
-	
 	<img id="map" src="<%=basePath %>${floor.imgUrl }" alt="" border="0" usemap="#BS-G" ></img>
 	<map name="BS-G" id="BS-G">
 		<c:forEach var="room" items="${roomList }">
 			<area id="ihaveid" shape="poly" coords="${room.areaCoords }" alt="" name="${room.name }" href="javascript:void(0);"/>
 		</c:forEach>
 	</map>
+		<c:forEach var="facility" items="${facilityList }">
+		    <img class="icon" id="${facility.id }" src="" alt="" >
+		    var floorId = '${room.floorId }';
+		    var floorIdFac = '${facility.floorId }';
+		    if(floorId == floorIdFac){
+			var facilityId = '${facility.id}';
+		    $("#${facility.id}").attr('src','<%=basePath %>'+'${facility.imgUrl }');
+		    var facilityPos = '${facility.map_position}';
+		    var facilityPosSplit = facilityPos.split(",");
+		    var arrFacilityPosSplit = facilityPosSplit.length;
+		    var numLeft = Number(facilityPosSplit[0]) + 140;
+		    var numTop = Number(facilityPosSplit[1]) - 20;
+			$("#${facility.id}").css("left",numLeft);
+			$("#${facility.id}").css("top",numTop);
+		    }
+		    </script>
+		</c:forEach>
 </div>
 </center>
 <script type="text/javascript"> 
 	var basePath = '<%=basePath %>';
 	var floorImgUrl = '${floor.imgUrl }';
-</script>      
+</script>
 <%-- <script type="text/javascript" src="<%=basePath %>/static/js/imageResize.js"></script> --%>
 <%-- <script type="text/javascript" src="<%=basePath %>/static/js/timetable.js"></script> --%>
 <script type="text/javascript" src="<%=basePath %>/static/js/getPosition.js"></script>
+<script type="text/javascript" src="<%=basePath %>/static/js/mapFacility.js"></script>
 </body>
 </html>
