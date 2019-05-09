@@ -11,8 +11,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>BS Ground Floor</title>
-    <input id="Mybutton" style="margin-left:500px;margin-top:500px" type=button color="red" value="联系我们" onclick="window.open('sub1.html')">
-    <script type="text/javascript" src="<%=basePath %>/static/js/jquery-1.4.2.js"></script>
+      <script type="text/javascript" src="<%=basePath %>/static/js/jquery-1.4.2.js"></script>
     <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
 	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<script src="http://cdn.bootcss.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>

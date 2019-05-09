@@ -9,7 +9,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <script type="text/javascript" src="<%=basePath %>/resources/js/jquery-1.4.2.js"></script>
+    <script type="text/javascript" src="<%=basePath %>/static/js/jquery-1.4.2.js"></script>
     <link rel="stylesheet" type="text/css" href="<%=basePath %>/static/css/login.css" />
     <!--<script type="text/javascript" src="<%--<%=basePath %>--%>/resources/js/jquery-1.8.2.min.js"></script>-->
     <title>Add Description</title>
@@ -17,18 +17,25 @@
 <body>
     <a href="javascript:history.back(-1)">Back</a>
 <div align="center">
-	
-	
 	<div class="box">
 		<div style = "color:red">
 			${error }
 		</div>
-	    <form action="<%=basePath %>/user/login<%=servletSuffix %>" method="post">
-	        <td><textarea name="reworkmes"   cols="40"   rows="10"   style="OVERFLOW:   hidden">Please add your descriptions here:</textarea></td>
-	        
-	        <p><input type="submit" value="Subbmit"></p>    
-	    </form>
-	</div>
+		<form id = "Submit";action=<%=basePath %>/description/submit.do"; method="post">
+			<textarea name="content"   cols="40"   rows="10"   style="OVERFLOW:   hidden">Please add your descriptions here:</textarea>
+			<!-- <div align="center" style="position:relative;top:-80px";value="弹出对话框" onclick="MsgBox()" > -->
+			<button onclick="MsgBox()">submit your descriptions</button>
+			<!-- </div> -->
+		</form>
+    </div>
+	    
 </div>
-    
+   
+
+<script language="javascript">
+function MsgBox() 
+{
+  alert("Submit Successfully!"); 
+}
+</script>
 </body>

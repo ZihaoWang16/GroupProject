@@ -47,13 +47,19 @@
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <h1 class="modal-title" id="modalTitle"></h1>
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	        	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	          <span aria-hidden="true">&times;</span>
 	        </button>
 	      </div>
 	      <div class="modal-body">
 	      	<div id="description">
-	      	</div>
+	      </div>
+	      	<div align="center" style="position:relative;top:10px" onclick="window.open('../pages/description.jsp')">
+             <button>add more descriptions</button>
+            </div>
+	      	<div align="center" style="position:relative;top:10px" onclick="window.open('../pages/description.jsp')">
+             <button>view more descriptions</button>
+            </div>
 	      	<div>
 	      		<img id="image" src="" alt="" style="width:600px"/>
 	      	</div>
@@ -82,7 +88,7 @@
 	var floorImgUrl = '${floor.imgUrl }';
 </script>      
 <%-- <script type="text/javascript" src="<%=basePath %>/static/js/imageResize.js"></script> --%>
-<%-- <script type="text/javascript" src="<%=basePath %>/static/js/timetable.js"></script> --%>
+<script type="text/javascript" src="<%=basePath %>/static/js/timetable.js"></script>
 <script type="text/javascript" src="<%=basePath %>/static/js/getPosition.js"></script>
 </body>
 </html>
