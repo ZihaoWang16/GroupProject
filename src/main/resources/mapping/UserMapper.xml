@@ -78,7 +78,7 @@
       #{city,jdbcType=VARCHAR}, #{country,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
       #{phoneNum,jdbcType=VARCHAR}, #{photoSrc,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="cn.java.dto.User" >
+  <insert id="insertSelective" parameterType="cn.java.dto.User" useGeneratedKeys="true" keyProperty="id" >
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

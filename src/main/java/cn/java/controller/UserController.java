@@ -63,15 +63,12 @@ public class UserController {
 
     @RequestMapping("/register.do")
     public String register(User user, HttpSession session, Model model) {
+        System.out.println(user);
         if (userService.selectSelective(user).size()>0) {
             model.addAttribute("error", "Username Already existed");
             return "/register";
         } else {
-            // System.out.println(user.getPassword());
-            // System.out.println(user.getFirstName());
-            // System.out.println(user.getLastName());
-            // System.out.println(user.getCity());
-            userService.insertSelective(user);
+            System.out.println();
             session.setAttribute("user", user);
             return "/registerSuccessful";
         }
