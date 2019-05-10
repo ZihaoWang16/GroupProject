@@ -31,6 +31,36 @@
 		    max-height: 100vh;
 		    height: auto;
 		} */
+		/* img {
+			display: block;
+		  margin-left: auto;
+		  margin-right: auto;
+		} */
+		button.dropbtn{
+			text-align:center;
+			border:solid 1px #000;
+			position:absolute; 
+			bottom:0px;
+			left:0;
+			right:0;
+			background-color: #fff;
+			color: balck;
+			padding: 16px;
+			font-size: 16px;
+		}
+		div.dropup{
+			margin:0 auto;
+			padding:16px;
+			text-align:center;
+			height:300px;
+			width:124px;
+			display:none;
+			position:absolute; 
+			bottom:40px;
+			border:solid 1px #c3c3c3;
+			background-color: #ddd;
+		}
+		.content p:hover{background-color: #c3c3c3}
 		.icon {
 		  position: absolute;
 		  left:0px;
@@ -76,12 +106,21 @@
 	    </div>
 	  </div>
 	</div>
-	<img id="map" src="<%=basePath %>${floor.imgUrl }" alt="" border="0" usemap="#BS-G" ></img>
-	<map name="BS-G" id="BS-G">
+	<img id="map" src="<%=basePath %>${selectedFloor.imgUrl }" alt="" border="0" usemap="#BS-G" ></img>
 		<c:forEach var="room" items="${roomList }">
 			<area id="ihaveid" shape="poly" coords="${room.areaCoords }" alt="" name="${room.name }" href="javascript:void(0);"/>
 		</c:forEach>
 	</map>
+	
+	<div class="dropup">
+		<div class="content">
+			<c:forEach var="floor" items="${floorList }">
+				<p name="${floor.id }">${floor.name }</p>
+			</c:forEach>
+		</div>
+	</div>
+	 
+	<button class="dropbtn">Choose the Floor</button>
 		<c:forEach var="facility" items="${facilityList }">
 		<img class="icon" id="${facility.id }" src="" alt="" >
 		<script>
@@ -104,10 +143,21 @@
 </center>
 <script type="text/javascript"> 
 	var basePath = '<%=basePath %>';
-	var floorImgUrl = '${floor.imgUrl }';
-</script>
+	var floorImgUrl = '${selectedFloor.imgUrl }';
+</script>      
 <%-- <script type="text/javascript" src="<%=basePath %>/static/js/imageResize.js"></script> --%>
 <script type="text/javascript" src="<%=basePath %>/static/js/timetable.js"></script>
 <script type="text/javascript" src="<%=basePath %>/static/js/getPosition.js"></script>
+<script type="text/javascript"> 
+$(".dropbtn").click(function(){
+    $(".dropup").slideToggle("slow");
+  });
+$(".content p").click(function(){
+	alert($(this).attr("name"))
+	var buildingId = "${floor.buildingId }";
+	window.location.href = "<%=basePath%>/floor/selectSelective.do?floorId="+$(this).attr("name")+"&buildingId="+buildingId;
+});
+</script>
+
 </body>
 </html>

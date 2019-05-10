@@ -81,4 +81,10 @@ public class Room {
         this.imgUrl = imgUrl;
     }
 
+    @Override
+    public String toString() {
+        return "Room [id=" + id + ", name=" + name + ", type=" + type + ", buildingId=" + buildingId + ", floorId="
+                + floorId + ", areaCoords=" + areaCoords + ", description=" + description + ", imgUrl=" + imgUrl + "]";
+    }
+
 }
