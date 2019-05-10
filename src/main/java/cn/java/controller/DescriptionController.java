@@ -35,12 +35,22 @@ public class DescriptionController {
         return descriptionService.selectDescription(record);
     }
 
-    @RequestMapping("/subbmit.do")
+    @RequestMapping("/submit.do")
     @ResponseBody
-    public String subbmitSelective(Description description, HttpSession session) {
+    public String submitDescription(Description description, HttpSession session) {
 
         descriptionService.insertSelective(description);
 
-        return "/subbmitSuccessful";
+        return "/submitSuccessful";
     }
+
+    @RequestMapping("/view.do")
+    @ResponseBody
+    public String viewDescription(Description description, HttpSession session) {
+
+        descriptionService.selectSelective(description);
+
+        return "/viewSuccessful";
+    }
+
 }

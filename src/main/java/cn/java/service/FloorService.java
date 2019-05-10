@@ -9,6 +9,8 @@
 
 package cn.java.service;
 
+import java.util.List;
+
 import cn.java.dto.Floor;
 
 /**
@@ -28,7 +30,7 @@ public interface FloorService {
 
     Floor selectByPrimaryKey(Integer id);
 
-    Floor selectSelective(Floor floor);
+    List<Floor> selectSelective(Floor floor);
 
     int updateByPrimaryKeySelective(Floor record);
 
