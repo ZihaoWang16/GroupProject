@@ -3,15 +3,15 @@ package cn.java.controller;
 
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import cn.java.dto.Description;
+import cn.java.dto.User;
 import cn.java.service.DescriptionService;
 
 /**
@@ -23,7 +23,7 @@ import cn.java.service.DescriptionService;
  * @see
  */
 @Controller
-@RequestMapping("/Description")
+@RequestMapping("/description")
 public class DescriptionController {
     @Autowired
     DescriptionService descriptionService;
@@ -37,16 +37,18 @@ public class DescriptionController {
 
     @RequestMapping("/submit.do")
     @ResponseBody
-    public String submitDescription(Description description, HttpSession session) {
-
+    public String submitDescription(@SessionAttribute("user") User user, Description description) {
+        System.out.println(user);
+        description.setUserId(user.getId());
+        System.out.println(description);
         descriptionService.insertSelective(description);
 
-        return "/submitSuccessful";
+        return "submitSuccessful";
     }
 
     @RequestMapping("/view.do")
     @ResponseBody
-    public String viewDescription(Description description, HttpSession session) {
+    public String viewDescription(Description description) {
 
         descriptionService.selectSelective(description);
 

@@ -21,10 +21,10 @@
 		<div style = "color:red">
 			${error }
 		</div>
-		<form id = "Submit";action=<%=basePath %>/description/submit.do"; method="post">
-			<textarea name="content"   cols="40"   rows="10"   style="OVERFLOW:   hidden">Please add your descriptions here:</textarea>
+		<form id = "Submit" action="<%=basePath %>/description/submit.do" method="post">
+			<textarea name="content"   cols="40"   rows="10"   style="OVERFLOW:   hidden" placeholder="Please add your descriptions here:"></textarea>
 			<!-- <div align="center" style="position:relative;top:-80px";value="弹出对话框" onclick="MsgBox()" > -->
-			<button onclick="MsgBox()">submit your descriptions</button>
+			<input type="submit" onclick="MsgBox()" value="submit your descriptions" />
 			<!-- </div> -->
 		</form>
     </div>
