@@ -162,8 +162,8 @@
     WHERE r.id = l.room_id 
     AND r.floor_id = f.id
     AND r.building_id = #{buildingId}
-    AND f.id = #{id}
-    AND l.start_time &lt;= #{startTime}
+    AND f.id = #{floorId}
+    AND l.start_time &lt;= #{hour}
     AND l.end_time &gt; #{hour}
     AND l.day = #{day}   
   </select> 

@@ -15,11 +15,12 @@ public interface BuildingMapper {
 
     Building selectByPrimaryKey(Integer id);
 
-    List<Building> selectSelective(Building id) ;
+    List<Building> selectSelective(Building building) ;
     
     int updateByPrimaryKeySelective(Building record);
 
     int updateByPrimaryKey(Building record);
+    
     
 //    List<Room> selectSelective(Room record);
 }

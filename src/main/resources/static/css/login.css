@@ -1,0 +1,7 @@
+@charset "ISO-8859-1";
+div.box{
+ 	width: 300px;
+  	border: 15px solid green;
+	padding: 50px;
+  	margin: 20px;
+}

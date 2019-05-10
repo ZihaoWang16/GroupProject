@@ -139,8 +139,10 @@ public class RoomServiceImpl implements RoomService {
 		}
 		
 		Map<String, Object> map = new HashMap<>();
-		map.put("day", day);
-		map.put("hour", h);
+		//map.put("day", day);
+		//map.put("hour", h);
+		map.put("day", 1);
+		map.put("hour", 9);
 		map.put("buildingId", record.getBuildingId());
 		map.put("floorId", record.getFloorId());
 		return roomMapper.getOccupiedRoom(map);

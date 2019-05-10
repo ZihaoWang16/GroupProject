@@ -8,16 +8,41 @@
     <result column="floor" property="floor" jdbcType="VARCHAR" />
     <result column="position" property="position" jdbcType="VARCHAR" />
     <result column="img_url" property="imgUrl" jdbcType="VARCHAR" />
-    <result column="decsription" property="decsription" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, name, building_id, floor, position, img_url, decsription
+    id, name, building_id, floor, position, img_url, description
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from facility
     where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectSelective" resultMap="BaseResultMap" parameterType="cn.java.dto.Facility" >
+  	select
+  	<include refid="Base_Column_List" />
+  	from facility
+  	<where>
+  		<if test="id!=null">
+  			id = #{id}
+  		</if>
+  		<if test="name!=null">
+  			and name = #{name}
+  		</if>
+  		<if test="buildingId!=null">
+  			and building_id = #{buildingId}
+  		</if>
+  		<if test="position!=null">
+  			and position = #{areaCoords}
+  		</if>
+  		<if test="description!=null">
+  			and description = #{description}
+  		</if>
+  		<if test="imgUrl!=null">
+  			and img_url = #{imgUrl}
+  		</if>
+  	</where>
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from facility
@@ -26,10 +51,10 @@
   <insert id="insert" parameterType="cn.java.dto.Facility" >
     insert into facility (id, name, building_id, 
       floor, position, img_url, 
-      decsription)
+      description)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{buildingId,jdbcType=VARCHAR}, 
       #{floor,jdbcType=VARCHAR}, #{position,jdbcType=VARCHAR}, #{imgUrl,jdbcType=VARCHAR}, 
-      #{decsription,jdbcType=VARCHAR})
+      #{description,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="cn.java.dto.Facility" >
     insert into facility
@@ -52,8 +77,8 @@
       <if test="imgUrl != null" >
         img_url,
       </if>
-      <if test="decsription != null" >
-        decsription,
+      <if test="description != null" >
+        description,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -75,8 +100,8 @@
       <if test="imgUrl != null" >
         #{imgUrl,jdbcType=VARCHAR},
       </if>
-      <if test="decsription != null" >
-        #{decsription,jdbcType=VARCHAR},
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -98,8 +123,8 @@
       <if test="imgUrl != null" >
         img_url = #{imgUrl,jdbcType=VARCHAR},
       </if>
-      <if test="decsription != null" >
-        decsription = #{decsription,jdbcType=VARCHAR},
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -111,7 +136,7 @@
       floor = #{floor,jdbcType=VARCHAR},
       position = #{position,jdbcType=VARCHAR},
       img_url = #{imgUrl,jdbcType=VARCHAR},
-      decsription = #{decsription,jdbcType=VARCHAR}
+      description = #{description,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

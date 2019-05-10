@@ -45,6 +45,7 @@ public class RoomController {
     @RequestMapping("/getOccupiedRoom.do")
     @ResponseBody
     public List<Room> getOccupiedRoom(@RequestBody Room record) {
+    System.out.println(roomService.getOccupiedRoom(record));
 		return roomService.getOccupiedRoom(record);
     }
 
