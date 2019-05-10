@@ -77,8 +77,15 @@ public class FacilityServiceImpl implements FacilityService {
     }
 
     @Override
-    public Map<String, Object> selectFacility(Facility id) {
-        List<Facility> facilityList = facilityMapper.selectSelective(id);
+    public List<Facility> selectSelective(Facility facility) {
+
+        // Auto-generated method stub
+        return facilityMapper.selectSelective(facility);
+    }
+
+    @Override
+    public Map<String, Object> selectFacility(Facility record) {
+        List<Facility> facilityList = facilityMapper.selectSelective(record);
         Map<String, Object> returnMap = new HashMap<>();
         if (facilityList.size() != 0) {
             Facility facility = facilityList.get(0);
