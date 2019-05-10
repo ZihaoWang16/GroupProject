@@ -20,8 +20,6 @@ public class FacilityController {
     @RequestMapping("/selectSelective.do")
     @ResponseBody
     public Map<String, Object> selectSelective(@RequestBody Facility record) {
-        // System.out.println(record);
-        // System.out.println(facilityService.selectFacility(record));
         return facilityService.selectFacility(record);
     }
 }

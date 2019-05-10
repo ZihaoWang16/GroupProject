@@ -9,6 +9,8 @@
 
 package cn.java.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -72,10 +74,10 @@ public class FloorServiceImpl implements FloorService {
     }
 
     @Override
-    public Floor selectSelective(Floor floor) {
+    public List<Floor> selectSelective(Floor floor) {
 
         // Auto-generated method stub
-        return null;
+        return floorMapper.selectSelective(floor);
     }
 
 }

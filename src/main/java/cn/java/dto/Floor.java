@@ -40,4 +40,10 @@ public class Floor {
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
     }
+
+    @Override
+    public String toString() {
+        return "Floor [id=" + id + ", name=" + name + ", buildingId=" + buildingId + ", imgUrl=" + imgUrl + "]";
+    }
+
 }
