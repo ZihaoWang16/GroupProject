@@ -72,4 +72,10 @@ public class Description {
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
+
+    @Override
+    public String toString() {
+        return "Description [id=" + id + ", userId=" + userId + ", buildingId=" + buildingId + ", roomId=" + roomId
+                + ", facilityId=" + facilityId + ", content=" + content + ", createTime=" + createTime + "]";
+    }
 }
