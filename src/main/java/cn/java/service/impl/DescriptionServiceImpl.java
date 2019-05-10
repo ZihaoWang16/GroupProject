@@ -48,7 +48,7 @@ public class DescriptionServiceImpl implements DescriptionService {
 
     @Override
     public int insertSelective(Description record) {
-
+        System.out.println(record);
         return descriptionMapper.insertSelective(record);
         // Auto-generated method stub
 

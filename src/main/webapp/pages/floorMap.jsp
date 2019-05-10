@@ -9,6 +9,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Floor Map</title>
     <script type="text/javascript" src="<%=basePath %>/static/js/jquery-1.8.3.js"></script>
@@ -88,6 +89,7 @@
 	</style>
 </head>
 <body>
+
 <center>
 <div class="body">
 	<!-- Modal -->
@@ -106,7 +108,7 @@
 	      	<div align="center" style="position:relative;top:10px" onclick="window.open('../pages/description.jsp')">
              <button>add more descriptions</button>
             </div>
-	      	<div align="center" style="position:relative;top:10px" onclick="window.open('../pages/description.jsp')">
+	      	<div align="center" style="position:relative;top:10px" onclick="window.open('../pages/viewDescription.jsp')">
              <button>view more descriptions</button>
             </div>
 	      	<div>
@@ -128,6 +130,14 @@
 			<area id="ihaveid" shape="poly" coords="${room.areaCoords }" alt="" name="${room.name }" href="javascript:void(0);"/>
 		</c:forEach>
 	</map>
+
+	<div id="ts" align = "center" style="position: relarive; top:10px">
+	   <button>RoomState</button>
+	   
+	</div>
+	
+	<%-- <img style="position: absolute;left：1000px;top:1000px;height:60px" id="map" src="<%=basePath %>/static/images/icon/empty.png" alt="" border="0"></img>
+	<img style="position: absolute;left：500px;top:700px;height:60px" id="map" src="<%=basePath %>/static/images/icon/full.png" alt="" border="0"></img> --%>
 	
 	<div class="dropup">
 		<div class="content">
@@ -160,9 +170,59 @@
 		</c:forEach>
 </div>
 </center>
+
+
 <script type="text/javascript"> 
 	var basePath = '<%=basePath %>';
 	var floorImgUrl = '${selectedFloor.imgUrl }';
+	
+	$("button").on('click', function () {
+		var buildingId = $(this).val();
+		var roomId = $(this).val();
+		var floorId = $(this).val();
+		
+		$.ajax({
+			url:"<%=basePath %>/room/getOccupiedRoom.do",
+            type:"post",
+            data:JSON.stringify({'buildingId':1,'floorId':2}),
+            contentType: "application/json",
+            dataType:"json",
+            success:function(data){
+            	if(data!=null){
+            		data.forEach(function(room, index) { 
+            			var coordsStr = room.areaCoords;
+            			var coords = coordsStr.split(",");
+            			var arrLength = coords.length;
+            			var sum = 0;
+            			var x,y;
+            			for(var i=0; i<arrLength; i=i+2){
+            				sum += parseInt(coords[i]);
+            				x = sum/arrLength;
+            			}
+            			for(var i=1; i<arrLength; i=i+2){
+            				sum += parseInt(coords[i]);
+            				y = sum/arrLength;
+            			}
+            			
+            			alert(x+" - " +y)
+            			var height = 60;
+            			$(".body").append('<img style="position: absolute;left:'+(x+height/2)+'px;top:'+(y+height/2)+'px;height:'+height+'px" src="'+basePath+'/static/images/icon/full.png" alt="" border="0"></img>');
+            		})
+            		
+            		$("#ts").html("Occupied！");
+            		$("#ts").css("color","Red");
+            		}
+            	else
+            		{
+            		$("#ts").html("Free!");
+            		$("#ts").css("color","green");
+            		}
+            }
+			
+		});
+		
+	})
+	
 </script>      
 <%-- <script type="text/javascript" src="<%=basePath %>/static/js/imageResize.js"></script> --%>
 <script type="text/javascript" src="<%=basePath %>/static/js/timetable.js"></script>
@@ -179,4 +239,5 @@ $(".content p").click(function(){
 </script>
 
 </body>
+
 </html>
