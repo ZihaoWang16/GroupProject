@@ -31,7 +31,6 @@
 		    max-height: 100vh;
 		    height: auto;
 		} */
-<<<<<<< HEAD
 		/* img {
 			display: block;
 		  margin-left: auto;
@@ -62,7 +61,6 @@
 			background-color: #ddd;
 		}
 		.content p:hover{background-color: #c3c3c3}
-=======
 		.icon {
 		  position: absolute;
 		  left:0px;
@@ -70,7 +68,6 @@
           height:32px;
           width:32px;
 		}
->>>>>>> develop
 	</style>
 </head>
 <body>
@@ -109,18 +106,11 @@
 	    </div>
 	  </div>
 	</div>
-<<<<<<< HEAD
-	
 	<img id="map" src="<%=basePath %>${selectedFloor.imgUrl }" alt="" border="0" usemap="#BS-G" ></img>
-=======
-	<img id="map" src="<%=basePath %>${floor.imgUrl }" alt="" border="0" usemap="#BS-G" ></img>
->>>>>>> develop
-	<map name="BS-G" id="BS-G">
 		<c:forEach var="room" items="${roomList }">
 			<area id="ihaveid" shape="poly" coords="${room.areaCoords }" alt="" name="${room.name }" href="javascript:void(0);"/>
 		</c:forEach>
 	</map>
-<<<<<<< HEAD
 	
 	<div class="dropup">
 		<div class="content">
@@ -131,7 +121,6 @@
 	</div>
 	 
 	<button class="dropbtn">Choose the Floor</button>
-=======
 		<c:forEach var="facility" items="${facilityList }">
 		<img class="icon" id="${facility.id }" src="" alt="" >
 		<script>
@@ -150,18 +139,12 @@
 		    }
 		</script>
 		</c:forEach>
->>>>>>> develop
 </div>
 </center>
 <script type="text/javascript"> 
 	var basePath = '<%=basePath %>';
-<<<<<<< HEAD
 	var floorImgUrl = '${selectedFloor.imgUrl }';
 </script>      
-=======
-	var floorImgUrl = '${floor.imgUrl }';
-</script>
->>>>>>> develop
 <%-- <script type="text/javascript" src="<%=basePath %>/static/js/imageResize.js"></script> --%>
 <script type="text/javascript" src="<%=basePath %>/static/js/timetable.js"></script>
 <script type="text/javascript" src="<%=basePath %>/static/js/getPosition.js"></script>
