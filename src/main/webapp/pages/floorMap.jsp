@@ -18,11 +18,9 @@
 	<script src="http://cdn.bootcss.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="<%=basePath %>/static/css/table.css" />
 	<style type="text/css">
-		/* .body {
-		  max-width: 100%;
-		  margin: 0 auto;
-		  align: center;
-		}  */
+		/* .body:hover .dropbtn{
+		  postion:relative;
+		}  */ 
 		.modal-dialog{
 			width: 1100px;
 		}
@@ -37,11 +35,14 @@
 		  margin-right: auto;
 		} */
 		button.dropbtn{
+		    display:none; 
 			text-align:center;
+			width:200px;
 			border:solid 1px #000;
-			position:absolute; 
+			position:fixed; 
 			bottom:0px;
-			left:0;
+			left:50%;
+			margin-left:-100px;
 			right:0;
 			background-color: #fff;
 			color: balck;
@@ -53,10 +54,12 @@
 			padding:16px;
 			text-align:center;
 			height:300px;
-			width:124px;
+			width:200px;
 			display:none;
-			position:absolute; 
+			position:fixed; 
 			bottom:40px;
+			left:50%;
+			margin-left:-100px;
 			border:solid 1px #c3c3c3;
 			background-color: #ddd;
 		}
@@ -68,6 +71,20 @@
           height:32px;
           width:32px;
 		}
+		 .father{
+		  width:100%;
+		  height:50px;
+		  left:0px;
+		  bottom:0px;
+		  background-color: #fff;
+		  opacity:0.8;
+		  position:fixed;
+		  
+		}   
+	    .father:hover .dropbtn {
+		display: block;
+		}
+		.dropbtn:hover {background-color: #c3c3c3}
 	</style>
 </head>
 <body>
@@ -119,8 +136,10 @@
 			</c:forEach>
 		</div>
 	</div>
+	 <div class="father">
+	 <button class="dropbtn">Choose the Floor</button>
+	 </div>
 	 
-	<button class="dropbtn">Choose the Floor</button>
 		<c:forEach var="facility" items="${facilityList }">
 		<img class="icon" id="${facility.id }" src="" alt="" >
 		<script>
