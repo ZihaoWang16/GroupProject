@@ -9,10 +9,14 @@
 
 package cn.java.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.java.dto.Facility;
 import cn.java.dto.Floor;
@@ -42,12 +46,20 @@ public class FloorController {
     FacilityService facilityService;
 
     @RequestMapping("/selectSelective.do")
-    public String getFloorInfo(Room room, Floor floor, Facility facility, Model model) {
-        model.addAttribute("selectedFloor", floorService.selectByPrimaryKey(room.getFloorId()));
-        model.addAttribute("roomList", roomService.selectSelective(room));
-        model.addAttribute("floorList", floorService.selectSelective(floor));
-        model.addAttribute("facilityList", facilityService.selectSelective(facility));
-        return "/floorMap";
+    @ResponseBody
+    public Map<String, Object> getFloorInfo(Room room, Floor floor, Facility facility, Model model) {
+//        model.addAttribute("selectedFloor", floorService.selectByPrimaryKey(room.getFloorId()));
+//        model.addAttribute("roomList", roomService.selectSelective(room));
+//        model.addAttribute("floorList", floorService.selectSelective(floor));
+        System.out.println(floor);
+        Map<String, Object> map = new HashMap<>();
+        map.put("floor", floorService.selectByPrimaryKey(1));
+//        map.put("selectedFloor", floorService.selectByPrimaryKey(room.getFloorId()));
+//        map.put("roomList", roomService.selectSelective(room));
+//        map.put("floorList", floorService.selectSelective(floor));
+//        model.addAttribute("facilityList", facilityService.selectSelective(facility));
+//        return "/floorMap";
+        return map;
     }
 
 }
