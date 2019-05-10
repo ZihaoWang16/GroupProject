@@ -78,7 +78,7 @@
 </div>
 </center>
 <script type="text/javascript"> 
-	var basePath = '<%=basePath %>';
+	var basePath = '<%=basePath %>'; http://localhost:8888/
 	var floorImgUrl = '${floor.imgUrl }';
 </script>      
 <%-- <script type="text/javascript" src="<%=basePath %>/static/js/imageResize.js"></script> --%>
