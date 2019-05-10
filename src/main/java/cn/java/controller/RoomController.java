@@ -9,6 +9,7 @@
 
 package cn.java.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,13 @@ public class RoomController {
     public Map<String, Object> selectSelective(@RequestBody Room record) {
 
         return roomService.selectSelectiveWithTimetable(record);
+    }
+    
+    @RequestMapping("/getOccupiedRoom.do")
+    @ResponseBody
+    public List<Room> getOccupiedRoom(@RequestBody Room record) {
+    System.out.println(roomService.getOccupiedRoom(record));
+		return roomService.getOccupiedRoom(record);
     }
 
 }
