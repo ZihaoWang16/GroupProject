@@ -150,25 +150,6 @@
 			</div>
 		</div>
 	</div>
-	 
-		<c:forEach var="facility" items="${facilityList }">
-			<img class="icon" id="${facility.id }" src="" alt="" >
-			<script>
-			    var floorId = '${room.floorId }';
-			    var floorIdFac = '${facility.floorId }';
-			    if(floorId == floorIdFac){
-				var facilityId = '${facility.id}';
-			    $("#${facility.id}").attr('src','<%=basePath %>'+'${facility.imgUrl }');
-			    var facilityPos = '${facility.map_position}';
-			    var facilityPosSplit = facilityPos.split(",");
-			    var arrFacilityPosSplit = facilityPosSplit.length;
-			    var numLeft = Number(facilityPosSplit[0]) + 140;
-			    var numTop = Number(facilityPosSplit[1]) - 20;
-				$("#${facility.id}").css("left",numLeft);
-				$("#${facility.id}").css("top",numTop);
-			    }
-			</script>
-		</c:forEach>
 </div>
 </center>
 <!-- jQuery CDN - Slim version (=without AJAX) -->
