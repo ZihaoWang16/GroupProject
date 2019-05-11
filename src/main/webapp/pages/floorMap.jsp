@@ -65,6 +65,7 @@
 		}
 		.content p:hover{background-color: #c3c3c3}
 		.icon {
+		  vertical-align: middle;
 		  position: absolute;
 		  left:0px;
 		  top:0px;
@@ -123,23 +124,14 @@
 	    </div>
 	  </div>
 	</div>
+	<div>
 	<img id="map" src="<%=basePath %>${selectedFloor.imgUrl }" alt="" border="0" usemap="#BS-G" ></img>
+	<map>
 		<c:forEach var="room" items="${roomList }">
 			<area id="ihaveid" shape="poly" coords="${room.areaCoords }" alt="" name="${room.name }" href="javascript:void(0);"/>
 		</c:forEach>
 	</map>
-	
-	<div class="dropup">
-		<div class="content">
-			<c:forEach var="floor" items="${floorList }">
-				<p name="${floor.id }">${floor.name }</p>
-			</c:forEach>
-		</div>
-	</div>
-	 <div class="father">
-	 <button class="dropbtn">Choose the Floor</button>
-	 </div>
-	 
+	  <div class="mapFacility">
 		<c:forEach var="facility" items="${facilityList }">
 		<img class="icon" id="${facility.id }" src="" alt="" >
 		<script>
@@ -152,12 +144,24 @@
 		    var facilityPosSplit = facilityPos.split(",");
 		    var arrFacilityPosSplit = facilityPosSplit.length;
 		    var numLeft = Number(facilityPosSplit[0]) + 140;
-		    var numTop = Number(facilityPosSplit[1]) - 20;
+		    var numTop = Number(facilityPosSplit[1]) - 16;
 			$("#${facility.id}").css("left",numLeft);
 			$("#${facility.id}").css("top",numTop);
 		    }
 		</script>
 		</c:forEach>
+	  </div>
+	</div>
+	<div class="dropup">
+		<div class="content">
+			<c:forEach var="floor" items="${floorList }">
+				<p name="${floor.id }">${floor.name }</p>
+			</c:forEach>
+		</div>
+	</div>
+	<div class="father">
+	     <button class="dropbtn">Choose the Floor</button>
+	</div>
 </div>
 </center>
 <script type="text/javascript"> 
