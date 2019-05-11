@@ -1,6 +1,6 @@
 package cn.java.controller;
 
-import java.util.Map;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,7 +19,8 @@ public class FacilityController {
 
     @RequestMapping("/selectSelective.do")
     @ResponseBody
-    public Map<String, Object> selectSelective(@RequestBody Facility record) {
-        return facilityService.selectFacility(record);
+    public List<Facility> selectSelective(@RequestBody Facility record) {
+        System.out.println(record);
+        return facilityService.selectSelective(record);
     }
 }

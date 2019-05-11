@@ -5,11 +5,11 @@ public class Facility {
 
     private String name;
 
-    private String buildingId;
+    private Integer buildingId;
 
-    private String floorId;
+    private Integer floorId;
 
-    private String map_position;
+    private String mapPosition;
 
     private String imgUrl;
 
@@ -31,28 +31,28 @@ public class Facility {
         this.name = name;
     }
 
-    public String getBuildingId() {
+    public Integer getBuildingId() {
         return buildingId;
     }
 
-    public void setBuildingId(String buildingId) {
+    public void setBuildingId(Integer buildingId) {
         this.buildingId = buildingId;
     }
 
-    public String getFloorId() {
+    public Integer getFloorId() {
         return floorId;
     }
 
-    public void setFloorId(String floorId) {
+    public void setFloorId(Integer floorId) {
         this.floorId = floorId;
     }
 
-    public String getmap_position() {
-        return map_position;
+    public String getMapPosition() {
+        return mapPosition;
     }
 
-    public void setmap_position(String map_position) {
-        this.map_position = map_position;
+    public void setMapPosition(String mapPosition) {
+        this.mapPosition = mapPosition;
     }
 
     public String getImgUrl() {
@@ -74,7 +74,7 @@ public class Facility {
     @Override
     public String toString() {
         return "Facility [id=" + id + ", name=" + name + ", buildingId=" + buildingId + ", floorId=" + floorId
-                + ", map_position=" + map_position + ", imgUrl=" + imgUrl + ", description=" + description + "]";
+                + ", mapPosition=" + mapPosition + ", imgUrl=" + imgUrl + ", description=" + description + "]";
     }
 
 }

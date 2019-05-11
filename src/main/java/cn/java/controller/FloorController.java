@@ -9,10 +9,14 @@
 
 package cn.java.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.java.dto.Facility;
 import cn.java.dto.Floor;
@@ -46,7 +50,6 @@ public class FloorController {
         model.addAttribute("selectedFloor", floorService.selectByPrimaryKey(room.getFloorId()));
         model.addAttribute("roomList", roomService.selectSelective(room));
         model.addAttribute("floorList", floorService.selectSelective(floor));
-        model.addAttribute("facilityList", facilityService.selectSelective(facility));
         return "/floorMap";
     }
 

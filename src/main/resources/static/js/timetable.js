@@ -1,7 +1,6 @@
 var lessonList = null;
 		
 $("area").click(function () {
-    /* alert($(this).attr('name')); */ 
     $.ajax({
         url:basePath + "/room/selectSelective.do",
         type:"post",
@@ -11,7 +10,7 @@ $("area").click(function () {
         success:function(data){
         	$('#modalTitle').html(data.room.name);
             $('#description').html('<p>'+data.room.description+'</p>');
-            $('#image').attr('src','<%=basePath %>'+data.room.imgUrl);
+            $('#image').attr('src',basePath+data.room.imgUrl);
             lessonList = data.timetable;
             buildTimetable(lessonList);
         }

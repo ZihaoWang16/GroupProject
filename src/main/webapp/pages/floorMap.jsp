@@ -15,15 +15,53 @@
     <script type="text/javascript" src="<%=basePath %>/static/js/jquery-1.8.3.js"></script>
 <%--     <script type="text/javascript" src="<%=basePath %>/static/js/jquery-1.4.2.js"></script> --%>
     <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
-	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.2/css/bootstrap.min.css">
-	<script src="http://cdn.bootcss.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	<!-- <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<script src="http://cdn.bootcss.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> -->
+	
+	<!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+	
+	<%-- <link rel="stylesheet" href="<%=basePath %>/static/bootstrap-4.0.0/dist/css/bootstrap.min.css">
+	<script type="text/javascript" src="<%=basePath %>/static/bootstrap-4.0.0/dist/js/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript" src="<%=basePath %>/static/bootstrap-4.0.0/dist/js/bootstrap.min.js"></script> --%>
 	<link rel="stylesheet" type="text/css" href="<%=basePath %>/static/css/table.css" />
+	<link rel="stylesheet" type="text/css" href="<%=basePath %>/static/css/dropdown.css" />
 	<style type="text/css">
-		/* .body:hover .dropbtn{
-		  postion:relative;
-		}  */ 
-		.modal-dialog{
+		html,body
+		{
+			font-size: 1em;
+		}
+		#bottomBar
+		{
+			position:fixed;
+			margin:auto;
+			bottom:0;
+			height:15%;
+			width:100%;
+		}
+		#bottomBar:hover #peopleIcon
+		{
+			display:block;
+		}
+		#bottomBar:hover .dropup
+		{
+			display:block;
+		}
+		.modal-dialog
+		{
 			width: 1100px;
+		}
+		#peopleIcon
+		{
+			position: fixed;
+			margin: auto;
+			bottom: 5%;
+			left: 5%;
+			width: 50px;
+			height:auto;
+			display: none;
+			cursor: pointer;
+			z-index: 1;
 		}
 		/* #map {
 			max-width: 100%;
@@ -35,36 +73,7 @@
 		  margin-left: auto;
 		  margin-right: auto;
 		} */
-		button.dropbtn{
-		    display:none; 
-			text-align:center;
-			width:200px;
-			border:solid 1px #000;
-			position:fixed; 
-			bottom:0px;
-			left:50%;
-			margin-left:-100px;
-			right:0;
-			background-color: #fff;
-			color: balck;
-			padding: 16px;
-			font-size: 16px;
-		}
-		div.dropup{
-			margin:0 auto;
-			padding:16px;
-			text-align:center;
-			height:300px;
-			width:200px;
-			display:none;
-			position:fixed; 
-			bottom:40px;
-			left:50%;
-			margin-left:-100px;
-			border:solid 1px #c3c3c3;
-			background-color: #ddd;
-		}
-		.content p:hover{background-color: #c3c3c3}
+		/*
 		.icon {
 		  position: absolute;
 		  left:0px;
@@ -72,45 +81,33 @@
           height:32px;
           width:32px;
 		}
-		 .father{
-		  width:100%;
-		  height:50px;
-		  left:0px;
-		  bottom:0px;
-		  background-color: #fff;
-		  opacity:0.8;
-		  position:fixed;
-		  
-		}   
-	    .father:hover .dropbtn {
-		display: block;
-		}
-		.dropbtn:hover {background-color: #c3c3c3}
+		*/
 	</style>
 </head>
 <body>
 
 <center>
-<div class="body">
+<div class="body" >
+
 	<!-- Modal -->
 	<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-	  <div class="modal-dialog" role="document">
+	  <div class="modal-dialog test" role="document">
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <h1 class="modal-title" id="modalTitle"></h1>
-	        	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	          <span aria-hidden="true">&times;</span>
 	        </button>
 	      </div>
 	      <div class="modal-body">
 	      	<div id="description">
 	      </div>
-	      	<div align="center" style="position:relative;top:10px" onclick="window.open('../pages/description.jsp')">
+	      	<!-- <div align="center" style="position:relative;top:10px" onclick="window.open('../pages/description.jsp')">
              <button>add more descriptions</button>
             </div>
 	      	<div align="center" style="position:relative;top:10px" onclick="window.open('../pages/viewDescription.jsp')">
              <button>view more descriptions</button>
-            </div>
+            </div> -->
 	      	<div>
 	      		<img id="image" src="" alt="" style="width:600px"/>
 	      	</div>
@@ -125,118 +122,92 @@
 	    </div>
 	  </div>
 	</div>
-	<img id="map" src="<%=basePath %>${selectedFloor.imgUrl }" alt="" border="0" usemap="#BS-G" ></img>
+	
+	<!-- map -->
+	<img id="map" src="<%=basePath %>/${selectedFloor.imgUrl }" alt="" border="0" usemap="#floorMap" />
+	<map name="floorMap" id="floorMap">
 		<c:forEach var="room" items="${roomList }">
-			<area id="ihaveid" shape="poly" coords="${room.areaCoords }" alt="" name="${room.name }" href="javascript:void(0);"/>
+			<area shape="poly" coords="${room.areaCoords }" alt="" name="${room.name }" href="javascript:void(0);"/>
 		</c:forEach>
 	</map>
 
-	<div id="ts" align = "center" style="position: relarive; top:10px">
-	   <button>RoomState</button>
-	   
-	</div>
 	
-	<%-- <img style="position: absolute;left：1000px;top:1000px;height:60px" id="map" src="<%=basePath %>/static/images/icon/empty.png" alt="" border="0"></img>
-	<img style="position: absolute;left：500px;top:700px;height:60px" id="map" src="<%=basePath %>/static/images/icon/full.png" alt="" border="0"></img> --%>
+	<div id="bottomBar">
+		
+		<img id="peopleIcon" src="<%=basePath %>/static/images/icon/groupOutlined.png" alt="" border="0" width="50px"/>
 	
-	<div class="dropup">
-		<div class="content">
-			<c:forEach var="floor" items="${floorList }">
-				<p name="${floor.id }">${floor.name }</p>
-			</c:forEach>
+		<!-- Default dropup button -->
+		<div class="dropup">
+			<button type="button" class="btn btn-secondary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			  ${selectedFloor.name }
+			</button>
+			<div class="dropdown-menu">
+				<c:forEach var="floor" items="${floorList }">
+					<a class="dropdown-item" floorId="${floor.id }" href="<%=basePath %>/floor/selectSelective<%=servletSuffix %>?buildingId=${floor.buildingId }&floorId=${floor.id }">${floor.name }</a>
+				</c:forEach>
+				<!-- <div class="dropdown-divider"></div>
+				<a class="dropdown-item" href="#">Separated link</a> -->
+			</div>
 		</div>
 	</div>
-	 <div class="father">
-	 <button class="dropbtn">Choose the Floor</button>
-	 </div>
 	 
 		<c:forEach var="facility" items="${facilityList }">
-		<img class="icon" id="${facility.id }" src="" alt="" >
-		<script>
-		    var floorId = '${room.floorId }';
-		    var floorIdFac = '${facility.floorId }';
-		    if(floorId == floorIdFac){
-			var facilityId = '${facility.id}';
-		    $("#${facility.id}").attr('src','<%=basePath %>'+'${facility.imgUrl }');
-		    var facilityPos = '${facility.map_position}';
-		    var facilityPosSplit = facilityPos.split(",");
-		    var arrFacilityPosSplit = facilityPosSplit.length;
-		    var numLeft = Number(facilityPosSplit[0]) + 140;
-		    var numTop = Number(facilityPosSplit[1]) - 20;
-			$("#${facility.id}").css("left",numLeft);
-			$("#${facility.id}").css("top",numTop);
-		    }
-		</script>
+			<img class="icon" id="${facility.id }" src="" alt="" >
+			<script>
+			    var floorId = '${room.floorId }';
+			    var floorIdFac = '${facility.floorId }';
+			    if(floorId == floorIdFac){
+				var facilityId = '${facility.id}';
+			    $("#${facility.id}").attr('src','<%=basePath %>'+'${facility.imgUrl }');
+			    var facilityPos = '${facility.map_position}';
+			    var facilityPosSplit = facilityPos.split(",");
+			    var arrFacilityPosSplit = facilityPosSplit.length;
+			    var numLeft = Number(facilityPosSplit[0]) + 140;
+			    var numTop = Number(facilityPosSplit[1]) - 20;
+				$("#${facility.id}").css("left",numLeft);
+				$("#${facility.id}").css("top",numTop);
+			    }
+			</script>
 		</c:forEach>
 </div>
 </center>
-
-
+<!-- jQuery CDN - Slim version (=without AJAX) -->
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+<!-- Popper.JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 <script type="text/javascript"> 
 	var basePath = '<%=basePath %>';
+	var zoomIndex = 5;
 	var floorImgUrl = '${selectedFloor.imgUrl }';
+	var floorId = '${selectedFloor.id }';
+	var buildingId = '${selectedFloor.buildingId }'
 	
-	$("button").on('click', function () {
-		var buildingId = $(this).val();
-		var roomId = $(this).val();
-		var floorId = $(this).val();
+	$.ajax({
+		url:basePath+"/facility/selectSelective.do",
+           type:"post",
+           data:JSON.stringify({'buildingId':buildingId,'floorId':floorId}),
+           contentType: "application/json",
+           dataType:"json",
+           success:function(data){
+        	   data.forEach(function(facility, index){
+        		   console.log(facility)
+        		   var coords = facility.mapPosition.split(",");
+        		   var height = 20;
+        		   var x = parseInt(coords[0])-height/2;
+        		   var y = parseInt(coords[1])-height/2;
+        		   $(".body").append('<img class="facility" style="position: absolute;left:'+x+'px;top:'+y+'px;height:'+height+'px" src="'+basePath+facility.imgUrl+'" alt="" border="0" />');
+        	   });
+           }
 		
-		$.ajax({
-			url:"<%=basePath %>/room/getOccupiedRoom.do",
-            type:"post",
-            data:JSON.stringify({'buildingId':1,'floorId':2}),
-            contentType: "application/json",
-            dataType:"json",
-            success:function(data){
-            	if(data!=null){
-            		data.forEach(function(room, index) { 
-            			var coordsStr = room.areaCoords;
-            			var coords = coordsStr.split(",");
-            			var arrLength = coords.length;
-            			var sum = 0;
-            			var x,y;
-            			for(var i=0; i<arrLength; i=i+2){
-            				sum += parseInt(coords[i]);
-            				x = sum/arrLength;
-            			}
-            			for(var i=1; i<arrLength; i=i+2){
-            				sum += parseInt(coords[i]);
-            				y = sum/arrLength;
-            			}
-            			
-            			alert(x+" - " +y)
-            			var height = 60;
-            			$(".body").append('<img style="position: absolute;left:'+(x+height/2)+'px;top:'+(y+height/2)+'px;height:'+height+'px" src="'+basePath+'/static/images/icon/full.png" alt="" border="0"></img>');
-            		})
-            		
-            		$("#ts").html("Occupied！");
-            		$("#ts").css("color","Red");
-            		}
-            	else
-            		{
-            		$("#ts").html("Free!");
-            		$("#ts").css("color","green");
-            		}
-            }
-			
-		});
-		
-	})
+	});
 	
 </script>      
 <%-- <script type="text/javascript" src="<%=basePath %>/static/js/imageResize.js"></script> --%>
 <script type="text/javascript" src="<%=basePath %>/static/js/timetable.js"></script>
-<script type="text/javascript" src="<%=basePath %>/static/js/getPosition.js"></script>
-<script type="text/javascript"> 
-$(".dropbtn").click(function(){
-    $(".dropup").slideToggle("slow");
-  });
-$(".content p").click(function(){
-	alert($(this).attr("name"))
-	var buildingId = "${floor.buildingId }";
-	window.location.href = "<%=basePath%>/floor/selectSelective.do?floorId="+$(this).attr("name")+"&buildingId="+buildingId;
-});
-</script>
+<script type="text/javascript" src="<%=basePath %>/static/js/showOccupiedRoom.js"></script>
+<%-- <script type="text/javascript" src="<%=basePath %>/static/js/getPosition.js"></script> --%>
 
 </body>
 
