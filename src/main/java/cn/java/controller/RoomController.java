@@ -38,15 +38,15 @@ public class RoomController {
     @RequestMapping("/selectSelective.do")
     @ResponseBody
     public Map<String, Object> selectSelective(@RequestBody Room record) {
-
+        
         return roomService.selectSelectiveWithTimetable(record);
     }
     
     @RequestMapping("/getOccupiedRoom.do")
     @ResponseBody
     public List<Room> getOccupiedRoom(@RequestBody Room record) {
-    System.out.println(roomService.getOccupiedRoom(record));
-		return roomService.getOccupiedRoom(record);
+
+        return roomService.getOccupiedRoom(record);
     }
 
 }

@@ -46,20 +46,11 @@ public class FloorController {
     FacilityService facilityService;
 
     @RequestMapping("/selectSelective.do")
-    @ResponseBody
-    public Map<String, Object> getFloorInfo(Room room, Floor floor, Facility facility, Model model) {
-//        model.addAttribute("selectedFloor", floorService.selectByPrimaryKey(room.getFloorId()));
-//        model.addAttribute("roomList", roomService.selectSelective(room));
-//        model.addAttribute("floorList", floorService.selectSelective(floor));
-        System.out.println(floor);
-        Map<String, Object> map = new HashMap<>();
-        map.put("floor", floorService.selectByPrimaryKey(1));
-//        map.put("selectedFloor", floorService.selectByPrimaryKey(room.getFloorId()));
-//        map.put("roomList", roomService.selectSelective(room));
-//        map.put("floorList", floorService.selectSelective(floor));
-//        model.addAttribute("facilityList", facilityService.selectSelective(facility));
-//        return "/floorMap";
-        return map;
+    public String getFloorInfo(Room room, Floor floor, Facility facility, Model model) {
+        model.addAttribute("selectedFloor", floorService.selectByPrimaryKey(room.getFloorId()));
+        model.addAttribute("roomList", roomService.selectSelective(room));
+        model.addAttribute("floorList", floorService.selectSelective(floor));
+        return "/floorMap";
     }
 
 }

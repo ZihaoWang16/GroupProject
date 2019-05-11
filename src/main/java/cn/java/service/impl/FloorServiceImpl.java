@@ -76,8 +76,6 @@ public class FloorServiceImpl implements FloorService {
     @Override
     public List<Floor> selectSelective(Floor floor) {
 
-        // Auto-generated method stub
-        System.out.println(floorMapper.selectSelective(floor));
         return floorMapper.selectSelective(floor);
     }
 

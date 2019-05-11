@@ -36,6 +36,4 @@ public interface FacilityService {
     int updateByPrimaryKeySelective(Facility record);
 
     int updateByPrimaryKey(Facility record);
-
-    Map<String, Object> selectFacility(Facility record);
 }

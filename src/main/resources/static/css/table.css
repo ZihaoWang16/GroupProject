@@ -3,7 +3,8 @@ table
     border-collapse: collapse;
     text-align: center;
     table-layout: fixed;
-    width: 700px;
+    /* width: 700px; */
+    width: 100%;
 }
 table td, table th
 {
@@ -28,4 +29,7 @@ table tr:nth-child(even)
 .lesson
 {
 	background: #ddd;
+}
+.test{
+	max-width: 100% !important;
 }
