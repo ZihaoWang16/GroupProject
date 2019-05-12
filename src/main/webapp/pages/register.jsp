@@ -14,44 +14,48 @@
 </head>
 <body>
 	<a href="javascript:history.back(-1)">Back</a>
-	<br>
-	    <div id="warning"></div>
-	<br>
-	<div class="box">
-	<form id = "Register" action ="<%=basePath %>/user/register<%=servletSuffix %>" method = "POST">
-	Username : <br>
-	         <input id="username" type="text" value="" name="username" />
-	         <div style = "color:red">${error}</div>
-	        <br>
-	        Password : <br>
-	        <input id="password" type="password" value="" name="password" />
-	        <div style = "color:red">${error1}</div>
-	        <br>
-	        First name : <br>
-	        <input type="text" value="" name="firstName" />
-	        <div style = "color:red">${error2}</div>
-	        <br>
-	        Last name : <br>
-	        <input type="text" value="" name="lastName" />
-	        <div style = "color:red">${error3}</div>
-	          <br>
-	          City (optional): <br>
-	          <input type="text" value="" name="city" />
-	          <br>
-	          Country (optional): <br>
-	          <input type="text" value="" name="country" />
-	          <br>
-	          Address (optional): <br>
-	          <input type="text" value="" name="address" />
-	          <br>
-	          Phone number (optional): <br>
-	          <input type="text" value="" name="phoneNum" />
-	          <br>
-	          Image url (optional) : <br>
-	          <input type="text" value="" name="photoSrc" />
-	          <br>
-		<input type="submit" value="Register"/>
-	</form>
+	<div align="center">
+		<div class="box" align="left">
+			<form id = "Register" action ="<%=basePath %>/user/register<%=servletSuffix %>" method = "POST">
+				Username :
+		         <input id="username" type="text" value="${errorMap.username==null?user.username:'' }" name="username" />
+		         <div style = "color:red">${requestScope.errorMap.username}</div>
+		        <br>
+		        Password :
+		        <input id="password" type="password" value="${errorMap.password==null?user.password:'' }" name="password" />
+		        <div style = "color:red">${requestScope.errorMap.password}</div>
+		        <br>
+		        First name :
+		        <input type="text" value="${errorMap.firstName==null?user.firstName:'' }" name="firstName" />
+		        <div style = "color:red">${requestScope.errorMap.firstName}</div>
+		        <br>
+		        Last name : 
+		        <input type="text" value="${errorMap.lastName==null?user.lastName:'' }" name="lastName" />
+		        <div style = "color:red">${requestScope.errorMap.lastName}</div>
+		          <br>
+		          City (optional): 
+		          <input type="text" value="" name="city" />
+		          <br>
+		          <br>
+		          Country (optional): 
+		          <input type="text" value="" name="country" />
+		          <br>
+		          <br>
+		          Address (optional):
+		          <input type="text" value="" name="address" />
+		          <br>
+		          <br>
+		          Phone number (optional):
+		          <input type="text" value="" name="phoneNum" />
+		          <br>
+		          <br>
+		          Image url (optional) : 
+		          <input type="text" value="" name="photoSrc" />
+		          <br>
+		          <br>
+			<input type="submit" value="Register"/>
+		</form>
+	</div>
 </div>
        <p id = "test"></p>
 <script type="text/javascript">

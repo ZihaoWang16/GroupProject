@@ -24,7 +24,7 @@
     from user
     where id = #{id,jdbcType=INTEGER}
   </select>
-	<select id="selectSelective" parameterType="cn.java.dto.User" resultType="cn.java.dto.User">
+	<select id="selectSelective" parameterType="cn.java.dto.User" resultMap="BaseResultMap">
 		select 
 		<include refid="Base_Column_List" />
 		from user
