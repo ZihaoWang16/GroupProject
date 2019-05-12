@@ -9,22 +9,13 @@
 
 package cn.java.service.impl;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import cn.java.dto.Building;
-import cn.java.dto.Floor;
-import cn.java.dto.Lesson;
-import cn.java.dto.Room;
 import cn.java.mapper.BuildingMapper;
-import cn.java.mapper.LessonMapper;
-import cn.java.mapper.RoomMapper;
 import cn.java.service.BuildingService;
 
 /**
@@ -37,12 +28,12 @@ import cn.java.service.BuildingService;
  */
 @Service
 public class BuildingServiceImpl implements BuildingService {
-//	@Autowired
-//    RoomMapper roomMapper;
-//
-//    @Autowired
-//    LessonMapper lessonMapper;
-	@Autowired
+    // @Autowired
+    // RoomMapper roomMapper;
+    //
+    // @Autowired
+    // LessonMapper lessonMapper;
+    @Autowired
     BuildingMapper buildingMapper;
 
     @Override
@@ -74,47 +65,54 @@ public class BuildingServiceImpl implements BuildingService {
     }
 
     @Override
+    public Building selectByWord(String word) {
+
+        return buildingMapper.selectByWord(word);
+    }
+
+    @Override
     public int updateByPrimaryKeySelective(Building record) {
 
         // Auto-generated method stub
         return 0;
     }
-    
-//    @Override
-//    public Map<String, Object> selectSelectiveWithTimetable(Room record) {
-//        List<Room> roomList = roomMapper.selectSelective(record);
-//        Map<String, Object> returnMap = new HashMap<>();
-//        if (roomList.size() != 0) {
-//            Room room = roomList.get(0);
-//            Lesson queryLesson = new Lesson();
-//            queryLesson.setRoomId(room.getId());
-//
-//            returnMap.put("room", room);
-//            returnMap.put("timetable", lessonMapper.selectSelective(queryLesson));
-//        }
-//
-//        return returnMap;
-//    }
-//    @Override
-//    public Map<String, Object> selectBuilding(Building id) {
-//        List<Building> buildingList = buildingMapper.selectSelective(id);
-//        Map<String, Object> returnMap = new HashMap<>();
-//        if (buildingList.size() != 0) {
-//            Building building = buildingList.get(0);
-//            returnMap.put("building", building);
-//        }
-//        return returnMap;
-//    }
+
+    // @Override
+    // public Map<String, Object> selectSelectiveWithTimetable(Room record) {
+    // List<Room> roomList = roomMapper.selectSelective(record);
+    // Map<String, Object> returnMap = new HashMap<>();
+    // if (roomList.size() != 0) {
+    // Room room = roomList.get(0);
+    // Lesson queryLesson = new Lesson();
+    // queryLesson.setRoomId(room.getId());
+    //
+    // returnMap.put("room", room);
+    // returnMap.put("timetable", lessonMapper.selectSelective(queryLesson));
+    // }
+    //
+    // return returnMap;
+    // }
+    // @Override
+    // public Map<String, Object> selectBuilding(Building id) {
+    // List<Building> buildingList = buildingMapper.selectSelective(id);
+    // Map<String, Object> returnMap = new HashMap<>();
+    // if (buildingList.size() != 0) {
+    // Building building = buildingList.get(0);
+    // returnMap.put("building", building);
+    // }
+    // return returnMap;
+    // }
     @Override
     public List<Building> selectSelective(Building building) {
-    	List<Building> buildingList = buildingMapper.selectSelective(building);
-    	for(Building b : buildingList) {
-    		System.out.println(b);
-    	}
-    	
+        List<Building> buildingList = buildingMapper.selectSelective(building);
+        for (Building b : buildingList) {
+            System.out.println(b);
+        }
+
         // Auto-generated method stub
         return buildingList;
     }
+
     @Override
     public int updateByPrimaryKey(Building record) {
 

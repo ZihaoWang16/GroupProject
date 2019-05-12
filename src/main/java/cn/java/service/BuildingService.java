@@ -10,11 +10,8 @@
 package cn.java.service;
 
 import java.util.List;
-import java.util.Map;
 
 import cn.java.dto.Building;
-import cn.java.dto.Floor;
-import cn.java.dto.Room;
 
 /**
  * Description: <br/>
@@ -33,11 +30,13 @@ public interface BuildingService {
 
     Building selectByPrimaryKey(Integer id);
 
+    Building selectByWord(String word);
+
     int updateByPrimaryKeySelective(Building record);
 
     int updateByPrimaryKey(Building record);
-    
+
     List<Building> selectSelective(Building building);
-//    Map<String, Object> selectBuilding(Building record);
-//    Map<String, Object> selectSelectiveWithTimetable(Room record);
+    // Map<String, Object> selectBuilding(Building record);
+    // Map<String, Object> selectSelectiveWithTimetable(Room record);
 }

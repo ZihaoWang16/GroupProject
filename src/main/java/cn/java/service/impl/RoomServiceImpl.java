@@ -148,4 +148,10 @@ public class RoomServiceImpl implements RoomService {
 		return roomMapper.getOccupiedRoom(map);
 	}
 
+    @Override
+    public Room selectByWord(String word) {
+
+        return roomMapper.selectByWord(word);
+    }
+
 }

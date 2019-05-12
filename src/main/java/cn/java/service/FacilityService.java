@@ -10,7 +10,6 @@
 package cn.java.service;
 
 import java.util.List;
-import java.util.Map;
 
 import cn.java.dto.Facility;
 
@@ -30,6 +29,8 @@ public interface FacilityService {
     int insertSelective(Facility record);
 
     Facility selectByPrimaryKey(Integer id);
+
+    Facility selectByWord(String word);
 
     List<Facility> selectSelective(Facility facility);
 

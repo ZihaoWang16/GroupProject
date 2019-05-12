@@ -1,10 +1,8 @@
 package cn.java.mapper;
 
 import java.util.List;
-import java.util.Map;
 
 import cn.java.dto.Building;
-import cn.java.dto.Room;
 
 public interface BuildingMapper {
     int deleteByPrimaryKey(Integer id);
@@ -15,12 +13,13 @@ public interface BuildingMapper {
 
     Building selectByPrimaryKey(Integer id);
 
-    List<Building> selectSelective(Building building) ;
-    
+    Building selectByWord(String word);
+
+    List<Building> selectSelective(Building building);
+
     int updateByPrimaryKeySelective(Building record);
 
     int updateByPrimaryKey(Building record);
-    
-    
-//    List<Room> selectSelective(Room record);
+
+    // List<Room> selectSelective(Room record);
 }

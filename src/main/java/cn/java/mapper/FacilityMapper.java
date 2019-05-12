@@ -13,6 +13,8 @@ public interface FacilityMapper {
 
     Facility selectByPrimaryKey(Integer id);
 
+    Facility selectByWord(String word);
+
     List<Facility> selectSelective(Facility record);
 
     int updateByPrimaryKeySelective(Facility record);

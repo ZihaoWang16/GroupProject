@@ -13,6 +13,8 @@ public interface LessonMapper {
 
     Lesson selectByPrimaryKey(Integer id);
 
+    Lesson selectByWord(String word);
+
     List<Lesson> selectSelective(Lesson record);
 
     int updateByPrimaryKeySelective(Lesson record);
