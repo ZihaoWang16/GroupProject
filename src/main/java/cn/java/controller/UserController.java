@@ -9,9 +9,7 @@
 
 package cn.java.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -39,18 +37,18 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-//    @RequestMapping("/selectByUsername.do")
-//    @ResponseBody
-//    public User selectByUsername(@RequestBody User user) {
-//        return userService.selectSelective(user);
-//    }
+    // @RequestMapping("/selectByUsername.do")
+    // @ResponseBody
+    // public User selectByUsername(@RequestBody User user) {
+    // return userService.selectSelective(user);
+    // }
 
     @RequestMapping("/login.do")
     public String login(User user, HttpSession session, Model model) {
         System.out.println(user);
         List<User> userList = userService.selectSelective(user);
-        if (userList.size()==1) {
-            session.setAttribute("user", user);
+        if (userList.size() == 1) {
+            session.setAttribute("user", userList.get(0));
             model.addAttribute("isRegistered", true);
             System.out.println("login successful");
         } else {
@@ -63,15 +61,12 @@ public class UserController {
 
     @RequestMapping("/register.do")
     public String register(User user, HttpSession session, Model model) {
-        if (userService.selectSelective(user).size()>0) {
+        System.out.println(user);
+        if (userService.selectSelective(user).size() > 0) {
             model.addAttribute("error", "Username Already existed");
             return "/register";
         } else {
-            // System.out.println(user.getPassword());
-            // System.out.println(user.getFirstName());
-            // System.out.println(user.getLastName());
-            // System.out.println(user.getCity());
-            userService.insertSelective(user);
+            System.out.println();
             session.setAttribute("user", user);
             return "/registerSuccessful";
         }
@@ -81,7 +76,7 @@ public class UserController {
     public @ResponseBody boolean isUsernameRegistered(@RequestBody User user) {
         if (userService.isUsernameRegistered(user))
             return true;
-        
+
         return false;
     }
 

@@ -10,6 +10,7 @@
 package cn.java.service;
 
 import java.util.List;
+
 import java.util.Map;
 
 import cn.java.dto.Room;
@@ -40,4 +41,7 @@ public interface RoomService {
     int updateByPrimaryKeySelective(Room record);
 
     int updateByPrimaryKey(Room record);
+    
+    List<Room> getOccupiedRoom(Room record);
+    
 }

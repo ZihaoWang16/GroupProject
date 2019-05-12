@@ -162,4 +162,15 @@
       img_url = #{imgUrl,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="getOccupiedRoom" resultMap="BaseResultMap" parameterType="Map" >
+    SELECT r.*
+    FROM lesson l,room r,floor f
+    WHERE r.id = l.room_id 
+    AND r.floor_id = f.id
+    AND r.building_id = #{buildingId}
+    AND f.id = #{floorId}
+    AND l.start_time &lt;= #{hour}
+    AND l.end_time &gt; #{hour}
+    AND l.day = #{day}   
+  </select> 
 </mapper>

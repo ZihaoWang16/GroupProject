@@ -36,7 +36,7 @@ public class BuildingController {
 	@Autowired
     BuildingService buildingService;
 	
-	@RequestMapping("/")
+	@RequestMapping("/selectSelective.do")
 	public String showMap(Building building, Model model) {
 		model.addAttribute("buildingList", buildingService.selectSelective(building));
 //        model.addAttribute("buildingImgUrl", buildingService.selectSelective(building));
@@ -44,9 +44,10 @@ public class BuildingController {
 		return "/campusMap";
 	}
 
-    @RequestMapping("/selectSelective.do")
-    @ResponseBody
-    public List<Building> getBuildingInfo(@RequestBody Building building, Model model) {
-        return buildingService.selectSelective(building);
-    }
+	/*
+	 * @RequestMapping("/selectSelective.do")
+	 * 
+	 * @ResponseBody public List<Building> getBuildingInfo(@RequestBody Building
+	 * building, Model model) { return buildingService.selectSelective(building); }
+	 */
 }

@@ -43,13 +43,17 @@
 	      </div>
 	      <div class="modal-body">
 	      
-	      <!-- description -->
 	      	<div id="description">
 	      	
 	      	</div>
 	      	<div>
-	      		<img id="image" src="" alt="" style="width:300px"/>
+	      		<img id="image" src="" alt="" style="width:900px"/>
 	      	</div>
+	      	
+	      	<div>
+	      		<img id="bname" src="" alt="" style="width:100px"/>
+	      	</div>
+	      	
 	      	<div id="timetableDiv">
 	      			
 	      	</div>
@@ -124,16 +128,18 @@
 	        <c:forEach var="building" items="${buildingList }">
 	        	var buildingName = '${building.name}';
 	        	var buildingUrl = '${building.imgUrl}';
+	        	var buildingDescription = '${building.description}';
 	        	if(buildingName == $(this).attr('name')){
 			        $('#image').attr('src','<%=basePath %>'+buildingUrl);
+			        $("#modalTitle").html(buildingName);
+			        $("#description").html(buildingDescription);
 	        	}
 			</c:forEach>
 		    $('#modal').modal('show');
 		    
 		});
-		
-		
-		function getMousePos(event) {
+		//this is the method of finding the coordinates
+		/* function getMousePos(event) {
 		    var e = event || window.event;
 		    var scrollX = document.documentElement.scrollLeft || document.body.scrollLeft;
 		    var scrollY = document.documentElement.scrollTop || document.body.scrollTop;
@@ -151,8 +157,7 @@
 
 		    // document.getElementByIdx('mouseXPosition').value = mousePos.x;
 		    // document.getElementByIdx('mouseYPosition').value = mousePos.y;
-		}
-
+		} */
 	</script>
 </body>
 </html>

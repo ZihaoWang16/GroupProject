@@ -12,9 +12,11 @@ package cn.java.service.impl;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import cn.java.dto.Description;
+import cn.java.mapper.DescriptionMapper;
 import cn.java.service.DescriptionService;
 
 /**
@@ -27,6 +29,8 @@ import cn.java.service.DescriptionService;
  */
 @Service
 public class DescriptionServiceImpl implements DescriptionService {
+    @Autowired
+    private DescriptionMapper descriptionMapper;
 
     @Override
     public int deleteByPrimaryKey(Integer id) {
@@ -44,9 +48,10 @@ public class DescriptionServiceImpl implements DescriptionService {
 
     @Override
     public int insertSelective(Description record) {
-
+        System.out.println(record);
+        return descriptionMapper.insertSelective(record);
         // Auto-generated method stub
-        return 0;
+
     }
 
     @Override
@@ -71,10 +76,10 @@ public class DescriptionServiceImpl implements DescriptionService {
     }
 
     @Override
-    public List<Description> selectSelective(Description description) {
+    public List<Description> selectSelective(Description record) {
 
         // Auto-generated method stub
-        return null;
+        return descriptionMapper.selectSelective(record);
     }
 
     @Override

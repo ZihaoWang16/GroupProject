@@ -9,7 +9,10 @@
 
 package cn.java.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import cn.java.dto.Facility;
 import cn.java.mapper.FacilityMapper;
@@ -23,6 +26,7 @@ import cn.java.service.FacilityService;
  * @version
  * @see
  */
+@Service
 public class FacilityServiceImpl implements FacilityService {
     @Autowired
     FacilityMapper facilityMapper;
@@ -73,6 +77,13 @@ public class FacilityServiceImpl implements FacilityService {
 
         // Auto-generated method stub
         return 0;
+    }
+
+    @Override
+    public List<Facility> selectSelective(Facility facility) {
+
+        // Auto-generated method stub
+        return facilityMapper.selectSelective(facility);
     }
 
 }

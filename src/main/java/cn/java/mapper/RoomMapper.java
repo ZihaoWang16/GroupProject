@@ -1,6 +1,7 @@
 package cn.java.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import cn.java.dto.Room;
 
@@ -20,4 +21,6 @@ public interface RoomMapper {
     int updateByPrimaryKeySelective(Room record);
 
     int updateByPrimaryKey(Room record);
+    
+    List<Room> getOccupiedRoom(Map<String,Object> map);
 }

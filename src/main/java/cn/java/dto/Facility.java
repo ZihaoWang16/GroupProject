@@ -5,15 +5,15 @@ public class Facility {
 
     private String name;
 
-    private String buildingId;
+    private Integer buildingId;
 
-    private String floor;
+    private Integer floorId;
 
-    private String position;
+    private String mapPosition;
 
     private String imgUrl;
 
-    private String decsription;
+    private String description;
 
     public Integer getId() {
         return id;
@@ -31,28 +31,28 @@ public class Facility {
         this.name = name;
     }
 
-    public String getBuildingId() {
+    public Integer getBuildingId() {
         return buildingId;
     }
 
-    public void setBuildingId(String buildingId) {
+    public void setBuildingId(Integer buildingId) {
         this.buildingId = buildingId;
     }
 
-    public String getFloor() {
-        return floor;
+    public Integer getFloorId() {
+        return floorId;
     }
 
-    public void setFloor(String floor) {
-        this.floor = floor;
+    public void setFloorId(Integer floorId) {
+        this.floorId = floorId;
     }
 
-    public String getPosition() {
-        return position;
+    public String getMapPosition() {
+        return mapPosition;
     }
 
-    public void setPosition(String position) {
-        this.position = position;
+    public void setMapPosition(String mapPosition) {
+        this.mapPosition = mapPosition;
     }
 
     public String getImgUrl() {
@@ -63,11 +63,18 @@ public class Facility {
         this.imgUrl = imgUrl;
     }
 
-    public String getDecsription() {
-        return decsription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDecsription(String decsription) {
-        this.decsription = decsription;
+    public void setDescription(String description) {
+        this.description = description;
     }
+
+    @Override
+    public String toString() {
+        return "Facility [id=" + id + ", name=" + name + ", buildingId=" + buildingId + ", floorId=" + floorId
+                + ", mapPosition=" + mapPosition + ", imgUrl=" + imgUrl + ", description=" + description + "]";
+    }
+
 }

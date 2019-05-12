@@ -9,6 +9,8 @@
 
 package cn.java.service;
 
+import java.util.List;
+
 import cn.java.dto.Facility;
 
 /**
@@ -29,6 +31,8 @@ public interface FacilityService {
     Facility selectByPrimaryKey(Integer id);
 
     Facility selectByWord(String word);
+
+    List<Facility> selectSelective(Facility facility);
 
     int updateByPrimaryKeySelective(Facility record);
 
