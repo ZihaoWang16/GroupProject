@@ -9,7 +9,6 @@
 
 package cn.java.service.impl;
 
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,7 +74,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> selectSelective(User record) {
-        
         return userMapper.selectSelective(record);
     }
 

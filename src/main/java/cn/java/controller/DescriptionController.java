@@ -1,10 +1,9 @@
 
 package cn.java.controller;
 
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -28,13 +27,6 @@ public class DescriptionController {
     @Autowired
     DescriptionService descriptionService;
 
-    @RequestMapping("/selectSelective.do")
-    @ResponseBody
-    public Map<String, Object> selectSelective(@RequestBody Description record) {
-
-        return descriptionService.selectDescription(record);
-    }
-
     @RequestMapping("/submit.do")
     @ResponseBody
     public String submitDescription(@SessionAttribute("user") User user, Description description) {
@@ -43,16 +35,21 @@ public class DescriptionController {
         System.out.println(description);
         descriptionService.insertSelective(description);
 
-        return "submitSuccessful";
+        return "/submitSuccessful";
     }
 
-    @RequestMapping("/view.do")
+    @RequestMapping("/selectSelective.do")
+    public String selectSelective(Description description, Model model) {
+
+        model.addAttribute("descriptionList", descriptionService.selectSelective(description));
+
+        return "/viewDescription";
+    }
+
+    @RequestMapping("/selectOne.do")
     @ResponseBody
-    public String viewDescription(Description description) {
-
-        descriptionService.selectSelective(description);
-
-        return "/viewSuccessful";
+    public Description selectOne(@RequestBody Description record) {
+        System.out.println(record);
+        return descriptionService.selectSelective(record).get(0);
     }
-
 }

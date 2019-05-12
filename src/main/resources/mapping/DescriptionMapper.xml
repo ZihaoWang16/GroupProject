@@ -25,10 +25,10 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   
-  <select id="selectSelective" resultMap="BaseResultMap" parameterType="cn.java.dto.Room" >
+  <select id="selectSelective" resultMap="BaseResultMap" parameterType="cn.java.dto.Description" >
   	select
   	<include refid="Base_Column_List" />
-  	from room
+  	from description
   	<where>
   		<if test="id!=null">
   			id = #{id}
@@ -42,8 +42,8 @@
   		<if test="buildingId!=null">
   			and building_id = #{buildingId}
   		</if>
-  		<if test="floorId!=null">
-  			and floor_id = #{floorId}
+  		<if test="roomId!=null">
+  			and room_id = #{roomId}
   		</if>	
   		<if test="content!=null">
 	        and content = #{content}
