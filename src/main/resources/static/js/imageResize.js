@@ -22,7 +22,7 @@ if(img.complete){
     }
 }
 
-window.onresize = changeAreaCoords;
+/*window.onresize = changeAreaCoords;*/
 
 function changeAreaCoords(){ 
 	currentWeight = $('#map').width();

@@ -20,7 +20,7 @@ public class FacilityController {
     @RequestMapping("/selectSelective.do")
     @ResponseBody
     public List<Facility> selectSelective(@RequestBody Facility record) {
-        System.out.println(record);
+
         return facilityService.selectSelective(record);
     }
 }

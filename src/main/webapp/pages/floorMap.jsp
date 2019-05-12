@@ -9,7 +9,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Floor Map</title>
     <script type="text/javascript" src="<%=basePath %>/static/js/jquery-1.8.3.js"></script>
@@ -29,7 +28,7 @@
 	<style type="text/css">
 		html,body
 		{
-			font-size: 1em;
+			font-size: 14px;
 		}
 		#bottomBar
 		{
@@ -39,35 +38,36 @@
 			height:15%;
 			width:100%;
 		}
-		#bottomBar:hover #peopleIcon
-		{
-			display:block;
-		}
-		#bottomBar:hover .dropup
-		{
-			display:block;
-		}
 		.modal-dialog
 		{
 			width: 1100px;
 		}
-		#peopleIcon
+		.groupIcon
 		{
 			position: fixed;
 			margin: auto;
 			bottom: 5%;
 			left: 5%;
 			width: 50px;
-			height:auto;
-			display: none;
+			height: auto;
 			cursor: pointer;
 			z-index: 1;
+			opacity: 0.5;
 		}
-		/* #map {
-			max-width: 100%;
+		.groupIcon:hover
+		{
+			opacity: 1.0;
+		}
+		.body
+		{
+			margin-top: 10%;
+			margin-bottom: 10%;
+		}
+		#map {
+			/* max-width: 100%;
 		    max-height: 100vh;
-		    height: auto;
-		} */
+		    height: auto; */
+		}
 		/* img {
 			display: block;
 		  margin-left: auto;
@@ -82,13 +82,81 @@
           width:32px;
 		}
 		*/
+		#topBar
+		{
+			position: fixed;
+			margin: auto;
+			top: 0;
+			width: 100%;
+			height: 20%;
+		}
+		.searchBar
+		{
+			position: absolute;
+			width: 100%;
+			height: auto;
+			bottom: 0;
+			left: 50%;
+			margin-left: -25rem;
+			display:none;
+		}
+		#topBar:hover .searchBar
+		{
+			display:block;
+		}
+		.userIcon
+		{
+			margin: 0.5rem 0.5rem;
+			float: left;
+			cursor: pointer;
+			z-index: 1;
+			opacity: 0.5;
+		}
+		.userIcon:hover
+		{
+			opacity: 1.0;
+		}
+		.navbar
+		{
+			width: 45rem;
+			background-color: transparent !important;
+			float: left;
+		}
+		form
+		{
+			margin:0px auto;
+		}
+		.searchInput
+		{
+			font-size: 1.5rem;
+			width: 35rem !important;
+			height: 4rem;
+		}
+		.searchBtn
+		{
+			width: 7rem;
+			height: 4rem;
+		}
 	</style>
 </head>
 <body>
 
 <center>
 <div class="body" >
-
+	<!-- Search form -->
+	<div id="topBar">
+		<div class="searchBar">
+			<img class="userIcon" src="<%=basePath %>/static/images/icon/user.png" alt="" border="0" width="50px" />
+			
+			<nav class="navbar navbar-light bg-light">
+			  <form class="form-inline">
+			    <input class="form-control mr-sm-2 searchInput" type="search" placeholder="Search" aria-label="Search">
+			    <button class="btn btn-outline-success my-2 my-sm-0 searchBtn" type="submit">Search</button>
+			  </form>
+			</nav>
+		</div>
+	</div>
+	
 	<!-- Modal -->
 	<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 	  <div class="modal-dialog test" role="document">
@@ -124,17 +192,20 @@
 	</div>
 	
 	<!-- map -->
-	<img id="map" src="<%=basePath %>/${selectedFloor.imgUrl }" alt="" border="0" usemap="#floorMap" />
-	<map name="floorMap" id="floorMap">
-		<c:forEach var="room" items="${roomList }">
-			<area shape="poly" coords="${room.areaCoords }" alt="" name="${room.name }" href="javascript:void(0);"/>
-		</c:forEach>
-	</map>
+	<div id="content">
+		<img id="map" src="<%=basePath %>/${selectedFloor.imgUrl }" alt="" border="0" usemap="#floorMap" />
+		<map name="floorMap" id="floorMap">
+			<c:forEach var="room" items="${roomList }">
+				<area shape="poly" coords="${room.areaCoords }" alt="" name="${room.name }" href="javascript:void(0);"/>
+			</c:forEach>
+		</map>
+	</div>
 
 	
 	<div id="bottomBar">
-		
-		<img id="peopleIcon" src="<%=basePath %>/static/images/icon/groupOutlined.png" alt="" border="0" width="50px"/>
+		<div class="groupIcon">
+			<img src="<%=basePath %>/static/images/icon/groupOutlined.png" alt="" border="0" width="50px"/>
+		</div>
 	
 		<!-- Default dropup button -->
 		<div class="dropup">
@@ -150,6 +221,7 @@
 			</div>
 		</div>
 	</div>
+	
 </div>
 </center>
 <!-- jQuery CDN - Slim version (=without AJAX) -->
@@ -165,7 +237,7 @@
 	var floorId = '${selectedFloor.id }';
 	var buildingId = '${selectedFloor.buildingId }'
 	
-	$.ajax({
+	/* $.ajax({
 		url:basePath+"/facility/selectSelective.do",
            type:"post",
            data:JSON.stringify({'buildingId':buildingId,'floorId':floorId}),
@@ -173,7 +245,6 @@
            dataType:"json",
            success:function(data){
         	   data.forEach(function(facility, index){
-        		   console.log(facility)
         		   var coords = facility.mapPosition.split(",");
         		   var height = 20;
         		   var x = parseInt(coords[0])-height/2;
@@ -182,10 +253,10 @@
         	   });
            }
 		
-	});
+	}); */
 	
 </script>      
-<%-- <script type="text/javascript" src="<%=basePath %>/static/js/imageResize.js"></script> --%>
+<script type="text/javascript" src="<%=basePath %>/static/js/imageResize.js"></script>
 <script type="text/javascript" src="<%=basePath %>/static/js/timetable.js"></script>
 <script type="text/javascript" src="<%=basePath %>/static/js/showOccupiedRoom.js"></script>
 <%-- <script type="text/javascript" src="<%=basePath %>/static/js/getPosition.js"></script> --%>
