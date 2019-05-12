@@ -19,54 +19,50 @@
 	
 </head>
 <body>
-	
-		<div class="wrap" id="wrap">
-		  <header class="top-header">
-		   <span class="search">
-		    <input type="search" placeholder="water dispenser" /></span>
-		    <span class="submit"></span>
-		  </header>
-		  
-		  <!-- <div class="top">
-		    <div class="hero"></div>
-		  </div> -->
-		  <div id="container">
-		    <div id="searchLI"><li><a href="#">BSG02
-        		<h6>ibss ground floor</h6></a></li></div>
-	        <div id="searchLI"><li><a href="#">BSG04
-	        	<h6>ibss ground floor</h6></a></li></div>
-	        <div id="searchLI"><li><a href="#">BS3F Water Dispenser
-	        	<h6>ibss 3rd floor</h6></a></li></div>	 <!-- Water Dispenser -->
-			<div id="searchLI"><li><a href="#">BS2F Printer
-				<h6>ibss 2nd floor</h6></a></li></div>	<!-- Printer -->
-		  
-		 </div> 
 		
-		 <!-- <div id="searchFrame" ><input type="text" id="searchInput" onkeyup="searchFunction()" placeholder="Water Dispenser"></div>
-        
-        <div id="searchLI"><li><a href="#">BSG02
-        	<h6>ibss ground floor</h6></a></li></div>
-        <div id="searchLI"><li><a href="#">BSG04
-        	<h6>ibss ground floor</h6></a></li></div>
-        <div id="searchLI"><li><a href="#">BS3F Water Dispenser
-        	<h6>ibss 3rd floor</h6></a></li></div>	 Water Dispenser
-		<div id="searchLI"><li><a href="#">BS2F Printer
-			<h6>ibss 2nd floor</h6></a></li></div>	Printer -->
-			
-        <!-- <script type="text/javascript">
-	        var wrap = $("#wrap");
-	
-	        wrap.on("scroll", function(e) {
-	            
-	          if (this.scrollTop > 147) {
-	            wrap.addClass("fix-search");
-	          } else {
-	            wrap.removeClass("fix-search");
-	          }
-	          
-	        });
+		<div class="wrap" id="wrap">
+		<header class="bar">
+		  <form name="search" class="search" id="search" action="">
+		    <p class="search-row">
+		      <input type="search" name="word" id="word">
+		      <span class="placeholder "><span class="iconfont icon-search"></span><span class="text">Search</span></span>
+		    </p>
+		  </form>
+		</header>
+
+		  <div class="container">
+		    <!-- <div id="searchLI"><li><a href="#">BSG02
+        		<h6>ibss ground floor</h6></a></li></div> -->
+        	<div id="aspect1">
+        		<div>the building position</div>
+		        <div class="searchLI"><li><a href="<% %>"><% %><!-- building  -->
+		        	<h6><% %><!-- the building full name --></h6></a></li></div>
+	        </div>
 	        
-        </script> -->
+	        <div id="aspect2">
+	        	<div>the </div>
+	        </div>
+		  
+		 </div>
+		  
+	<script type="text/javascript">
+	/* 输入框获取到焦点 表示用户正在输入 */
+	$("#word").focusin(function() {
+	  $(".search-row").addClass("active iconfont icon-search");
+	});
+	/* 输入框失去焦点 表示用户输入完毕 */
+	$("#word").focusout(function() {
+	  /* 判断用户是否有内容输入 */
+	  if ($(this).val()=="") {
+	    /* 没有内容输入 改变样式 */
+	    $(".search-row").removeClass("active iconfont icon-search");
+	  } else {
+	    /* 有内容输入 保持样式 并提交表单 */
+	    $("#search").submit();
+	  }
+	});
+	
+	</script>
       
 </body>
 </html>

@@ -9,9 +9,7 @@
 
 package cn.java.service.impl;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,7 +28,6 @@ import cn.java.service.FacilityService;
  */
 @Service
 public class FacilityServiceImpl implements FacilityService {
-
     @Autowired
     FacilityMapper facilityMapper;
 
@@ -60,6 +57,12 @@ public class FacilityServiceImpl implements FacilityService {
 
         // Auto-generated method stub
         return null;
+    }
+
+    @Override
+    public Facility selectByWord(String word) {
+
+        return facilityMapper.selectByWord(word);
     }
 
     @Override
