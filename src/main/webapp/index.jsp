@@ -8,6 +8,10 @@
 %>
 <!DOCTYPE html>
 <html>
+<head>
+    <link rel="stylesheet" type="text/css" href="<%=basePath %>/static/css/index.css" />
+    <title>Homepage</title>
+</head>
 <body>
 	<div align = center>
 		<h1>Welcome to XMAP</h1>
@@ -15,8 +19,13 @@
 			<c:when test="${user != null }"><h2>Welcome, ${user.username}</h2></c:when>
 			<c:otherwise><h2>Welcome, guest</h2></c:otherwise>
 		</c:choose>
-		<a href = /pages/login.jsp>Login</a>
-		<a href = /pages/register.jsp>Register</a>
+		<c:choose>
+			<c:when test="${user != null }"><a href = /pages/userProfile.jsp>Profile</a></c:when>
+			<c:otherwise>
+				<a href = /pages/login.jsp>Login</a>
+				<a href = /pages/register.jsp>Register</a>
+			</c:otherwise>
+		</c:choose>
 		<a href = /pages/BS-G.jsp> BS-G</a>
 		<a href = /pages/campusMap.jsp> campus map</a>
 		<a href = /pages/floorMap.jsp> floor map</a>

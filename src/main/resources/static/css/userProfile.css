@@ -1,0 +1,13 @@
+@charset "ISO-8859-1";
+div.container{
+	width: 300px; 
+ 	border: 15px solid green;
+  	padding: 50px;
+  	margin: auto;
+}
+
+div.picture{
+	height: 50%; 
+	width: 50%; 
+	overflow: hidden;
+}
