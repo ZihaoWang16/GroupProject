@@ -102,12 +102,12 @@
 	      <div class="modal-body">
 	      	<div id="description">
 	      </div>
-	      	<!-- <div align="center" style="position:relative;top:10px" onclick="window.open('../pages/description.jsp')">
+	      	<div align="center" style="position:relative;top:10px" onclick="window.open('../pages/description.jsp')">
              <button>add more descriptions</button>
             </div>
 	      	<div align="center" style="position:relative;top:10px" onclick="window.open('../pages/viewDescription.jsp')">
              <button>view more descriptions</button>
-            </div> -->
+            </div>
 	      	<div>
 	      		<img id="image" src="" alt="" style="width:600px"/>
 	      	</div>

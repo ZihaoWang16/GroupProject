@@ -76,10 +76,10 @@ public class DescriptionServiceImpl implements DescriptionService {
     }
 
     @Override
-    public List<Description> selectSelective(Description description) {
+    public List<Description> selectSelective(Description record) {
 
         // Auto-generated method stub
-        return null;
+        return descriptionMapper.selectSelective(record);
     }
 
     @Override
