@@ -28,6 +28,8 @@ public interface FacilityService {
 
     Facility selectByPrimaryKey(Integer id);
 
+    Facility selectByWord(String word);
+
     int updateByPrimaryKeySelective(Facility record);
 
     int updateByPrimaryKey(Facility record);

@@ -19,6 +19,12 @@
     from building
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectByWord" resultMap="BaseResultMap" parameterType="java.long.String">
+  select 
+  <include refid="Base_Column_List" />
+  from building
+  where name like %#{word}%
+  </select>
 <select id="selectSelective" resultMap="BaseResultMap" parameterType="cn.java.dto.Building" >
   	select
   	<include refid="Base_Column_List" />

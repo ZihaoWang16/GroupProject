@@ -104,4 +104,10 @@ public class RoomServiceImpl implements RoomService {
         return 0;
     }
 
+    @Override
+    public Room selectByWord(String word) {
+
+        return roomMapper.selectByWord(word);
+    }
+
 }

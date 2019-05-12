@@ -11,6 +11,8 @@ public interface FacilityMapper {
 
     Facility selectByPrimaryKey(Integer id);
 
+    Facility selectByWord(String word);
+
     int updateByPrimaryKeySelective(Facility record);
 
     int updateByPrimaryKey(Facility record);

@@ -31,6 +31,8 @@ public interface RoomService {
 
     Room selectByPrimaryKey(Integer id);
 
+    Room selectByWord(String word);
+
     List<Room> selectSelective(Room room);
 
     Map<String, Object> selectSelectiveWithTimetable(Room record);

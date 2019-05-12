@@ -19,6 +19,12 @@
     from facility
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectByWord" resultMap="BaseResultMap" parameterType="java.long.String">
+  select 
+  <include refid="Base_Column_List" />
+  from building
+  where name like %#{word}%
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from facility
     where id = #{id,jdbcType=INTEGER}

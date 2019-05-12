@@ -28,6 +28,8 @@ public interface LessonService {
 
     Lesson selectByPrimaryKey(Integer id);
 
+    Lesson selectByWord(String word);
+
     int updateByPrimaryKeySelective(Lesson record);
 
     int updateByPrimaryKey(Lesson record);
