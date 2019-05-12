@@ -23,12 +23,14 @@
 	<%-- <link rel="stylesheet" href="<%=basePath %>/static/bootstrap-4.0.0/dist/css/bootstrap.min.css">
 	<script type="text/javascript" src="<%=basePath %>/static/bootstrap-4.0.0/dist/js/bootstrap.bundle.min.js"></script>
 	<script type="text/javascript" src="<%=basePath %>/static/bootstrap-4.0.0/dist/js/bootstrap.min.js"></script> --%>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 	<link rel="stylesheet" type="text/css" href="<%=basePath %>/static/css/table.css" />
 	<link rel="stylesheet" type="text/css" href="<%=basePath %>/static/css/dropdown.css" />
 	<style type="text/css">
 		html,body
 		{
 			font-size: 14px;
+			zoom:1.5;
 		}
 		#bottomBar
 		{
@@ -42,26 +44,64 @@
 		{
 			width: 1100px;
 		}
-		.groupIcon
+		.icon
 		{
+			padding: 5px;
 			position: fixed;
 			margin: auto;
-			bottom: 5%;
-			left: 5%;
-			width: 50px;
+			width: auto;
 			height: auto;
 			cursor: pointer;
 			z-index: 1;
+			margin-bottom: 0 !important;
+		}
+		.groupIcon
+		{
+			bottom: 5%;
+			left: 5%;
+			/* border: 1px solid black;
+			border-radius: 10px; */
+		}
+		.zoomIcon
+		{
+			bottom: 5%;
+			right: 5%;
+		}
+		.zoomIcon img
+		{
+			display: block;
+		}
+		.zoomIcon :first-child
+		{
+			padding-bottom: 10px;
+		}
+		.zoomIcon :last-child
+		{
+			padding-top: 10px;
+		}
+		#bottomBar img
+		{
+			width: 50px;
+			height: auto;
 			opacity: 0.5;
 		}
-		.groupIcon:hover
+		.groupIcon:hover #groupIconImg
+		{
+			opacity: 1.0;
+		}
+		#zoomInImg:hover
+		{
+			opacity: 1.0;
+		}
+		#zoomOutImg:hover
 		{
 			opacity: 1.0;
 		}
 		.body
 		{
-			margin-top: 10%;
-			margin-bottom: 10%;
+			position:relative;
+			margin-top: 5%;
+			margin-bottom: 5%;
 		}
 		#map {
 			/* max-width: 100%;
@@ -93,7 +133,7 @@
 		.searchBar
 		{
 			position: absolute;
-			width: 100%;
+			width: auto;
 			height: auto;
 			bottom: 0;
 			left: 50%;
@@ -145,7 +185,7 @@
 <div class="body" >
 	<!-- Search form -->
 	<div id="topBar">
-		<div class="searchBar">
+		<div class="shadow-sm p-3 mb-5 bg-light rounded searchBar animated fadeInDown faster">
 			<img class="userIcon" src="<%=basePath %>/static/images/icon/user.png" alt="" border="0" width="50px" />
 			
 			<nav class="navbar navbar-light bg-light">
@@ -203,8 +243,8 @@
 
 	
 	<div id="bottomBar">
-		<div class="groupIcon">
-			<img src="<%=basePath %>/static/images/icon/groupOutlined.png" alt="" border="0" width="50px"/>
+		<div class="shadow-sm p-3 mb-5 bg-light rounded icon groupIcon">
+			<img id="groupIconImg" src="<%=basePath %>/static/images/icon/groupOutlined.png" alt="" border="0" width="50px"/>
 		</div>
 	
 		<!-- Default dropup button -->
@@ -220,6 +260,13 @@
 				<a class="dropdown-item" href="#">Separated link</a> -->
 			</div>
 		</div>
+		
+		<div class="shadow-sm p-3 mb-5 bg-light rounded icon zoomIcon">
+			<img id="zoomInImg" src="<%=basePath %>/static/images/icon/zoomIn.png" alt="" border="0" width="50px"/>
+			<img id="zoomOutImg" src="<%=basePath %>/static/images/icon/zoomOut.png" alt="" border="0" width="50px"/>
+		</div>
+		<!-- <div class="shadow-sm p-3 mb-5 bg-light rounded icon zoomOutIcon">
+		</div> -->
 	</div>
 	
 </div>
