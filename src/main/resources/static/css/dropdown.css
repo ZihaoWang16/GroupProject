@@ -1,0 +1,25 @@
+.btn
+{
+	font-size:1.5rem;
+}
+button
+{
+	width:15em;
+	height:2.5em;
+}
+.dropup
+{
+	position:fixed;
+	margin:auto;
+	bottom:5%;
+	left:0;
+	right:0;
+	display:none;
+}
+.dropdown-item
+{
+	width:15em;
+	height:2em;
+	font-size:1.5rem;
+	text-align:center;
+}

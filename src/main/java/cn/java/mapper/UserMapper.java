@@ -1,5 +1,8 @@
 package cn.java.mapper;
 
+
+import java.util.List;
+
 import cn.java.dto.User;
 
 public interface UserMapper {
@@ -11,7 +14,7 @@ public interface UserMapper {
 
     User selectByPrimaryKey(Integer id);
 
-    User selectByUsername(String username);
+    List<User> selectSelective(User record);
 
     int updateByPrimaryKeySelective(User record);
 

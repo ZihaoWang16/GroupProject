@@ -9,16 +9,18 @@
 
 package cn.java.controller;
 
-import java.util.Map;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.java.dto.Building;
 import cn.java.service.BuildingService;
+import cn.java.service.FloorService;
 
 /**
  * Description: <br/>
@@ -33,11 +35,19 @@ import cn.java.service.BuildingService;
 public class BuildingController {
 	@Autowired
     BuildingService buildingService;
+	
+	@RequestMapping("/selectSelective.do")
+	public String showMap(Building building, Model model) {
+		model.addAttribute("buildingList", buildingService.selectSelective(building));
+//        model.addAttribute("buildingImgUrl", buildingService.selectSelective(building));
+//        model.addAttribute("building", buildingService.selectSelective(building));
+		return "/campusMap";
+	}
 
-    @RequestMapping("/selectSelective.do")
-    @ResponseBody
-    public Map<String, Object> selectSelective(@RequestBody Building record) {
-
-        return buildingService.selectBuilding(record);
-    }
+	/*
+	 * @RequestMapping("/selectSelective.do")
+	 * 
+	 * @ResponseBody public List<Building> getBuildingInfo(@RequestBody Building
+	 * building, Model model) { return buildingService.selectSelective(building); }
+	 */
 }

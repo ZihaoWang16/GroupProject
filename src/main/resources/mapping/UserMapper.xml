@@ -24,6 +24,46 @@
     from user
     where id = #{id,jdbcType=INTEGER}
   </select>
+	<select id="selectSelective" parameterType="cn.java.dto.User" resultType="cn.java.dto.User">
+		select 
+		<include refid="Base_Column_List" />
+		from user
+		<where>
+			<if test="id!=null">
+  				id = #{id}
+  			</if>
+			<if test="username!=null">
+  				and username = #{username}
+  			</if>
+			<if test="password!=null">
+  				and password = #{password}
+  			</if>
+			<if test="authority!=null">
+  				and authority = #{authority}
+  			</if>
+			<if test="firstName!=null">
+  				and first_name = #{firstName}
+  			</if>
+			<if test="lastName!=null">
+  				and last_name = #{lastName}
+  			</if>
+			<if test="city!=null">
+  				and city = #{city}
+  			</if>
+			<if test="country!=null">
+  				and country = #{country}
+  			</if>
+			<if test="address!=null">
+  				and address = #{address}
+  			</if>
+			<if test="phoneNum!=null">
+  				and phone_num = #{phoneNum}
+  			</if>
+			<if test="photoSrc!=null">
+  				and photo_src = #{photoSrc}
+  			</if>
+		</where>
+	</select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from user
     where id = #{id,jdbcType=INTEGER}
@@ -38,7 +78,7 @@
       #{city,jdbcType=VARCHAR}, #{country,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
       #{phoneNum,jdbcType=VARCHAR}, #{photoSrc,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="cn.java.dto.User" >
+  <insert id="insertSelective" parameterType="cn.java.dto.User" useGeneratedKeys="true" keyProperty="id" >
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -111,11 +151,6 @@
       </if>
     </trim>
   </insert>
- <select id="selectByUsername" parameterType="java.lang.String" resultType="cn.java.dto.User">
-  select *
-  from user
-  where username = #{username}
-  </select>
   <update id="updateByPrimaryKeySelective" parameterType="cn.java.dto.User" >
     update user
     <set >

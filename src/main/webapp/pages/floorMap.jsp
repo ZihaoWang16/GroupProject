@@ -9,29 +9,89 @@
 <!DOCTYPE html>
 <html>
 <head>
+
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Floor Map</title>
-    <script type="text/javascript" src="<%=basePath %>/static/js/jquery-1.4.2.js"></script>
+    <script type="text/javascript" src="<%=basePath %>/static/js/jquery-1.8.3.js"></script>
+<%--     <script type="text/javascript" src="<%=basePath %>/static/js/jquery-1.4.2.js"></script> --%>
     <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
-	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.2/css/bootstrap.min.css">
-	<script src="http://cdn.bootcss.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	<!-- <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<script src="http://cdn.bootcss.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> -->
+	
+	<!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+	
+	<%-- <link rel="stylesheet" href="<%=basePath %>/static/bootstrap-4.0.0/dist/css/bootstrap.min.css">
+	<script type="text/javascript" src="<%=basePath %>/static/bootstrap-4.0.0/dist/js/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript" src="<%=basePath %>/static/bootstrap-4.0.0/dist/js/bootstrap.min.js"></script> --%>
 	<link rel="stylesheet" type="text/css" href="<%=basePath %>/static/css/table.css" />
+	<link rel="stylesheet" type="text/css" href="<%=basePath %>/static/css/dropdown.css" />
 	<style type="text/css">
-		.modal-dialog{
+		html,body
+		{
+			font-size: 1em;
+		}
+		#bottomBar
+		{
+			position:fixed;
+			margin:auto;
+			bottom:0;
+			height:15%;
+			width:100%;
+		}
+		#bottomBar:hover #peopleIcon
+		{
+			display:block;
+		}
+		#bottomBar:hover .dropup
+		{
+			display:block;
+		}
+		.modal-dialog
+		{
 			width: 1100px;
 		}
-		#map {
+		#peopleIcon
+		{
+			position: fixed;
+			margin: auto;
+			bottom: 5%;
+			left: 5%;
+			width: 50px;
+			height:auto;
+			display: none;
+			cursor: pointer;
+			z-index: 1;
+		}
+		/* #map {
 			max-width: 100%;
 		    max-height: 100vh;
 		    height: auto;
+		} */
+		/* img {
+			display: block;
+		  margin-left: auto;
+		  margin-right: auto;
+		} */
+		/*
+		.icon {
+		  position: absolute;
+		  left:0px;
+		  top:0px;
+          height:32px;
+          width:32px;
 		}
+		*/
 	</style>
 </head>
 <body>
+
 <center>
+<div class="body" >
+
 	<!-- Modal -->
 	<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-	  <div class="modal-dialog" role="document">
+	  <div class="modal-dialog test" role="document">
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <h1 class="modal-title" id="modalTitle"></h1>
@@ -41,7 +101,13 @@
 	      </div>
 	      <div class="modal-body">
 	      	<div id="description">
-	      	</div>
+	      </div>
+	      	<div align="center" style="position:relative;top:10px" onclick="window.open('../pages/description.jsp')">
+             <button>add more descriptions</button>
+            </div>
+	      	<div align="center" style="position:relative;top:10px" onclick="window.open('../pages/viewDescription.jsp')">
+             <button>view more descriptions</button>
+            </div>
 	      	<div>
 	      		<img id="image" src="" alt="" style="width:600px"/>
 	      	</div>
@@ -57,124 +123,73 @@
 	  </div>
 	</div>
 	
-	<img id="map" src="<%=basePath %>${floor.imgUrl }" alt="" border="0" usemap="#BS-G"></img>
-	<map name="BS-G" id="BS-G">
+	<!-- map -->
+	<img id="map" src="<%=basePath %>/${selectedFloor.imgUrl }" alt="" border="0" usemap="#floorMap" />
+	<map name="floorMap" id="floorMap">
 		<c:forEach var="room" items="${roomList }">
-			<area id="ihaveid" shape="poly" coords="${room.areaCoords }" alt="" name="${room.name }" href="javascript:void(0);"/>
+			<area shape="poly" coords="${room.areaCoords }" alt="" name="${room.name }" href="javascript:void(0);"/>
 		</c:forEach>
 	</map>
+
+	
+	<div id="bottomBar">
+		
+		<img id="peopleIcon" src="<%=basePath %>/static/images/icon/groupOutlined.png" alt="" border="0" width="50px"/>
+	
+		<!-- Default dropup button -->
+		<div class="dropup">
+			<button type="button" class="btn btn-secondary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			  ${selectedFloor.name }
+			</button>
+			<div class="dropdown-menu">
+				<c:forEach var="floor" items="${floorList }">
+					<a class="dropdown-item" floorId="${floor.id }" href="<%=basePath %>/floor/selectSelective<%=servletSuffix %>?buildingId=${floor.buildingId }&floorId=${floor.id }">${floor.name }</a>
+				</c:forEach>
+				<!-- <div class="dropdown-divider"></div>
+				<a class="dropdown-item" href="#">Separated link</a> -->
+			</div>
+		</div>
+	</div>
+</div>
 </center>
-	<script type="text/javascript"> 
-		var originWeight;
-		var originHeight;
-		var currentWeight;
-		var currentHeight;
-		var originCoordsList = [];
+<!-- jQuery CDN - Slim version (=without AJAX) -->
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+<!-- Popper.JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+<script type="text/javascript"> 
+	var basePath = '<%=basePath %>';
+	var zoomIndex = 5;
+	var floorImgUrl = '${selectedFloor.imgUrl }';
+	var floorId = '${selectedFloor.id }';
+	var buildingId = '${selectedFloor.buildingId }'
+	
+	$.ajax({
+		url:basePath+"/facility/selectSelective.do",
+           type:"post",
+           data:JSON.stringify({'buildingId':buildingId,'floorId':floorId}),
+           contentType: "application/json",
+           dataType:"json",
+           success:function(data){
+        	   data.forEach(function(facility, index){
+        		   console.log(facility)
+        		   var coords = facility.mapPosition.split(",");
+        		   var height = 20;
+        		   var x = parseInt(coords[0])-height/2;
+        		   var y = parseInt(coords[1])-height/2;
+        		   $(".body").append('<img class="facility" style="position: absolute;left:'+x+'px;top:'+y+'px;height:'+height+'px" src="'+basePath+facility.imgUrl+'" alt="" border="0" />');
+        	   });
+           }
 		
-		var img = new Image();
-		img.src = "<%=basePath %>${floor.imgUrl }";
-		
-		if(img.complete){
-		    alert('from:complete : width:'+img.width+',height:'+img.height);
-		}else{
-		    img.onload = function(){
-		        originWeight = img.width;
-		        originHeight = img.height;
-		        
-				$("area").each(function(i, e){
-		        	originCoordsList.push($(e).attr("coords"));
-		        });
-				
-		        changeAreaCoords();
-		    }
-		}
-		
-		window.onresize = changeAreaCoords;
-		
-		function changeAreaCoords(){ 
-			currentWeight = $('#map').width();
-	        currentHeight = $('#map').height();
-	        $("area").each(function(i, e){
-	        	var coordsArray = originCoordsList[i].split(",");
-	        	var currentCoords = "";
-	        	for(j = 0, len = coordsArray.length; j < len; j++) {
-	        		if(coordsArray[j]!=null && coordsArray[j]!=""){
-	        			if(j%2==0){
-	        				// x
-	        				currentCoords += parseInt(coordsArray[j]*currentWeight/originWeight) + ",";
-	        			}else{
-	        				// y
-	        				currentCoords += parseInt(coordsArray[j]*currentHeight/originHeight) + ",";
-	        			}
-	        		}
-	        	}
-	        	$(e).attr("coords",currentCoords);
-	        });
-		}
-		
-		var lessonList = null;
-		
-		$("area").on('click', function () {
-		    /* alert($(this).attr('name')); */ 
-		    $.ajax({
-	            url:"<%=basePath %>/room/selectSelective.do",
-	            type:"post",
-	            data:JSON.stringify({'name':$(this).attr('name')}),
-	            contentType: "application/json",
-	            dataType:"json",
-	            success:function(data){
-	            	$('#modalTitle').html(data.room.name);
-	                $('#description').html('<p>'+data.room.description+'</p>');
-	                $('#image').attr('src','<%=basePath %>'+data.room.imgUrl);
-	                lessonList = data.timetable;
-	                buildTimetable(lessonList);
-	            }
-	        });
-		    $('#modal').modal('show');
-		});
-		
-		function buildTimetable(data){
-			var tb = document.getElementById('tableBody');    // table 的 id
-			var rows = tb.rows;                           // 获取表格所有行
-			
-			data.forEach(function(e){  
-				var day = e.day;
-				var startTime = e.startTime;
-				var endTime = e.endTime;
-				var duration = (endTime-startTime)*2;
-				var startRow = (startTime-9)*2;
-				// console.log(startRow);
+	});
+	
+</script>      
+<%-- <script type="text/javascript" src="<%=basePath %>/static/js/imageResize.js"></script> --%>
+<script type="text/javascript" src="<%=basePath %>/static/js/timetable.js"></script>
+<script type="text/javascript" src="<%=basePath %>/static/js/showOccupiedRoom.js"></script>
+<%-- <script type="text/javascript" src="<%=basePath %>/static/js/getPosition.js"></script> --%>
 
-				rows[startRow].cells[day].setAttribute("class", "lesson");
-				rows[startRow].cells[day].setAttribute("rowspan", duration+"");
-				rows[startRow].cells[day].innerHTML=e.moduleCode+"<br/>"+e.name;
-				for (var i = 1; i<duration; i++){
-					rows[startRow+i].cells[day].setAttribute("style", "display:none");
-				}
-			});
-		}
-		
-		$("#modal").on("hidden.bs.modal", function() {
-			var tb = document.getElementById('tableBody');    // table 的 id
-			var rows = tb.rows;                           // 获取表格所有行
-			
-			lessonList.forEach(function(e){  
-				var day = e.day;
-				var startTime = e.startTime;
-				var endTime = e.endTime;
-				var duration = (endTime-startTime)*2;
-				var startRow = (startTime-9)*2;
-				// console.log(startRow);
-
-				rows[startRow].cells[day].removeAttribute("class");
-				rows[startRow].cells[day].removeAttribute("rowspan");
-				rows[startRow].cells[day].innerHTML="";
-				for (var i = 1; i<duration; i++){
-					rows[startRow+i].cells[day].removeAttribute("style");
-				}
-			});
-		});
-		
-	</script>      
 </body>
+
 </html>
