@@ -25,7 +25,7 @@
 	  select 
 	  <include refid="Base_Column_List" />
 	  from lesson
-	  where module_code like %#{word}%
+	  where module_code like CONCAT('%',#{0},'%')
   </select>
   <select id="selectSelective" resultMap="BaseResultMap" parameterType="cn.java.dto.Lesson" >
   	select

@@ -10,6 +10,7 @@
 package cn.java.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import cn.java.dto.Lesson;
 import cn.java.mapper.LessonMapper;
@@ -23,6 +24,7 @@ import cn.java.service.LessonService;
  * @version
  * @see
  */
+@Service
 public class LessonServiceImpl implements LessonService {
     @Autowired
     LessonMapper lessonMapper;
