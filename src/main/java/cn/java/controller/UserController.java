@@ -9,13 +9,18 @@
 
 package cn.java.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -60,13 +65,27 @@ public class UserController {
     }
 
     @RequestMapping("/register.do")
-    public String register(User user, HttpSession session, Model model) {
+    public String register(@Valid User user, BindingResult errorResult, HttpSession session, Model model) {
         System.out.println(user);
+        Map<String, Object> errorMap = null;
+        boolean flag = errorResult.hasErrors();
         if (userService.selectSelective(user).size() > 0) {
             model.addAttribute("error", "Username Already existed");
             return "/register";
+        } else if (flag) {
+            errorMap = new HashMap<String, Object>();
+            List<FieldError> errorList = errorResult.getFieldErrors();
+            for (FieldError fieldError : errorList) {
+                String fieldname = fieldError.getField();
+                String errorMessage = fieldError.getDefaultMessage();
+                errorMap.put(fieldname, errorMessage);
+            }
+            model.addAttribute("errorMap", errorMap);
+            model.addAttribute("user", user);
+            return "/register";
         } else {
             System.out.println();
+            userService.insertSelective(user);
             session.setAttribute("user", user);
             return "/registerSuccessful";
         }
@@ -79,5 +98,4 @@ public class UserController {
 
         return false;
     }
-
 }

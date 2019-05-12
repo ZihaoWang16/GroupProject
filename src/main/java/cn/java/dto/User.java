@@ -1,16 +1,32 @@
 package cn.java.dto;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.Length;
+
 public class User {
     private Integer id;
 
+    @NotNull(message = "username cannot be empty")
+    @Length(min = 5, max = 15, message = "username must be between 5 and 15 characters")
     private String username;
 
+    @NotNull(message = "password cannot be empty")
+    @Length(min = 7, max = 15, message = "username must be between 7 and 15 characters")
     private String password;
 
     private Integer authority;
 
+    @NotNull(message = "Name cannot be empty")
+    @Pattern(regexp = "[a-z-A-Z]*", message = "First name has invalid characters, no numbers")
+    @Length(min = 0, max = 30, message = "Your first name is too Long, please shorten it, sorry!")
     private String firstName;
 
+    @NotNull(message = "Name cannot be empty")
+    @Pattern(regexp = "[a-z-A-Z]*", message = "Last name has invalid characters, no numbers")
+    @Length(min = 0, max = 30, message = "Your last name is too Long, please shorten it, sorry!")
     private String lastName;
 
     private String city;
@@ -117,6 +133,5 @@ public class User {
                 + ", firstName=" + firstName + ", lastName=" + lastName + ", city=" + city + ", country=" + country
                 + ", address=" + address + ", phoneNum=" + phoneNum + ", photoSrc=" + photoSrc + "]";
     }
-    
-    
+
 }
