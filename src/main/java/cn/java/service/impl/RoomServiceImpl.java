@@ -107,49 +107,49 @@ public class RoomServiceImpl implements RoomService {
         // Auto-generated method stub
         return 0;
     }
-    
+
     public List<Room> getOccupiedRoom(Room record) {
-		Date date = new Date();
-		Calendar cal=Calendar.getInstance();   
-		int h=cal.get(Calendar.HOUR_OF_DAY);    
-		SimpleDateFormat dataFm = new SimpleDateFormat("EEE",Locale.US);
-		String day = dataFm.format(date);
-		switch (day) {
-		case "Mon":
-			day = "1";
-			break;
-		case "Tue":
-			day = "2";
-			break;
-		case "Wen":
-			day = "3";
-			break;
-		case "Thu":
-			day = "4";
-			break;
-		case "Fri":
-			day = "5";
-			break;
-		case "Sat":
-			day = "6";
-			break;
-		case "Sun":
-			day = "7";
-			break;
-		}
-		
-		Map<String, Object> map = new HashMap<>();
-//		map.put("day", day);
-//		map.put("hour", h);
-		map.put("day", 1);
-		map.put("hour", 15);
-		map.put("buildingId", record.getBuildingId());
-		map.put("floorId", record.getFloorId());
-		return roomMapper.getOccupiedRoom(map);
-	}
+        Date date = new Date();
+        Calendar cal = Calendar.getInstance();
+        int h = cal.get(Calendar.HOUR_OF_DAY);
+        SimpleDateFormat dataFm = new SimpleDateFormat("EEE", Locale.US);
+        String day = dataFm.format(date);
+        switch (day) {
+        case "Mon":
+            day = "1";
+            break;
+        case "Tue":
+            day = "2";
+            break;
+        case "Wen":
+            day = "3";
+            break;
+        case "Thu":
+            day = "4";
+            break;
+        case "Fri":
+            day = "5";
+            break;
+        case "Sat":
+            day = "6";
+            break;
+        case "Sun":
+            day = "7";
+            break;
+        }
+
+        Map<String, Object> map = new HashMap<>();
+        // map.put("day", day);
+        // map.put("hour", h);
+        map.put("day", 1);
+        map.put("hour", 15);
+        map.put("buildingId", record.getBuildingId());
+        map.put("floorId", record.getFloorId());
+        return roomMapper.getOccupiedRoom(map);
+    }
 
     @Override
-    public Room selectByWord(String word) {
+    public List<Room> selectByWord(String word) {
 
         return roomMapper.selectByWord(word);
     }

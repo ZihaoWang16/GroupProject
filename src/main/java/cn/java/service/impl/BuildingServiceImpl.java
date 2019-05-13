@@ -65,7 +65,7 @@ public class BuildingServiceImpl implements BuildingService {
     }
 
     @Override
-    public Building selectByWord(String word) {
+    public List<Building> selectByWord(String word) {
 
         return buildingMapper.selectByWord(word);
     }

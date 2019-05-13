@@ -30,7 +30,7 @@ public interface BuildingService {
 
     Building selectByPrimaryKey(Integer id);
 
-    Building selectByWord(String word);
+    List<Building> selectByWord(String word);
 
     int updateByPrimaryKeySelective(Building record);
 

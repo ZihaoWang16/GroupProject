@@ -30,7 +30,6 @@
 		html,body
 		{
 			font-size: 14px;
-			zoom:1.5;
 		}
 		#bottomBar
 		{

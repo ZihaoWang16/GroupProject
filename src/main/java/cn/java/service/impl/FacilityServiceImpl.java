@@ -60,7 +60,7 @@ public class FacilityServiceImpl implements FacilityService {
     }
 
     @Override
-    public Facility selectByWord(String word) {
+    public List<Facility> selectByWord(String word) {
 
         return facilityMapper.selectByWord(word);
     }

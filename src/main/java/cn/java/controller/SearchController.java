@@ -28,7 +28,7 @@ import cn.java.service.RoomService;
  * @see
  */
 @Controller
-// @RequestMapping("/search")
+@RequestMapping("/search")
 public class SearchController {
 
     @Autowired

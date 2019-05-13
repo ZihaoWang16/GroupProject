@@ -14,13 +14,13 @@ public interface RoomMapper {
 
     Room selectByPrimaryKey(Integer id);
 
-    Room selectByWord(String word);
+    List<Room> selectByWord(String word);
 
     List<Room> selectSelective(Room record);
 
     int updateByPrimaryKeySelective(Room record);
 
     int updateByPrimaryKey(Room record);
-    
-    List<Room> getOccupiedRoom(Map<String,Object> map);
+
+    List<Room> getOccupiedRoom(Map<String, Object> map);
 }

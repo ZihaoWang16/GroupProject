@@ -13,7 +13,7 @@ public interface BuildingMapper {
 
     Building selectByPrimaryKey(Integer id);
 
-    Building selectByWord(String word);
+    List<Building> selectByWord(String word);
 
     List<Building> selectSelective(Building building);
 

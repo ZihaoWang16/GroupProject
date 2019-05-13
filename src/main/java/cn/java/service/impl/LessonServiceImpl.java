@@ -9,6 +9,8 @@
 
 package cn.java.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -72,7 +74,7 @@ public class LessonServiceImpl implements LessonService {
     }
 
     @Override
-    public Lesson selectByWord(String word) {
+    public List<Lesson> selectByWord(String word) {
 
         return lessonMapper.selectByWord(word);
     }
