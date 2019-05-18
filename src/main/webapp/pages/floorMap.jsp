@@ -9,174 +9,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Floor Map</title>
-    <script type="text/javascript" src="<%=basePath %>/static/js/jquery-1.8.3.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Floor Map</title>
+<script type="text/javascript" src="<%=basePath %>/static/js/jquery-1.8.3.js"></script>
 <%--     <script type="text/javascript" src="<%=basePath %>/static/js/jquery-1.4.2.js"></script> --%>
-    <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
-	<!-- <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.2/css/bootstrap.min.css">
-	<script src="http://cdn.bootcss.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> -->
-	
-	<!-- Bootstrap CSS CDN -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-	
-	<%-- <link rel="stylesheet" href="<%=basePath %>/static/bootstrap-4.0.0/dist/css/bootstrap.min.css">
-	<script type="text/javascript" src="<%=basePath %>/static/bootstrap-4.0.0/dist/js/bootstrap.bundle.min.js"></script>
-	<script type="text/javascript" src="<%=basePath %>/static/bootstrap-4.0.0/dist/js/bootstrap.min.js"></script> --%>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-	<link rel="stylesheet" type="text/css" href="<%=basePath %>/static/css/table.css" />
-	<link rel="stylesheet" type="text/css" href="<%=basePath %>/static/css/dropdown.css" />
-	<style type="text/css">
-		html,body
-		{
-			font-size: 14px;
-		}
-		#bottomBar
-		{
-			position:fixed;
-			margin:auto;
-			bottom:0;
-			height:15%;
-			width:100%;
-		}
-		.modal-dialog
-		{
-			width: 1100px;
-		}
-		.icon
-		{
-			padding: 5px;
-			position: fixed;
-			margin: auto;
-			width: auto;
-			height: auto;
-			cursor: pointer;
-			z-index: 1;
-			margin-bottom: 0 !important;
-		}
-		.groupIcon
-		{
-			bottom: 5%;
-			left: 5%;
-			/* border: 1px solid black;
-			border-radius: 10px; */
-		}
-		.zoomIcon
-		{
-			bottom: 5%;
-			right: 5%;
-		}
-		.zoomIcon img
-		{
-			display: block;
-		}
-		.zoomIcon :first-child
-		{
-			padding-bottom: 10px;
-		}
-		.zoomIcon :last-child
-		{
-			padding-top: 10px;
-		}
-		#bottomBar img
-		{
-			width: 50px;
-			height: auto;
-			opacity: 0.5;
-		}
-		.groupIcon:hover #groupIconImg
-		{
-			opacity: 1.0;
-		}
-		#zoomInImg:hover
-		{
-			opacity: 1.0;
-		}
-		#zoomOutImg:hover
-		{
-			opacity: 1.0;
-		}
-		.body
-		{
-			position:relative;
-			margin-top: 5%;
-			margin-bottom: 5%;
-		}
-		#map {
-			/* max-width: 100%;
-		    max-height: 100vh;
-		    height: auto; */
-		}
-		/* img {
-			display: block;
-		  margin-left: auto;
-		  margin-right: auto;
-		} */
-		/*
-		.icon {
-		  position: absolute;
-		  left:0px;
-		  top:0px;
-          height:32px;
-          width:32px;
-		}
-		*/
-		#topBar
-		{
-			position: fixed;
-			margin: auto;
-			top: 0;
-			width: 100%;
-			height: 20%;
-		}
-		.searchBar
-		{
-			position: absolute;
-			width: auto;
-			height: auto;
-			bottom: 0;
-			left: 50%;
-			margin-left: -25rem;
-			display:none;
-		}
-		#topBar:hover .searchBar
-		{
-			display:block;
-		}
-		.userIcon
-		{
-			margin: 0.5rem 0.5rem;
-			float: left;
-			cursor: pointer;
-			z-index: 1;
-			opacity: 0.5;
-		}
-		.userIcon:hover
-		{
-			opacity: 1.0;
-		}
-		.navbar
-		{
-			width: 45rem;
-			background-color: transparent !important;
-			float: left;
-		}
-		form
-		{
-			margin:0px auto;
-		}
-		.searchInput
-		{
-			font-size: 1.5rem;
-			width: 35rem !important;
-			height: 4rem;
-		}
-		.searchBtn
-		{
-			width: 7rem;
-			height: 4rem;
-		}
-	</style>
+<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+<!-- <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<script src="http://cdn.bootcss.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> -->
+
+<!-- Bootstrap CSS CDN -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+
+<%-- <link rel="stylesheet" href="<%=basePath %>/static/bootstrap-4.0.0/dist/css/bootstrap.min.css">
+<script type="text/javascript" src="<%=basePath %>/static/bootstrap-4.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="<%=basePath %>/static/bootstrap-4.0.0/dist/js/bootstrap.min.js"></script> --%>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+<link rel="stylesheet" type="text/css" href="<%=basePath %>/static/css/table.css" />
+<link rel="stylesheet" type="text/css" href="<%=basePath %>/static/css/dropdown.css" />
+<link rel="stylesheet" type="text/css" href="<%=basePath %>/static/css/card.css" />
+<link rel="stylesheet" type="text/css" href="<%=basePath %>/static/css/modal.css" />
+<link rel="stylesheet" type="text/css" href="<%=basePath %>/static/css/myStyle.css" />
 </head>
 <body>
 
@@ -184,8 +36,19 @@
 <div class="body" >
 	<!-- Search form -->
 	<div id="topBar">
-		<div class="shadow-sm p-3 mb-5 bg-light rounded searchBar animated fadeInDown faster">
-			<img class="userIcon" src="<%=basePath %>/static/images/icon/user.png" alt="" border="0" width="50px" />
+		<div class="redirectIcon">
+			<div class="shadow-sm p-3 mb-5 bg-light rounded icon backIcon" onclick="javascript:history.back(-1);">
+				<img id="backImg" src="<%=basePath %>/static/images/icon/back.png" alt="" border="0" width="50px"/>
+			</div>
+			<div class="shadow-sm p-3 mb-5 bg-light rounded icon homeIcon">
+				<img id="homeImg" src="<%=basePath %>/static/images/icon/home.png" alt="" border="0" width="50px"/>
+			</div>
+		</div>
+		
+		<div class="shadow-sm p-3 mb-5 bg-light rounded searchBar animated fadeOutUp faster">
+			<div class="icon userIcon">
+				<img src="<%=basePath %>/static/images/icon/user.png" alt="" border="0" width="50px" />
+			</div>
 			
 			<nav class="navbar navbar-light bg-light">
 			  <form class="form-inline">
@@ -198,36 +61,77 @@
 	
 	<!-- Modal -->
 	<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-	  <div class="modal-dialog test" role="document">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <h1 class="modal-title" id="modalTitle"></h1>
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-	          <span aria-hidden="true">&times;</span>
-	        </button>
-	      </div>
-	      <div class="modal-body">
-	      	<div id="description">
-	      </div>
-	      	<div align="center" style="position:relative;top:10px" onclick="window.open('../pages/description.jsp')">
-             <button>add more descriptions</button>
-            </div>
-	      	<div align="center" style="position:relative;top:10px" onclick="window.open('../pages/viewDescription.jsp')">
-             <button>view more descriptions</button>
-            </div>
-	      	<div>
-	      		<img id="image" src="" alt="" style="width:600px"/>
-	      	</div>
-	      	<div id="timetableDiv">
-	      		<%@include file="../pages/timeTable.html" %>
-	      	</div>
-	      </div>
-	      <!-- <div class="modal-footer">
-	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-	        <button type="button" class="btn btn-primary">Save changes</button>
-	      </div> -->
-	    </div>
-	  </div>
+		<div class="modal-dialog fitSize" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title" id="modalTitle"></h1>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					  	<!-- <div align="center" style="position:relative;top:10px" onclick="window.open('../pages/description.jsp')">
+					     <button>add more descriptions</button>
+					    </div>
+					<div align="center" style="position:relative;top:10px" onclick="window.open('../pages/viewDescription.jsp')">
+					     <button>view more descriptions</button>
+					    </div> -->
+					<div id="picture">
+						<div class="card">
+							<div class="card-header">
+							    <h1>Picture</h1>
+							</div>
+							<div class="card-body">
+								<img id="image" src="" alt="" style="width:100%"/>
+							</div>
+						</div>
+					</div>
+					<div id="description">
+						<div class="card">
+							<div class="card-header">
+							    <h1>Description</h1>
+							</div>
+							<div class="card-body hasDescription">
+								<!-- <h5 class="card-title">Card title</h5>
+								<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
+								<p class="card-text"> </p>
+								<!-- <a href="#" class="card-link">Card link</a>
+								<a href="#" class="card-link">Another link</a> -->
+								<div class="d-lg-flex align-items-center justify-content-end userInfo">
+									<div class="p-2 userName">hello</div>
+									<div class="p-2 userAvatar">
+										<img src="<%=basePath %>/static/images/icon/user.png" alt="userAvatar" border="0" width="30px" />
+									</div>
+								</div>
+								<div style="margin-top: 5%;">
+									<a href="#" class="card-link">View More Descriptions</a>
+								</div>
+							</div>
+							<div class="card-body hasNoDescription">
+								<h4 class="card-title">Oops! No description yet!</h4>
+								<div style="margin-top: 5%;">
+									<a href="#" class="card-link">Add a Description Now</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="timetableDiv">
+						<div class="card">
+							<div class="card-header">
+							    <h1>Timetable</h1>
+							</div>
+							<div class="card-body">
+								<%@include file="../pages/timeTable.html" %>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- <div class="modal-footer">
+				  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				  <button type="button" class="btn btn-primary">Save changes</button>
+				</div> -->
+			</div>
+		</div>
 	</div>
 	
 	<!-- map -->
@@ -235,7 +139,7 @@
 		<img id="map" src="<%=basePath %>/${selectedFloor.imgUrl }" alt="" border="0" usemap="#floorMap" />
 		<map name="floorMap" id="floorMap">
 			<c:forEach var="room" items="${roomList }">
-				<area shape="poly" coords="${room.areaCoords }" alt="" name="${room.name }" href="javascript:void(0);"/>
+				<area objectId="${room.id }" shape="poly" coords="${room.areaCoords }" alt="" name="${room.name }" href="javascript:void(0);"/>
 			</c:forEach>
 		</map>
 	</div>
@@ -260,9 +164,13 @@
 			</div>
 		</div>
 		
-		<div class="shadow-sm p-3 mb-5 bg-light rounded icon zoomIcon">
-			<img id="zoomInImg" src="<%=basePath %>/static/images/icon/zoomIn.png" alt="" border="0" width="50px"/>
-			<img id="zoomOutImg" src="<%=basePath %>/static/images/icon/zoomOut.png" alt="" border="0" width="50px"/>
+		<div class="zoomIcon">
+			<div class="shadow-sm p-3 mb-5 bg-light rounded icon">
+				<img id="zoomInImg" src="<%=basePath %>/static/images/icon/zoomIn.png" alt="" border="0" width="50px"/>
+			</div>
+			<div class="shadow-sm p-3 mb-5 bg-light rounded icon">
+				<img id="zoomOutImg" src="<%=basePath %>/static/images/icon/zoomOut.png" alt="" border="0" width="50px"/>
+			</div>
 		</div>
 		<!-- <div class="shadow-sm p-3 mb-5 bg-light rounded icon zoomOutIcon">
 		</div> -->
@@ -278,32 +186,36 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 <script type="text/javascript"> 
 	var basePath = '<%=basePath %>';
+	var servletSuffix = '<%=servletSuffix %>';
 	var zoomIndex = 5;
 	var floorImgUrl = '${selectedFloor.imgUrl }';
 	var floorId = '${selectedFloor.id }';
 	var buildingId = '${selectedFloor.buildingId }'
 	
-	/* $.ajax({
-		url:basePath+"/facility/selectSelective.do",
-           type:"post",
-           data:JSON.stringify({'buildingId':buildingId,'floorId':floorId}),
-           contentType: "application/json",
-           dataType:"json",
-           success:function(data){
-        	   data.forEach(function(facility, index){
-        		   var coords = facility.mapPosition.split(",");
-        		   var height = 20;
-        		   var x = parseInt(coords[0])-height/2;
-        		   var y = parseInt(coords[1])-height/2;
-        		   $(".body").append('<img class="facility" style="position: absolute;left:'+x+'px;top:'+y+'px;height:'+height+'px" src="'+basePath+facility.imgUrl+'" alt="" border="0" />');
-        	   });
-           }
-		
-	}); */
+	window.onload = function(){
+		$.ajax({
+			url:basePath+"/facility/selectSelective.do",
+	           type:"post",
+	           data:JSON.stringify({'buildingId':buildingId,'floorId':floorId}),
+	           contentType: "application/json",
+	           dataType:"json",
+	           success:function(data){
+	        	   data.forEach(function(facility, index){
+	        		   var coords = facility.mapPosition.split(",");
+	        		   var height = 20;
+	        		   var x = parseInt(coords[0])-height/2;
+	        		   var y = parseInt(coords[1])-height/2;
+	        		   $("#content").append('<img class="facility" style="position: absolute;left:'+x+'px;top:'+y+'px;height:'+height+'px" src="'+basePath+facility.imgUrl+'" alt="" border="0" />');
+	        	   });
+	           }
+			
+		});
+	}
 	
 </script>      
+<script type="text/javascript" src="<%=basePath %>/static/js/component.js"></script>
 <script type="text/javascript" src="<%=basePath %>/static/js/imageResize.js"></script>
-<script type="text/javascript" src="<%=basePath %>/static/js/timetable.js"></script>
+<script type="text/javascript" src="<%=basePath %>/static/js/showRoomInfo.js"></script>
 <script type="text/javascript" src="<%=basePath %>/static/js/showOccupiedRoom.js"></script>
 <%-- <script type="text/javascript" src="<%=basePath %>/static/js/getPosition.js"></script> --%>
 

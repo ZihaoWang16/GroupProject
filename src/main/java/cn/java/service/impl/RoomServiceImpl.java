@@ -20,10 +20,13 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import cn.java.dto.Description;
 import cn.java.dto.Lesson;
 import cn.java.dto.Room;
+import cn.java.mapper.DescriptionMapper;
 import cn.java.mapper.LessonMapper;
 import cn.java.mapper.RoomMapper;
+import cn.java.mapper.UserMapper;
 import cn.java.service.RoomService;
 
 /**
@@ -42,6 +45,12 @@ public class RoomServiceImpl implements RoomService {
 
     @Autowired
     LessonMapper lessonMapper;
+
+    @Autowired
+    DescriptionMapper descriptionMapper;
+
+    @Autowired
+    UserMapper userMapper;
 
     @Override
     public int deleteByPrimaryKey(Integer id) {
@@ -79,16 +88,21 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public Map<String, Object> selectSelectiveWithTimetable(Room record) {
-        List<Room> roomList = roomMapper.selectSelective(record);
-        Map<String, Object> returnMap = new HashMap<>();
-        if (roomList.size() != 0) {
-            Room room = roomList.get(0);
-            Lesson queryLesson = new Lesson();
-            queryLesson.setRoomId(room.getId());
+    public Map<String, Object> getRoomInfo(Room record) {
+        Integer id = record.getId();
+        Room room = roomMapper.selectByPrimaryKey(id);
+        Lesson queryLesson = new Lesson();
+        queryLesson.setRoomId(id);
+        Description queryDescription = new Description();
+        queryDescription.setRoomId(id);
+        List<Description> descriptionList = descriptionMapper.selectSelective(queryDescription);
 
-            returnMap.put("room", room);
-            returnMap.put("timetable", lessonMapper.selectSelective(queryLesson));
+        Map<String, Object> returnMap = new HashMap<>();
+        returnMap.put("room", room);
+        returnMap.put("timetable", lessonMapper.selectSelective(queryLesson));
+        if (descriptionList.size() != 0) {
+            returnMap.put("description", descriptionList.get(0));
+            returnMap.put("user", userMapper.selectByPrimaryKey(descriptionList.get(0).getUserId()));
         }
 
         return returnMap;
@@ -139,10 +153,10 @@ public class RoomServiceImpl implements RoomService {
         }
 
         Map<String, Object> map = new HashMap<>();
-        // map.put("day", day);
-        // map.put("hour", h);
-        map.put("day", 1);
-        map.put("hour", 15);
+        map.put("day", day);
+        map.put("hour", h);
+        // map.put("day", 1);
+        // map.put("hour", 15);
         map.put("buildingId", record.getBuildingId());
         map.put("floorId", record.getFloorId());
         return roomMapper.getOccupiedRoom(map);

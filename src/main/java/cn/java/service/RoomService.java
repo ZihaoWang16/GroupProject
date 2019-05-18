@@ -35,7 +35,7 @@ public interface RoomService {
 
     List<Room> selectSelective(Room room);
 
-    Map<String, Object> selectSelectiveWithTimetable(Room record);
+    Map<String, Object> getRoomInfo(Room record);
 
     int updateByPrimaryKeySelective(Room record);
 

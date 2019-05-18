@@ -1,0 +1,16 @@
+.card
+{
+	width: 90%;
+	border: 0 none;
+	margin-top: 5%;
+	background-color: #fbf0d6;
+}
+.card-header
+{
+	background-color: transparent;
+	border-bottom-width: 2px;
+}
+.card-link
+{
+	font-size: 1.3rem;
+}

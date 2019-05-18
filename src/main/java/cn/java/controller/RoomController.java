@@ -35,13 +35,13 @@ public class RoomController {
     @Autowired
     RoomService roomService;
 
-    @RequestMapping("/selectSelective.do")
+    @RequestMapping("/getRoomInfo.do")
     @ResponseBody
-    public Map<String, Object> selectSelective(@RequestBody Room record) {
-        
-        return roomService.selectSelectiveWithTimetable(record);
+    public Map<String, Object> getRoomInfo(@RequestBody Room room) {
+
+        return roomService.getRoomInfo(room);
     }
-    
+
     @RequestMapping("/getOccupiedRoom.do")
     @ResponseBody
     public List<Room> getOccupiedRoom(@RequestBody Room record) {

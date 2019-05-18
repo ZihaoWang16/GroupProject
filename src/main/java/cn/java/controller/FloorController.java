@@ -9,16 +9,13 @@
 
 package cn.java.controller;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import cn.java.dto.Facility;
 import cn.java.dto.Floor;
 import cn.java.dto.Room;
 import cn.java.service.FacilityService;
@@ -46,10 +43,23 @@ public class FloorController {
     FacilityService facilityService;
 
     @RequestMapping("/selectSelective.do")
-    public String getFloorInfo(Room room, Floor floor, Facility facility, Model model) {
+    public String getFloorInfo(Room room, Floor floor, Model model) {
+        List<Floor> floorList = floorService.selectSelective(floor);
+        if (room.getFloorId() == null) {
+            for (Floor f : floorList) {
+                if (f.getName().contains("G")) {
+                    room.setFloorId(f.getId());
+                    break;
+                }
+                if (f.getName().contains("1")) {
+                    room.setFloorId(f.getId());
+                    break;
+                }
+            }
+        }
+        model.addAttribute("floorList", floorList);
         model.addAttribute("selectedFloor", floorService.selectByPrimaryKey(room.getFloorId()));
         model.addAttribute("roomList", roomService.selectSelective(room));
-        model.addAttribute("floorList", floorService.selectSelective(floor));
         return "/floorMap";
     }
 
