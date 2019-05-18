@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.java.mapper.DescriptionMapper" >
+  <resultMap id="BaseResultMap" type="cn.java.dto.Description" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="building_id" property="buildingId" jdbcType="INTEGER" />
+    <result column="room_id" property="roomId" jdbcType="INTEGER" />
+    <result column="facility_id" property="facilityId" jdbcType="INTEGER" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, building_id, room_id, facility_id, content, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from description
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from description
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  <select id="selectSelective" resultMap="BaseResultMap" parameterType="cn.java.dto.Description" >
+  	select
+  	<include refid="Base_Column_List" />
+  	from description
+  	<where>
+  		<if test="id!=null">
+  			id = #{id}
+  		</if>
+  		<if test="userId!=null">
+  			and user_Id = #{userId}
+  		</if>
+  		<if test="facilityId!=null">
+  			and facility_Id = #{facilityId}
+  		</if>
+  		<if test="buildingId!=null">
+  			and building_id = #{buildingId}
+  		</if>
+  		<if test="roomId!=null">
+  			and room_id = #{roomId}
+  		</if>	
+  		<if test="content!=null">
+	        and content = #{content}
+  		</if>
+  		<if test="createTime!=null">
+  			and createTime = #{createTime}
+  		</if>
+  	</where>
+  </select>
+  <insert id="insert" parameterType="cn.java.dto.Description" >
+    insert into description (id, user_id, building_id, 
+      room_id, facility_id, content, 
+      create_time)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{buildingId,jdbcType=INTEGER}, 
+      #{roomId,jdbcType=INTEGER}, #{facilityId,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.java.dto.Description" >
+    insert into description
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="buildingId != null" >
+        building_id,
+      </if>
+      <if test="roomId != null" >
+        room_id,
+      </if>
+      <if test="facilityId != null" >
+        facility_id,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="buildingId != null" >
+        #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="roomId != null" >
+        #{roomId,jdbcType=INTEGER},
+      </if>
+      <if test="facilityId != null" >
+        #{facilityId,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.java.dto.Description" >
+    update description
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="buildingId != null" >
+        building_id = #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="roomId != null" >
+        room_id = #{roomId,jdbcType=INTEGER},
+      </if>
+      <if test="facilityId != null" >
+        facility_id = #{facilityId,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.java.dto.Description" >
+    update description
+    set user_id = #{userId,jdbcType=INTEGER},
+      building_id = #{buildingId,jdbcType=INTEGER},
+      room_id = #{roomId,jdbcType=INTEGER},
+      facility_id = #{facilityId,jdbcType=INTEGER},
+      content = #{content,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

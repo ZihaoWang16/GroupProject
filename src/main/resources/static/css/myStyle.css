@@ -1,0 +1,141 @@
+html,body
+{
+	font-size: 14px;
+}
+.fitSize
+{
+	max-width: 100% !important;
+}
+#bottomBar
+{
+	position:fixed;
+	margin:auto;
+	bottom:0;
+	height:15%;
+	width:100%;
+}
+.modal-dialog
+{
+	width: 1100px;
+}
+.icon
+{
+	padding: 5px;
+	margin: auto;
+	cursor: pointer;
+	z-index: 1;
+	margin-bottom: 0 !important;
+}
+.icon img
+{
+	opacity: 0.5;
+}
+.icon:hover >img
+{
+	opacity: 1.0;
+}
+.redirectIcon
+{
+	top: 5%;
+	left: 5%;
+	position: fixed;
+	display: flex;
+	justify-content: space-between;
+	width: 15%;
+}
+.groupIcon
+{
+	bottom: 5%;
+	left: 5%;
+	position: fixed;
+}
+.zoomIcon
+{
+	bottom: 5%;
+	right: 5%;
+	position: fixed;
+}
+#bottomBar img
+{
+	width: 50px;
+	height: auto;
+}
+.body
+{
+	position:relative;
+	margin-top: 5%;
+	margin-bottom: 5%;
+}
+#map {
+	/* max-width: 100%;
+    max-height: 100vh;
+    height: auto; */
+}
+/* img {
+	display: block;
+  margin-left: auto;
+  margin-right: auto;
+} */
+#topBar
+{
+	position: fixed;
+	margin: auto;
+	top: 0;
+	width: 100%;
+	height: 20%;
+}
+.searchBar
+{
+	position: absolute;
+	width: auto;
+	height: auto;
+	bottom: 0;
+	left: 50%;
+	margin-left: -25rem;
+	display:none;
+}
+/* #topBar:hover .searchBar
+{
+	display:block;
+} */
+.userIcon
+{
+	margin: 0.5rem 0.5rem;
+	float: left;
+	cursor: pointer;
+	z-index: 1;
+}
+.userIcon:hover
+{
+	opacity: 1.0;
+}
+.navbar
+{
+	width: 45rem;
+	background-color: transparent !important;
+	float: left;
+}
+form
+{
+	margin:0px auto;
+}
+.searchInput
+{
+	font-size: 1.5rem;
+	width: 35rem !important;
+	height: 4rem;
+}
+.searchBtn
+{
+	width: 7rem;
+	height: 4rem;
+}
+#description p
+{
+	text-align: left;
+	font-size: 1.4rem;
+}
+.userName
+{
+	font-size: 1.2rem;
+}

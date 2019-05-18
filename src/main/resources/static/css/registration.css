@@ -1,0 +1,16 @@
+@charset "ISO-8859-1";
+.error{
+	display: none;
+	margin-left: 10px;
+}
+.show_error{
+	color: red;
+	margin-left: 10px;
+}
+
+div.box{
+ 	width: 400px;
+  	border: 15px solid green;
+	padding: 50px;
+  	margin: 20px;
+}

@@ -9,6 +9,7 @@
 
 package cn.java.service;
 
+import java.util.List;
 import java.util.Map;
 
 import cn.java.dto.Room;
@@ -30,9 +31,16 @@ public interface RoomService {
 
     Room selectByPrimaryKey(Integer id);
 
-    Map<String, Object> selectSelectiveWithTimetable(Room record);
+    List<Room> selectByWord(String word);
+
+    List<Room> selectSelective(Room room);
+
+    Map<String, Object> getRoomInfo(Room record);
 
     int updateByPrimaryKeySelective(Room record);
 
     int updateByPrimaryKey(Room record);
+
+    List<Room> getOccupiedRoom(Room record);
+
 }

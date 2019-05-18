@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="../../resources/static/js/jquery-1.8.3.js"></script>
+<script type="text/javascript"> 
+$(".dropbtn").click(function(){
+    $(".dropup").slideToggle("slow");
+  });
+/* $(".content p").click(function(){
+	var buildingId = "${floor.buildingId }";
+	window.location.href = "<%=basePath%>/floor/selectSelective.do?floorId="+$(this).attr("id")+"&buildingId="+buildingId;
+}); */
+</script>
+ 
+
+<style type="text/css"> 
+button.dropbtn
+{
+text-align:center;
+border:solid 1px #000;
+position:absolute; 
+bottom:0px;
+left:0;
+right:0;
+background-color: #fff;
+color: balck;
+padding: 16px;
+font-size: 16px;
+}
+div.dropup
+{
+margin:0 auto;
+padding:16px;
+text-align:center;
+height:300px;
+width:124px;
+display:none;
+position:absolute; 
+bottom:40px;
+border:solid 1px #c3c3c3;
+background-color: #ddd;
+
+}
+.content p:hover{background-color: #c3c3c3}
+
+</style>
+</head>
+ 
+<body>
+ 
+<div class="dropup">
+<div class="content">
+<p name="BF">BF</p>
+<p name="GF">GF</p>
+<p name="1F">1F</p>
+<p name="2F">2F</p>
+<p name="3F">3F</p>
+<p name="4F">4F</p>
+<p name="5F">5F</p>
+
+</div>
+</div>
+ 
+<button class="dropbtn">Choose the Floor</button>
+ 
+</body>
+</html>
+
+
+
+
+

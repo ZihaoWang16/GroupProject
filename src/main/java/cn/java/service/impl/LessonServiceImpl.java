@@ -9,7 +9,13 @@
 
 package cn.java.service.impl;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import cn.java.dto.Lesson;
+import cn.java.mapper.LessonMapper;
 import cn.java.service.LessonService;
 
 /**
@@ -20,7 +26,10 @@ import cn.java.service.LessonService;
  * @version
  * @see
  */
+@Service
 public class LessonServiceImpl implements LessonService {
+    @Autowired
+    LessonMapper lessonMapper;
 
     @Override
     public int deleteByPrimaryKey(Integer id) {
@@ -62,6 +71,12 @@ public class LessonServiceImpl implements LessonService {
 
         // Auto-generated method stub
         return 0;
+    }
+
+    @Override
+    public List<Lesson> selectByWord(String word) {
+
+        return lessonMapper.selectByWord(word);
     }
 
 }

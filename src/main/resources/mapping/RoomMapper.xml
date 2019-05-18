@@ -6,18 +6,25 @@
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="type" property="type" jdbcType="VARCHAR" />
     <result column="building_id" property="buildingId" jdbcType="INTEGER" />
-    <result column="floor" property="floor" jdbcType="VARCHAR" />
+    <result column="floor_id" property="floorId" jdbcType="INTEGER" />
+    <result column="area_coords" property="areaCoords" jdbcType="VARCHAR" />
     <result column="description" property="description" jdbcType="VARCHAR" />
     <result column="img_url" property="imgUrl" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, name, type, building_id, floor, description, img_url
+    id, name, type, building_id, floor_id, area_coords, description, img_url
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from room
     where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectByWord" resultMap="BaseResultMap" parameterType="java.lang.String">
+  select
+  <include refid="Base_Column_List" />
+    from room
+    where name like CONCAT('%',#{0},'%')
   </select>
   <select id="selectSelective" resultMap="BaseResultMap" parameterType="cn.java.dto.Room" >
   	select
@@ -36,8 +43,11 @@
   		<if test="buildingId!=null">
   			and building_id = #{buildingId}
   		</if>
-  		<if test="floor!=null">
-  			and floor = #{floor}
+  		<if test="floorId!=null">
+  			and floor_id = #{floorId}
+  		</if>
+  		<if test="areaCoords!=null">
+  			and area_coords = #{areaCoords}
   		</if>
   		<if test="description!=null">
   			and description = #{description}
@@ -53,10 +63,10 @@
   </delete>
   <insert id="insert" parameterType="cn.java.dto.Room" >
     insert into room (id, name, type, 
-      building_id, floor, description, 
+      building_id, floor_id, area_coords, description, 
       img_url)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
-      #{buildingId,jdbcType=INTEGER}, #{floor,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{buildingId,jdbcType=INTEGER}, #{floorId,jdbcType=VARCHAR}, #{areaCoords,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
       #{imgUrl,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="cn.java.dto.Room" >
@@ -74,8 +84,11 @@
       <if test="buildingId != null" >
         building_id,
       </if>
-      <if test="floor != null" >
-        floor,
+      <if test="floorId != null" >
+        floor_id,
+      </if>
+      <if test="areaCoords != null" >
+        area_coords,
       </if>
       <if test="description != null" >
         description,
@@ -97,8 +110,11 @@
       <if test="buildingId != null" >
         #{buildingId,jdbcType=INTEGER},
       </if>
-      <if test="floor != null" >
-        #{floor,jdbcType=VARCHAR},
+      <if test="floorId != null" >
+        #{floorId,jdbcType=VARCHAR},
+      </if>
+      <if test="areaCoords != null" >
+        #{areaCoords,jdbcType=VARCHAR},
       </if>
       <if test="description != null" >
         #{description,jdbcType=VARCHAR},
@@ -120,8 +136,11 @@
       <if test="buildingId != null" >
         building_id = #{buildingId,jdbcType=INTEGER},
       </if>
-      <if test="floor != null" >
-        floor = #{floor,jdbcType=VARCHAR},
+      <if test="floorId != null" >
+        floor_id = #{floorId,jdbcType=VARCHAR},
+      </if>
+      <if test="areaCoords != null" >
+        area_coords = #{areaCoords,jdbcType=VARCHAR},
       </if>
       <if test="description != null" >
         description = #{description,jdbcType=VARCHAR},
@@ -137,9 +156,21 @@
     set name = #{name,jdbcType=VARCHAR},
       type = #{type,jdbcType=VARCHAR},
       building_id = #{buildingId,jdbcType=INTEGER},
-      floor = #{floor,jdbcType=VARCHAR},
+      floor_id = #{floorId,jdbcType=VARCHAR},
+      area_coords = #{areaCoords,jdbcType=VARCHAR},
       description = #{description,jdbcType=VARCHAR},
       img_url = #{imgUrl,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="getOccupiedRoom" resultMap="BaseResultMap" parameterType="Map" >
+    SELECT r.*
+    FROM lesson l,room r,floor f
+    WHERE r.id = l.room_id 
+    AND r.floor_id = f.id
+    AND r.building_id = #{buildingId}
+    AND f.id = #{floorId}
+    AND l.start_time &lt;= #{hour}
+    AND l.end_time &gt; #{hour}
+    AND l.day = #{day}   
+  </select> 
 </mapper>
