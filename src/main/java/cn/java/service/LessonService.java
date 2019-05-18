@@ -9,6 +9,8 @@
 
 package cn.java.service;
 
+import java.util.List;
+
 import cn.java.dto.Lesson;
 
 /**
@@ -28,7 +30,7 @@ public interface LessonService {
 
     Lesson selectByPrimaryKey(Integer id);
 
-    Lesson selectByWord(String word);
+    List<Lesson> selectByWord(String word);
 
     int updateByPrimaryKeySelective(Lesson record);
 

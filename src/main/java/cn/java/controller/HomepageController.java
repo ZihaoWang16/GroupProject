@@ -25,7 +25,7 @@ public class HomepageController {
 
     @RequestMapping("/")
     public String Homepage() {
-        return "redirect:/index.jsp";
+        return "redirect:/pages/campusMap.jsp";
     }
 
 }

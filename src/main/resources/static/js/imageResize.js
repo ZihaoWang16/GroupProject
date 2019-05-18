@@ -8,7 +8,7 @@ var img = new Image();
 img.src = basePath + floorImgUrl;
 
 if(img.complete){
-    alert('from:complete : width:'+img.width+',height:'+img.height);
+   /* alert('from:complete : width:'+img.width+',height:'+img.height);*/
 }else{
     img.onload = function(){
         originWeight = img.width;
@@ -22,7 +22,7 @@ if(img.complete){
     }
 }
 
-window.onresize = changeAreaCoords;
+/*window.onresize = changeAreaCoords;*/
 
 function changeAreaCoords(){ 
 	currentWeight = $('#map').width();

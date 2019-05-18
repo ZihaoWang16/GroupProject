@@ -11,153 +11,185 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>CampusMap</title>
-    <script type="text/javascript" src="<%=basePath %>/static/js/jquery-1.4.2.js"></script>
+    <script type="text/javascript" src="<%=basePath %>/static/js/jquery-1.8.3.js"></script>
     <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
-	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.2/css/bootstrap.min.css">
-	<script src="http://cdn.bootcss.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="<%=basePath %>/static/css/table.css" />
+	<!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+	<link rel="stylesheet" type="text/css" href="<%=basePath %>/static/css/card.css" />
+	<link rel="stylesheet" type="text/css" href="<%=basePath %>/static/css/modal.css" />	
+	<link rel="stylesheet" type="text/css" href="<%=basePath %>/static/css/myStyle.css" />
 	<style type="text/css">
-		.modal-dialog{
+		.fitSize
+		{
+			max-width: 100% !important;
+		}
+		.modal-dialog
+		{
 			width: 1100px;
+		}
+		.inside
+		{
+			font-size: 1.5rem;
 		}
 	</style>
 </head>
 <body>
 <center>
+	<!-- Search form -->
+	<div id="topBar">
+		<div class="shadow-sm p-3 mb-5 bg-light rounded searchBar animated fadeOutUp faster">
+			<div class="icon userIcon">
+				<img src="<%=basePath %>/static/images/icon/user.png" alt="" border="0" width="50px" />
+			</div>
+			
+			<nav class="navbar navbar-light bg-light">
+			  <form class="form-inline">
+			    <input class="form-control mr-sm-2 searchInput" type="search" placeholder="Search" aria-label="Search">
+			    <button class="btn btn-outline-success my-2 my-sm-0 searchBtn" type="submit">Search</button>
+			  </form>
+			</nav>
+		</div>
+	</div>
+
 	<!-- the place to put on the specific data -->
-	
-	
-	
 	<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-	  <div class="modal-dialog" role="document">	  
+	  <div class="modal-dialog fitSize" role="document">	  
 	    <div class="modal-content">	    
 	      <div class="modal-header">
 	      
 	      <!-- modalTitle -->
-	        <h1 class="modal-title" id="modalTitle">
-	        CampusMap 
-	        </h1>
+	        <h1 class="modal-title" id="modalTitle"></h1>
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	          <span aria-hidden="true">&times;</span>
 	        </button>
 	      </div>
 	      <div class="modal-body">
-	      
-	      	<div id="description">
+	      	<div id="picture">
+				<div class="card">
+					<div class="card-header">
+					    <h1>Picture</h1>
+					</div>
+					<div class="card-body">
+						<img id="image" src="" alt="" style="width:100%"/>
+					</div>
+				</div>
+			</div>
+			<div id="description">
+				<div class="card">
+					<div class="card-header">
+					    <h1>Description</h1>
+					</div>
+					<div class="card-body hasDescription">
+						<!-- <h5 class="card-title">Card title</h5>
+						<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
+						<p class="card-text"> </p>
+						<!-- <a href="#" class="card-link">Card link</a>
+						<a href="#" class="card-link">Another link</a> -->
+						<div class="d-lg-flex align-items-center justify-content-end userInfo">
+							<div class="p-2 userName">hello</div>
+							<div class="p-2 userAvatar">
+								<img src="<%=basePath %>/static/images/icon/user.png" alt="userAvatar" border="0" width="30px" />
+							</div>
+						</div>
+						<div style="margin-top: 5%;">
+							<a href="#" class="card-link">View More Descriptions</a>
+						</div>
+					</div>
+					<div class="card-body hasNoDescription">
+						<h4 class="card-title">Oops! No description yet!</h4>
+						<div style="margin-top: 5%;">
+							<a href="#" class="card-link">Add a Description Now</a>
+						</div>
+					</div>
+				</div>
+			</div>
 	      	
-	      	</div>
-	      	<div>
-	      		<img id="image" src="" alt="" style="width:900px"/>
-	      	</div>
-	      	
-	      	<div>
-	      		<img id="bname" src="" alt="" style="width:100px"/>
-	      	</div>
-	      	
-	      	<div id="timetableDiv">
-	      			
-	      	</div>
 	      </div>
-	      <!-- <div class="modal-footer">
-	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-	        <button type="button" class="btn btn-primary">Save changes</button>
-	      </div> -->
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-primary inside">View This Building</button>
+	      </div>
 	    </div>
 	  </div>
 	</div>
 
 	<img src="<%=basePath %>/static/images/CampusMap.png" alt="" border="0" usemap="#campusMap"></img>
 	<map name="campusMap" id="campusMap">
-		<!-- <area id="library" shape="poly" coords="803,1404,803,1294,920,1294,920,1404" alt="" name="CB" href="javascript:void(0);"/>
-		<area shape="poly" coords="320,614,320,792,82,786,76,628" alt="" name="renmin_university_suzhou_campus" href="javascript:void(0);"/>
-		<area shape="poly" coords="996,451,998,776,666,773,658,450" alt="" name="nanjing_university_syzhou_graduate_school" href="javascript:void(0);"/>
-		<area shape="poly" coords="1132,133,1184,162,1175,370,1126,401,1075,361,1069,167" alt="" name="playground" href="javascript:void(0);"/>
-		<area shape="poly" coords="1329,136,1328,287,1182,286,1184,132" alt="" name="A05" href="javascript:void(0);"/>
-		<area shape="poly" coords="1608,141,1616,312,1343,302,1337,144" alt="" name="A04" href="javascript:void(0);"/>
-		<area shape="poly" coords="1706,351,1476,346,1478,484,1712,484" alt="" name="A03" href="javascript:void(0);"/>
-		<area shape="poly" coords="1775,501,1776,617,1615,616,1611,504" alt="" name="A02" href="javascript:void(0);"/>
-		<area shape="poly" coords="1824,630,1835,756,1616,755,1617,631" alt="" name="A01" href="javascript:void(0);"/>
-		<area shape="poly" coords="1608,526,1605,752,1479,748,1477,524" alt="" name="Eating_Place" href="javascript:void(0);"/>
-		<area shape="poly" coords="1469,598,1460,761,1358,760,1333,745,1313,596" alt="" name="KFC" href="javascript:void(0);"/>
-		<area shape="poly" coords="1076,500,1288,488,1319,775,1075,780" alt="" name="Garden" href="javascript:void(0);"/>
-		<area shape="poly" coords="1900,825,58,888,57,844,1710,899" alt="" name="Ren'ai_Road" href="javascript:void(0);"/>
-		<area shape="poly" coords="324,1144,321,1276,146,1273,153,1137" alt="" name="suzhou_university" href="javascript:void(0);"/>
-		<area shape="poly" coords="1287,356,1460,359,1463,504,1292,504" alt="" name="MBA_hotel" href="javascript:void(0);"/>
-		<area shape="poly" coords="601,1122,531,1149,476,819,416,830" alt="" name="songtao_Road" href="javascript:void(0);"/>
-		<area shape="poly" coords="1480,915,1976,917,1892,1064,1517,1064" alt="" name="Global_Suzhou_College" href="javascript:void(0);"/>
-		<area shape="poly" coords="2272,636,2276,690,1916,692,1916,633" alt="" name="Hanlin_Neighbourhood_Center" href="javascript:void(0);"/>
-		<area shape="poly" coords="2197,719,2197,800,2019,800,2014,718" alt="" name="McDonald's" href="javascript:void(0);"/>
-		<area shape="poly" coords="1422,916,1420,1059,1270,1058,1263,909" alt="" name="International_conference_center" href="javascript:void(0);"/>
-		<area shape="poly" coords="1079,1018,1238,1023,1238,1094,1071,1092" alt="" name="xian'jiaotong_university_institute" href="javascript:void(0);"/>
-		<area shape="poly" coords="1014,943,1009,1061,684,1052,673,947" alt="" name="foundation_building" href="javascript:void(0);"/>
-		<area shape="poly" coords="1226,1232,1229,1270,1072,1268,1071,1227" alt="" name="SA" href="javascript:void(0);"/>
-		<area shape="poly" coords="1228,1325,1225,1362,1076,1364,1075,1326" alt="" name="SB" href="javascript:void(0);"/>
-		<area shape="poly" coords="1073,1416,1076,1453,1228,1455,1228,1416" alt="" name="SC" href="javascript:void(0);"/>
-		<area shape="poly" coords="1226,1512,1228,1547,1072,1550,1072,1551" alt="" name="SD" href="javascript:void(0);"/>
-		<area shape="poly" coords="1412,1232,1411,1321,1284,1316,1286,1232" alt="" name="PB" href="javascript:void(0);"/>
-		<area shape="poly" coords="1439,1271,1541,1268,1541,1268,1542,1228" alt="" name="BA" href="javascript:void(0);"/>
-		<area shape="poly" coords="1603,1316,1603,1352,1440,1346,1440,1316" alt="" name="BB" href="javascript:void(0);"/>
-		<area shape="poly" coords="1637,1406,1638,1549,1468,1544,1469,1404" alt="" name="EB" href="javascript:void(0);"/>
-		<area shape="poly" coords="1426,1510,1425,1547,1291,1548,1290,1511" alt="" name="EE" href="javascript:void(0);"/>
-		<area shape="poly" coords="1284,1325,1415,1320,1423,1456,1278,1453" alt="" name="xia_chen_ground" href="javascript:void(0);"/>
-		<area shape="poly" coords="" alt="" name="" href="javascript:void(0);"/>
-		<area shape="poly" coords="" alt="" name="" href="javascript:void(0);"/>
-		<area shape="poly" coords="" alt="" name="" href="javascript:void(0);"/> -->
-		
-		<c:forEach var="building" items="${buildingList }">
-			<area id="ihaveid" shape="poly" coords="${building.areaCoords }" alt="" name="${building.name }" href="javascript:void(0);"/>
-		</c:forEach>
 	</map>
-</center>>
-	<script type="text/javascript"> 
-		
-		$("area").on('click', function () {
-		    /* alert($(this).attr('name')); */ 
-		    <%-- $.ajax({
-	            url:"<%=basePath %>/building/selectSelective.do",
-	            type:"post",
-	            data:JSON.stringify({'name':$(this).attr('name')}),
-	            contentType: "application/json",
-	            dataType:"json",
-	            success:function(data){
-	            	$('#modalTitle').html(data.building.name);
-	                $('#description').html('<p>'+data.building.description+'</p>');
-	                $('#image').attr('src','<%=basePath %>'+data.building.imgUrl);
-	            }
-	        }); --%>
-	        <c:forEach var="building" items="${buildingList }">
-	        	var buildingName = '${building.name}';
-	        	var buildingUrl = '${building.imgUrl}';
-	        	var buildingDescription = '${building.description}';
-	        	if(buildingName == $(this).attr('name')){
-			        $('#image').attr('src','<%=basePath %>'+buildingUrl);
-			        $("#modalTitle").html(buildingName);
-			        $("#description").html(buildingDescription);
-	        	}
-			</c:forEach>
-		    $('#modal').modal('show');
-		    
-		});
-		//this is the method of finding the coordinates
-		/* function getMousePos(event) {
-		    var e = event || window.event;
-		    var scrollX = document.documentElement.scrollLeft || document.body.scrollLeft;
-		    var scrollY = document.documentElement.scrollTop || document.body.scrollTop;
-		    var x = e.pageX || e.clientX + scrollX;
-		    var y = e.pageY || e.clientY + scrollY;
-		    //alert('x: ' + x + '\ny: ' + y);
-	        return { 'x': x, 'y': y };
-	    }
-
-        document.onmousedown = mouseMove;
-		function mouseMove(ev){
-			ev = ev || window.event;
-			var mousePos = getMousePos(ev);
-			console.log('x: ' + mousePos.x + '\ny: ' + mousePos.y);
-
-		    // document.getElementByIdx('mouseXPosition').value = mousePos.x;
-		    // document.getElementByIdx('mouseYPosition').value = mousePos.y;
-		} */
-	</script>
+	
+	<div id="bottomBar">
+		<div class="zoomIcon">
+			<div class="shadow-sm p-3 mb-5 bg-light rounded icon">
+				<img id="zoomInImg" src="<%=basePath %>/static/images/icon/zoomIn.png" alt="" border="0" width="50px"/>
+			</div>
+			<div class="shadow-sm p-3 mb-5 bg-light rounded icon">
+				<img id="zoomOutImg" src="<%=basePath %>/static/images/icon/zoomOut.png" alt="" border="0" width="50px"/>
+			</div>
+		</div>
+	</div>
+</center>
+<!-- jQuery CDN - Slim version (=without AJAX) -->
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+<!-- Popper.JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+<script type="text/javascript"> 
+	var basePath = '<%=basePath %>';
+	var servletSuffix = '<%=servletSuffix %>';
+	window.onload = function(){
+		$.ajax({
+	        url:"<%=basePath %>/building/selectSelective.do",
+	        type:"post",
+	        data:JSON.stringify({'id':0}),
+	        contentType: "application/json",
+	        dataType:"json",
+	        success:function(data){
+	        	data.forEach(function(building, index){
+	        		$("#campusMap").append('<area objectId="'+building.id+'" shape="poly" coords="'+building.areaCoords+'" alt="'+building.code+'" href="javascript:void(0);"/>');
+	        	});
+	        }
+	    });
+	}
+	
+	$("#campusMap").on('click','area',function () {
+	    $.ajax({
+            url:"<%=basePath %>/building/getBuildingInfo.do",
+            type:"post",
+            data:JSON.stringify({'id':$(this).attr('objectId')}),
+            contentType: "application/json",
+            dataType:"json",
+            success:function(data){
+            	$('#modalTitle').html(data.building.name);
+            	$('#modalTitle').attr("objectId",data.building.id);
+                /* $('#description').html('<p>'+building.description+'</p>');
+                $('#image').attr('src',basePath+building.imgUrl);
+                $('#modalTitle').html(data.room.name); */
+                
+            	if (data.description) {
+            		$(".hasDescription").show();
+            		$(".hasNoDescription").hide();
+            		$('.hasDescription p').html(data.description.content);
+            		$('.userName').html(data.user.username);
+            		$('.hasDescription a').attr("href",basePath+"/description/selectSelective"+servletSuffix+"?buildingId="+data.building.id);
+    			} else {
+    				$(".hasDescription").hide();
+            		$(".hasNoDescription").show();
+    				$('.hasNoDescription a').attr("href",basePath+"/pages/user/addDescription.jsp");
+    			}
+                $('#image').attr('src',basePath+data.building.imgUrl);
+            }
+        });
+	    $('#modal').modal('show');
+	});
+	
+	$(".inside").on('click', function(){
+		window.location.href = basePath + "/floor/selectSelective"+servletSuffix+"?buildingId="+$('#modalTitle').attr("objectId");
+	})
+</script>
+<script type="text/javascript" src="<%=basePath %>/static/js/component.js"></script>
+<%-- <script type="text/javascript" src="<%=basePath %>/static/js/imageResize.js"></script> --%>
+<%-- <script type="text/javascript" src="<%=basePath %>/static/js/getPosition.js"></script> --%>
 </body>
 </html>

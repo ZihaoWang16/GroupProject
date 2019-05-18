@@ -30,7 +30,7 @@ public interface FacilityService {
 
     Facility selectByPrimaryKey(Integer id);
 
-    Facility selectByWord(String word);
+    List<Facility> selectByWord(String word);
 
     List<Facility> selectSelective(Facility facility);
 

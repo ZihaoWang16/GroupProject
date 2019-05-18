@@ -1,5 +1,6 @@
-$("#peopleIcon").on('click', function () {
-	if($(this).attr("src").indexOf("groupOutlined")!=-1){
+$(".groupIcon").on('click', function () {
+	var imgTag = $(this).find('img');
+	if($(imgTag).attr("src").indexOf("groupOutlined")!=-1){
 		
 		$.ajax({
 			url:basePath+"/room/getOccupiedRoom.do",
@@ -46,16 +47,16 @@ $("#peopleIcon").on('click', function () {
             				y: 	parseInt(subCentroidYSum/subAreaSum - height/2),
             			};
             			
-            			$(".body").append('<img class="occupiedRoom" style="position: absolute;left:'+centroid.x+'px;top:'+centroid.y+'px;height:'+height+'px" src="'+basePath+'/static/images/icon/group.png" alt="" border="0"></img>');
+            			$("#content").append('<img class="occupiedRoom" style="position: absolute;left:'+centroid.x+'px;top:'+centroid.y+'px;height:'+height+'px" src="'+basePath+'/static/images/icon/group.png" alt="" border="0"></img>');
             		})
            		}
             }
 			
 		});
 		
-		$(this).attr("src",basePath+"/static/images/icon/group.png");
+		$(imgTag).attr("src",basePath+"/static/images/icon/group.png");
 	}else{
-		$(this).attr("src",basePath+"/static/images/icon/groupOutlined.png");
+		$(imgTag).attr("src",basePath+"/static/images/icon/groupOutlined.png");
 		$(".occupiedRoom").remove();
 	}
 })

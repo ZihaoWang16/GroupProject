@@ -27,9 +27,9 @@ public class DescriptionController {
     @Autowired
     DescriptionService descriptionService;
 
-    @RequestMapping("/submit.do")
+    @RequestMapping("/addDescription.do")
     @ResponseBody
-    public String submitDescription(@SessionAttribute("user") User user, Description description) {
+    public String addDescription(@SessionAttribute("user") User user, Description description) {
         System.out.println(user);
         description.setUserId(user.getId());
         System.out.println(description);

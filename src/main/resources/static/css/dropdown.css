@@ -2,19 +2,18 @@
 {
 	font-size:1.5rem;
 }
-button
-{
-	width:15em;
-	height:2.5em;
-}
 .dropup
 {
 	position:fixed;
 	margin:auto;
-	bottom:5%;
+	bottom:8%;
 	left:0;
 	right:0;
-	display:none;
+}
+.dropup button
+{
+	width:15em;
+	height:2.5em;
 }
 .dropdown-item
 {
