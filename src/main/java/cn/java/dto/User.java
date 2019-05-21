@@ -1,6 +1,5 @@
 package cn.java.dto;
 
-import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
@@ -20,12 +19,12 @@ public class User {
     private Integer authority;
 
     @NotNull(message = "Name cannot be empty")
-    @Pattern(regexp = "[a-z-A-Z]*", message = "First name has invalid characters, no numbers")
+    @Pattern(regexp = "[a-z,A-Z]*", message = "First name has invalid characters, no numbers")
     @Length(min = 0, max = 30, message = "Your first name is too Long, please shorten it, sorry!")
     private String firstName;
 
     @NotNull(message = "Name cannot be empty")
-    @Pattern(regexp = "[a-z-A-Z]*", message = "Last name has invalid characters, no numbers")
+    @Pattern(regexp = "[a-z,A-Z]*", message = "Last name has invalid characters, no numbers")
     @Length(min = 0, max = 30, message = "Your last name is too Long, please shorten it, sorry!")
     private String lastName;
 

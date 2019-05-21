@@ -122,6 +122,7 @@ public class RoomServiceImpl implements RoomService {
         return 0;
     }
 
+    @Override
     public List<Room> getOccupiedRoom(Room record) {
         Date date = new Date();
         Calendar cal = Calendar.getInstance();
