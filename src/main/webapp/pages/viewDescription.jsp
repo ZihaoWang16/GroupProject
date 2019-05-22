@@ -9,9 +9,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>These are all the description.</h1>
+<center>
+	<a href="javascript:history.back(-1)">Back</a>
+	<h1>Here are all the descriptions.</h1>
 	<c:forEach var="description" items="${descriptionList }">
 		<p>${description.content }</p>
 	</c:forEach>
+</center>
 </body>
 </html>
